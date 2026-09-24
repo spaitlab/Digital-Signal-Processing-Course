@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>数字信号处理 第3章01 · 四种傅里叶变换</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="chapter.css"><link rel="stylesheet" href="branding.css"></head>
+<body><main class="deck">
+ <header class="top branded-top">
+  <a class="brand" href="#1" aria-label="北京理工大学 · 数字信号处理，返回本讲第一页"><img class="bit-emblem" src="assets/bit-emblem.png" alt="北京理工大学校徽" width="116" height="116"><span class="brand-label"><strong>北京理工大学</strong><span>数字信号处理</span></span></a>
+  <span class="course">第三章 01 / 四种傅里叶变换</span>
+  <div class="tongyuan-logo" role="img" aria-label="同元 MWORKS"><img src="assets/tongyuan-symbol.png" alt="" width="142" height="142"><span>MWORKS</span></div>
+  <nav class="header-actions" aria-label="课程导航"><a class="home-link" href="../../index.html"><span aria-hidden="true">←</span> 课程首页</a><button id="full" class="quiet" type="button">全屏投影</button></nav>
+ </header>
+ <nav id="pages" class="pages" aria-label="课件分页"></nav>
+ <section class="heading"><div><p class="eyebrow" id="section">CHAPTER 03 / 01</p><h1 id="title">同一类脉冲，四种表示</h1></div><p id="lead"></p></section>
+ <section class="stage" aria-label="动态演示与静态知识">
+  <div class="visual"><div class="visual-top"><span class="live"><i></i><span id="visual-mode">动态演示</span></span><span id="scene-meta"></span></div>
+   <canvas id="plot" width="900" height="360" role="img" aria-label="四种傅里叶表示的时域与频域对照">请使用支持 Canvas 的浏览器。</canvas>
+   <div id="quiz-panel" hidden><p class="quiz-count" id="quiz-count"></p><h3 id="quiz-question"></h3><fieldset id="quiz-options"><legend class="sr-only">选择你的判断</legend></fieldset><div class="quiz-actions"><button id="quiz-check" type="button" disabled>检查判断</button><button id="quiz-next" type="button">下一题 →</button></div><p id="quiz-feedback" role="status"></p></div>
+   <div id="legend" class="legend"></div>
+   <div id="controls" class="lab-controls">
+    <label data-control="form">表示<select id="form"><option value="ctft">CTFT · 连续非周期</option><option value="fs">FS · 连续周期</option><option value="dtft">DTFT · 离散非周期</option><option value="dfs">DFS · 离散周期</option></select></label>
+    <label data-control="period">周期 T<select id="period"><option value="8">8 s</option><option value="16">16 s</option><option value="32">32 s</option></select></label>
+    <label data-control="size">周期 N<select id="size"><option value="4">4 样本</option><option value="8" selected>8 样本</option><option value="16">16 样本</option></select></label>
+    <label data-control="omega">频率 ω/π<input id="omega" type="range" min="-2" max="2" step="0.01" value="0"><output id="omega-value">0</output></label>
+    <label data-control="m">谐波 m<select id="m"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option></select></label>
+    <label data-control="r">目标 r<select id="r"><option value="1">1</option><option value="2" selected>2</option><option value="3">3</option></select></label>
+    <label data-control="cycle">积分 t/T<input id="cycle" type="range" min="0" max="1" step="0.01" value="1"><output id="cycle-value">1</output></label>
+   </div><p id="visual-caption" class="visual-caption"></p>
+  </div>
+  <aside class="knowledge" aria-label="本屏知识板书"><p class="eyebrow">留在屏幕上的知识</p><h2 id="concept"></h2><div id="formula" class="formula"></div><div id="points"></div><p class="takeaway" id="takeaway"></p></aside>
+ </section>
+ <section class="narration" aria-label="逐句讲解文字"><div class="narration-meta"><span>讲解词</span><span id="cue-index"></span></div><p id="transcript" aria-live="off"></p><div class="cue-controls"><button id="prev-cue" aria-label="上一句讲解">←</button><button id="next-cue" aria-label="下一句讲解">→</button></div></section>
+ <footer class="transport"><div class="playback"><button id="play" class="play" type="button" aria-label="播放讲解">▶<span>播放讲解</span></button><button id="reset" class="quiet" type="button">重播</button></div><div class="timeline"><input id="seek" type="range" min="0" max="41" value="0" step="0.02" aria-label="讲解进度"><span id="clock"></span></div><label class="sound"><input id="sound" type="checkbox" checked>语音</label><label class="speed-label"><span class="sr-only">播放速度</span><select id="speed" aria-label="播放速度"><option value="1">1×</option><option value="0.8">0.8×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label><div class="page-turn"><button id="prev" aria-label="上一屏">←</button><span id="page-number"></span><button id="next" aria-label="下一屏">→</button></div></footer>
+ <p id="status" class="status" role="status"></p>
+ <details class="sources"><summary>课程来源与模型约定</summary><p>范围依据去年《数字信号处理 第3章01》PPTX（11 页）与课程网站 3.1 四种傅里叶变换。讲解配音从已有 3.1 微课逐段剪辑，字幕独立整理，未使用教师声音复刻。</p><p>连续模型为宽 3 s、幅度 1 的中心矩形脉冲；离散模型为 x[−1] = x[0] = x[1] = 1，其余为零。它们属于同类脉冲，不将连续傅里叶变换与离散傅里叶变换数值直接等同。浏览器按解析式实时计算，显示窗口外的信号按各模型定义延续。</p><p>连续时间频率 Ω 单位 rad/s，离散时间频率 ω 单位 rad/sample。FS 显示系数幅度 |cₘ|；周期对照页显示 T|cₘ|；DTFT 与 DFS 在本实偶例子中显示带符号实值。DFS 正变换不除以 N，逆变换带 1/N。n、k 为索引，N 为周期长度。</p><p>课堂判断先选答案再显示依据；自由实验无配音。首次生成的配音、计算核验及浏览器检查记录保存在工作区 .课件制作/ch3-01。</p></details>
+ <audio id="voice" preload="metadata"></audio>
+</main><script src="assets/lessons.js"></script><script src="assets/math.js"></script><script src="app.js"></script></body></html>

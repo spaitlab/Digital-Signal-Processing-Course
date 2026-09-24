@@ -12,7 +12,7 @@ toc: false
 
 工程案例不在本站展开，那是《智能信号处理算法与应用》的内容；本站的例子都是为看清公式某一项而设计的说明例。
 
-[开始学习](ch1/index.qmd){.btn .btn-primary} [下载课件](downloads.qmd){.btn .btn-outline-primary} [观看微课](microlectures/index.html){.btn .btn-outline-primary}
+[开始学习](ch1/index.qmd){.btn .btn-primary} [进入课堂课件](courseware/index.html){.btn .btn-outline-primary} [观看微课](microlectures/index.html){.btn .btn-outline-primary}
 
 ## 章节 {#sec-1}
 

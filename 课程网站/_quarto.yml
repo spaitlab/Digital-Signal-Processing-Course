@@ -3,7 +3,6 @@ project:
   output-dir: _site
   resources:
   - microlectures/**
-  - downloads/**
   - ch1/code/**
   - ch2/code/**
   - ch3/code/**
@@ -19,6 +18,7 @@ project:
   - ch6/media/*-poster.png
   - ch7/media/*-poster.png
   - ch7/lab-fir01/**
+  - courseware/**
   render:
   - '*.qmd'
   - ch*/*.qmd
@@ -56,8 +56,8 @@ website:
       href: method.qmd
     - text: 微课
       href: microlectures/index.html
-    - text: 课件下载
-      href: downloads.qmd
+    - text: 课堂课件
+      href: courseware/index.html
     right:
     - icon: github
       href: https://github.com/spaitlab/Digital-Signal-Processing-Course

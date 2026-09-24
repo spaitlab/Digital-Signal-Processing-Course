@@ -44,3 +44,9 @@ tmp/
 花名册/
 成绩/
 教师专用/
+
+# Narration required by the published interactive HTML lessons
+!课程网站/courseware/**/assets/*.mp3
+
+# Quarto render intermediates
+site_libs/

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>数字信号处理 第2章01 · 采样与恢复</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="chapter.css"><link rel="stylesheet" href="branding.css"></head>
+<body>
+<main class="deck">
+ <header class="top branded-top">
+  <a class="brand" href="#1" aria-label="北京理工大学 · 数字信号处理，返回本讲第一页"><img class="bit-emblem" src="assets/bit-emblem.png" alt="北京理工大学校徽" width="116" height="116"><span class="brand-label"><strong>北京理工大学</strong><span>数字信号处理</span></span></a>
+  <span class="course">第二章 01 / 采样与恢复</span>
+  <div class="tongyuan-logo" role="img" aria-label="同元 MWORKS"><img src="assets/tongyuan-symbol.png" alt="" width="142" height="142"><span>MWORKS</span></div>
+  <nav class="header-actions" aria-label="课程导航"><a class="home-link" href="../../index.html" aria-label="返回数字信号处理课程首页"><span aria-hidden="true">←</span> 课程首页</a><button id="full" class="quiet" type="button">全屏投影</button></nav>
+ </header>
+ <nav id="pages" class="pages" aria-label="课件分页"></nav>
+ <section class="heading"><div><p class="eyebrow" id="section">01 / SAMPLING</p><h1 id="title">采样，选择时间位置</h1></div><p id="lead">波形上有了点，就已经是数字信号了吗？</p></section>
+ <section class="stage" aria-label="动态演示与静态知识">
+  <div class="visual">
+   <div class="visual-top"><span class="live"><i></i>动态演示</span><span id="scene-meta">归一化仿真信号</span></div>
+   <canvas id="plot" width="900" height="410" role="img" aria-label="采样演示：连续曲线上按时间间隔逐个显示采样点">您的浏览器不支持 Canvas。</canvas>
+   <div id="legend" class="legend"></div>
+   <div id="controls" class="lab-controls">
+    <label data-control="model">模型<select id="model"><option value="natural">矩形脉冲</option><option value="ideal">理想冲激</option></select></label>
+    <label data-control="duty">脉宽 τ/T<input id="duty" type="range" min="0.08" max="0.6" value="0.3" step="0.02"><output id="duty-value">0.30</output></label>
+    <label data-control="labmode">实验<select id="labmode"><option value="sampling">采样与混叠</option><option value="reconstruction">有限内插</option></select></label>
+    <label data-control="fs">采样率<select id="fs"><option value="20">20 Hz</option><option value="12">12 Hz</option><option value="10">10 Hz</option><option value="6">6 Hz</option></select></label>
+    <label data-control="wave">波形<select id="wave"><option value="cos">余弦</option><option value="sin">正弦</option></select></label>
+    <label data-control="rconfig">样本范围<select id="rconfig"><option value="12-12">12 Hz · 25 项</option><option value="12-36">12 Hz · 73 项</option><option value="12-120">12 Hz · 241 项</option><option value="6-120">6 Hz · 241 项</option></select></label>
+    <label data-control="method">方法<select id="method"><option value="sinc">有限 sinc</option><option value="linear">线性内插</option><option value="hold">零阶保持</option></select></label>
+    <label data-control="basis">中心序号 N<select id="basis"><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="-1">−1</option></select></label>
+    <label data-control="terms">已加入<input id="terms" type="range" min="1" max="25" value="1" step="1"><output id="term-count">1 / 25</output></label>
+   </div>
+   <p id="visual-caption" class="visual-caption"></p>
+  </div>
+  <aside class="knowledge" aria-label="本屏知识板书"><p class="eyebrow">留在屏幕上的知识</p><h2 id="concept"></h2><div id="formula" class="formula"></div><div id="points"></div><p class="takeaway" id="takeaway"></p></aside>
+ </section>
+ <section class="narration" aria-label="逐句讲解文字"><div class="narration-meta"><span>讲解词</span><span id="cue-index">01 / 05</span></div><p id="transcript" aria-live="off"></p><div class="cue-controls"><button id="prev-cue" aria-label="上一句讲解" title="上一句">←</button><button id="next-cue" aria-label="下一句讲解" title="下一句">→</button></div></section>
+ <footer class="transport">
+  <div class="playback"><button id="play" class="play" type="button" aria-label="播放讲解">▶<span>播放讲解</span></button><button id="reset" class="quiet" type="button">重播</button></div>
+  <div class="timeline"><input id="seek" type="range" min="0" max="49" value="0" step="0.05" aria-label="讲解进度"><span id="clock">0:00 / 0:49</span></div>
+  <label class="sound"><input id="sound" type="checkbox" checked>语音</label><label class="speed-label"><span class="sr-only">播放速度</span><select id="speed" aria-label="播放速度"><option value="1">1×</option><option value="0.8">0.8×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></label>
+  <div class="page-turn"><button id="prev" aria-label="上一屏">←</button><span id="page-number">01 / 05</span><button id="next" aria-label="下一屏">→</button></div>
+ </footer>
+ <p id="status" class="status" role="status">点击播放开始；空格暂停，左右方向键翻页。每屏结束后停留，便于课堂讨论。</p>
+ <details class="sources"><summary>课程来源与模型约定</summary><p>内容范围依据去年《数字信号处理 第2章01》PPTX（17页）：采样模型、频谱延拓、采样定理、恢复与内插。与课程网站 2.1 采样定理及 2.1-A / 2.1-B 微课对照整理。</p><p>动画中的 5 Hz 余弦、采样率对照和有限 sinc 数据，复用配套微课的 MATLAB 实算数据。频谱轮廓为明确标注的示意；谱线高度归一化，实际理想采样频谱含 1/T 因子。</p><p>主线采用事先已知低通带宽 B、理想等间隔无噪声采样及 fₛ &gt; 2B。恢复公式对全部整数求和；有限截断不是普遍精确恢复保证。误差在 [−0.5,0.5] 秒的密集网格上比较，不是连续时间严格上界。正弦混叠时不能忽略符号与相位。</p></details>
+ <audio id="voice" preload="metadata"></audio>
+</main><script src="assets/2.1-sampling.js"></script><script src="assets/2.1-reconstruction.js"></script><script src="assets/lessons.js"></script><script src="app.js"></script>
+</body></html>
