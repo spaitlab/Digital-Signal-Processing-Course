@@ -177,7 +177,7 @@
       "chapter": 2,
       "status": "verified",
       "planned_page_path": "microlectures/2.1-sampling/index.html",
-      "page_url": null,
+      "page_url": "https://spaitlab.github.io/Digital-Signal-Processing-Course/microlectures/2.1-sampling/",
       "version": null,
       "variants": [
         {
@@ -202,16 +202,17 @@
         "subtitles.vtt"
       ],
       "mirror_url": null,
-      "verified_at": "2026-09-24T00:46:41.647406+00:00",
+      "verified_at": "2026-09-24T01:23:33.330214+00:00",
       "verification": {
         "sharing": "anyone_reader_confirmed",
         "playback": "anonymous_preview_started",
         "tested_variant": "light",
         "observed_current_time_seconds": 6.008236,
         "duration_seconds": 308.75573696145125,
-        "scope": "未登录桌面浏览器：Drive 预览与本地课程页面内嵌播放器短时起播通过；尚未验收全片、手机或目标教学网络。",
-        "embedded_playback": "anonymous_local_course_page_started",
-        "embedded_observed_current_time_seconds": 6.944349
+        "scope": "未登录桌面浏览器：正式 GitHub Pages 微课页面的内嵌播放器短时起播通过；尚未验收全片、手机或目标教学网络。",
+        "embedded_playback": "anonymous_published_course_page_started",
+        "embedded_observed_current_time_seconds": 6.949307,
+        "published_page": "http_200_verified"
       }
     },
     {

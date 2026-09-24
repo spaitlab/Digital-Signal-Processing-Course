@@ -16,11 +16,11 @@ python scripts/check_site.py 课程网站/_site
 
 ## GitHub Pages
 
-在仓库 Settings → Pages 中将 Source 设为 GitHub Actions。推送 main 后，工作流构建、检查并发布网站；也可在 Actions 手动运行 Build and publish course website。
+仓库 Settings → Pages 的 Source 已设为 GitHub Actions。推送 main 后，工作流构建、检查并发布网站；也可在 Actions 手动运行 Build and publish course website。
 
-预定网址：https://spaitlab.github.io/Digital-Signal-Processing-Course/
+正式网址：https://spaitlab.github.io/Digital-Signal-Processing-Course/
 
-该地址只有首次部署成功后才可用。`_site/` 是构建产物，由 Actions 发布，不提交到源码仓库。
+首次部署与公开网址检查已通过。`_site/` 是构建产物，由 Actions 发布，不提交到源码仓库。
 
 ## 微课维护
 
