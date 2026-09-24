@@ -8,7 +8,7 @@ Digital Signal Processing Course · SpaitLab
 
 [访问课程网站](https://spaitlab.github.io/Digital-Signal-Processing-Course/) · [查看部署状态](https://github.com/spaitlab/Digital-Signal-Processing-Course/actions/workflows/pages.yml)
 
-网站已上线：可从首页进入七章讲义、课堂课件和微课目录。
+网站已上线：导航统一为首页、电子教材、微课中心和在线课件；七章讲义由电子教材入口进入，备课与学习方法收录在首页。
 
 ## 资源入口
 

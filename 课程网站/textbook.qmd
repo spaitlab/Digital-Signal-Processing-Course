@@ -1,0 +1,45 @@
+---
+title: "电子教材"
+subtitle: "按教材顺序阅读：知识点、推导、仿真与检查思考"
+toc: false
+---
+
+从章节总览进入知识点页，章内保留原有左右目录与前后页导航。
+
+::: {.card-grid}
+::: {.card-item}
+[第1章 数字信号处理概述](ch1/index.qmd){.card-title}
+
+[讲义、数学推导、实验与检查思考]{.card-meta}
+:::
+::: {.card-item}
+[第2章 离散时间信号和系统分析](ch2/index.qmd){.card-title}
+
+[讲义、数学推导、实验与检查思考]{.card-meta}
+:::
+::: {.card-item}
+[第3章 离散傅里叶变换](ch3/index.qmd){.card-title}
+
+[讲义、数学推导、实验与检查思考]{.card-meta}
+:::
+::: {.card-item}
+[第4章 快速傅里叶变换](ch4/index.qmd){.card-title}
+
+[讲义、数学推导、实验与检查思考]{.card-meta}
+:::
+::: {.card-item}
+[第5章 数字滤波器的结构](ch5/index.qmd){.card-title}
+
+[讲义、数学推导、实验与检查思考]{.card-meta}
+:::
+::: {.card-item}
+[第6章 IIR 数字滤波器设计](ch6/index.qmd){.card-title}
+
+[讲义、数学推导、实验与检查思考]{.card-meta}
+:::
+::: {.card-item}
+[第7章 FIR 数字滤波器设计](ch7/index.qmd){.card-title}
+
+[讲义、数学推导、实验与检查思考]{.card-meta}
+:::
+:::

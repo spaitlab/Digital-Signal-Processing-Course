@@ -19,16 +19,21 @@ project:
   - ch7/media/*-poster.png
   - ch7/lab-fir01/**
   - courseware/**
+  - site-header.css
+  - site-header.js
+  - site-assets/**
   render:
   - '*.qmd'
   - ch*/*.qmd
   - '!**/_*.qmd'
+  pre-render:
+  - python tools/sync_navigation.py
 lang: zh
 execute:
   enabled: false
 website:
-  title: 数字信号处理 · 课程站
-  description: 数字信号处理课程讲义、实验代码、课件与微课，覆盖第1至第7章。
+  title: 数字信号处理 - 智能学习仓库
+  description: 数字信号处理电子教材、微课、在线课件与仿真实验，按教材进度组织。
   navbar:
     background: '#ffffff'
     foreground: '#212121'
@@ -36,33 +41,14 @@ website:
     left:
     - text: 首页
       href: index.qmd
-    - text: 课程章节
-      menu:
-      - text: 第1章 概述
-        href: ch1/index.qmd
-      - text: 第2章 信号与系统
-        href: ch2/index.qmd
-      - text: 第3章 离散傅里叶变换
-        href: ch3/index.qmd
-      - text: 第4章 FFT
-        href: ch4/index.qmd
-      - text: 第5章 滤波器结构
-        href: ch5/index.qmd
-      - text: 第6章 IIR 设计
-        href: ch6/index.qmd
-      - text: 第7章 FIR 设计
-        href: ch7/index.qmd
-    - text: 备课法
-      href: method.qmd
-    - text: 微课
+    - text: 电子教材
+      href: textbook.qmd
+    - text: 微课中心
       href: microlectures/index.html
-    - text: 课堂课件
+    - text: 在线课件
       href: courseware/index.html
-    right:
-    - icon: github
-      href: https://github.com/spaitlab/Digital-Signal-Processing-Course
-      aria-label: 课程资源仓库
     search: true
+    collapse-below: xl
   sidebar:
   - id: ch1
     title: 第1章 数字信号处理概述
@@ -214,5 +200,8 @@ format:
     include-after-body:
     - quiz.html
     - media.html
+    - site-controls.html
     fig-align: center
     smooth-scroll: true
+    css:
+    - site-header.css

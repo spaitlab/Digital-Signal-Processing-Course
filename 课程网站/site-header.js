@@ -1,0 +1,25 @@
+(()=>{
+ const header=document.querySelector('.site-header');
+ if(header){
+  const button=header.querySelector('.site-menu-toggle');
+  const close=()=>{header.dataset.open='false';button.setAttribute('aria-expanded','false');};
+  button.addEventListener('click',()=>{const open=header.dataset.open!=='true';header.dataset.open=String(open);button.setAttribute('aria-expanded',String(open));});
+  header.addEventListener('keydown',e=>{if(e.key==='Escape'){close();button.focus();}});
+  header.querySelectorAll('.site-links a').forEach(a=>a.addEventListener('click',close));
+  matchMedia('(min-width:1200px)').addEventListener('change',close);
+ }
+ const container=document.querySelector('.site-header-inner, #quarto-header .navbar-container');
+ if(!container||container.querySelector('.site-actions'))return;
+ const brand=container.querySelector('.site-brand,.navbar-brand');
+ const asset=new URL('site-assets/mworks.png',brand.href).href;
+ const actions=document.createElement('div');actions.className='site-actions';
+ actions.innerHTML=`<a class="site-circle" href="https://github.com/spaitlab/Digital-Signal-Processing-Course" target="_blank" rel="noopener noreferrer" title="GitHub 课程仓库" aria-label="GitHub 课程仓库（新窗口）"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 5 18.3 5.3 18.3 5.3c.7 1.7.3 2.9.2 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a><a class="site-circle" href="https://www.tongyuan.cc/" target="_blank" rel="noopener noreferrer" title="同元 MWORKS" aria-label="同元 MWORKS（新窗口）"><img src="${asset}" alt="" width="25" height="25"></a><button class="site-circle site-theme-toggle" type="button" title="切换深浅主题" aria-label="切换深浅主题" aria-pressed="false"></button>`;
+ container.append(actions);
+ const toggle=actions.querySelector('button');
+ function reflect(){const dark=document.documentElement.dataset.theme==='dark';toggle.innerHTML=dark?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/></svg>':'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 15.5A8.5 8.5 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z"/></svg>';toggle.setAttribute('aria-pressed',String(dark));toggle.title=toggle.ariaLabel=dark?'切换浅色主题':'切换深色主题';}
+ function setTheme(theme){if(typeof choose==='function'&&document.querySelector('#film'))choose(theme);else document.documentElement.dataset.theme=theme;try{localStorage.setItem('dsp-micro-theme',theme);}catch{}reflect();}
+ toggle.addEventListener('click',()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'));
+ let saved='light';try{saved=localStorage.getItem('dsp-micro-theme')||saved;}catch{}
+ if(document.documentElement.dataset.theme!==saved)setTheme(saved);else reflect();
+ new MutationObserver(reflect).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+})();

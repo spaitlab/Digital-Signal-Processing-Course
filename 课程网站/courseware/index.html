@@ -1,28 +1,28 @@
-<!doctype html>
+<!DOCTYPE html>
+
 <html lang="zh-CN">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="数字信号处理课程 HTML 动静课件入口，按章节进入动态演示、知识板书与同步讲解。"><title>数字信号处理 · 课堂课件</title><link rel="stylesheet" href="course-home/home.css"></head>
-<body>
+<head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="数字信号处理课程 HTML 动静课件入口，按章节进入动态演示、知识板书与同步讲解。" name="description"/><title>数字信号处理 · 在线课件</title><link href="course-home/home.css" rel="stylesheet"/><link data-site-navigation="true" href="../site-header.css" rel="stylesheet"/></head>
+<body><div class="site-header" data-open="false" role="banner"><div class="site-header-inner"><a class="site-brand" href="../index.html">数字信号处理 - 智能学习仓库</a><button aria-controls="site-links" aria-expanded="false" aria-label="展开网站导航" class="site-menu-toggle" type="button">菜单</button><nav aria-label="网站主导航" class="site-links" id="site-links"><a href="../index.html">首页</a><a href="../textbook.html">电子教材</a><a href="../microlectures/index.html">微课中心</a><a aria-current="page" href="../courseware/index.html">在线课件</a></nav></div></div>
 <a class="skip" href="#chapters">跳到课程目录</a>
 <div class="shell">
- <header class="masthead">
-  <a class="school" href="index.html" aria-label="数字信号处理课程首页"><img src="course-home/bit-emblem.png" width="46" height="46" alt="北京理工大学校徽"><span><strong>北京理工大学</strong><small>数字信号处理 · 课程课件</small></span></a>
-  <nav aria-label="首页导航"><a href="../index.html">课程讲义</a><a href="#chapters">课程目录</a><a href="#guide">使用说明</a></nav>
-  <div class="mworks" role="img" aria-label="同元 MWORKS"><img src="course-home/tongyuan-symbol.png" width="42" height="42" alt=""><span>MWORKS</span></div>
- </header>
- <main>
-  <section class="hero" aria-labelledby="course-title">
-   <div class="hero-copy"><p class="eyebrow">2026—2027 学年 · 第一学期</p><h1 id="course-title">数字信号处理</h1><p class="hero-line">让信号的变化，看得见。</p><p class="intro">从采样到频谱，从系统到滤波器。<br>用动态演示理解过程，用静态板书梳理知识。</p><div class="hero-actions"><a class="primary" href="#chapters">浏览章节课件 <span aria-hidden="true">↓</span></a><span class="availability" id="availability">课件陆续整理中</span></div></div>
-   <div class="signal-card" aria-label="连续信号与离散样本示意"><div class="signal-caption"><span>从连续到离散</span><span class="signal-tag">SIGNAL → SAMPLES</span></div><svg id="signal" viewBox="0 0 500 210" role="img" aria-label="连续正弦曲线及等间隔采样点示意"><g stroke="#e5eded" stroke-width="1"><path d="M25 45H475M25 105H475M25 165H475M100 25V190M200 25V190M300 25V190M400 25V190"/></g><path d="M25 105H478" stroke="#a6b9bb"/><g id="signal-trace"></g></svg><div class="signal-legend"><span><i class="line"></i>连续信号</span><span><i class="dot"></i>离散样本</span><span class="signal-note">观察 · 理解 · 实验</span></div></div>
-  </section>
-  <section id="chapters" class="catalog" aria-labelledby="catalog-title">
-   <div class="section-head"><div><p class="eyebrow">COURSE CHAPTERS</p><h2 id="catalog-title">章节课件</h2></div><p>按章进入课堂，每一讲独立展开。</p></div>
-   <div class="catalog-tools"><div class="filters" role="group" aria-label="课件状态筛选"><button type="button" data-filter="all" aria-pressed="true">全部章节 <span>7</span></button><button type="button" data-filter="ready" aria-pressed="false">已有课件 <span id="ready-count">3</span></button></div><label class="search"><span class="sr-only">搜索章节或知识点</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="6"/><path d="m15 15 5 5"/></svg><input id="search" type="search" placeholder="搜索章节或知识点" autocomplete="off"></label></div>
-   <div id="chapter-list"></div><p id="no-results" hidden>没有匹配的章节，试试“采样”“傅里叶”或“滤波器”。</p><p id="result-status" class="sr-only" role="status"></p>
-   <noscript><p>请启用 JavaScript 查看全部目录，也可直接打开已完成课件：</p><p><a href="01-数字信号处理概述/HTML动静课件样板/index.html" target="_blank" rel="noopener">第1章01 · 信号与系统</a> · <a href="02-离散时间信号与系统分析/数字信号处理 第2章01_HTML动静课件_双Logo版/index.html" target="_blank" rel="noopener">第2章01 · 采样与恢复</a> · <a href="03-离散傅里叶变换/数字信号处理 第3章01_HTML动静课件/index.html" target="_blank" rel="noopener">第3章01 · 四种傅里叶变换</a></p></noscript>
-   <p class="catalog-note">课件在新标签页打开。这里展示的是本学期 HTML 课件整理进度，不代表各章内容已全部完成。</p>
-  </section>
-  <section class="guide" id="guide" aria-labelledby="guide-title"><div><p class="eyebrow">HOW TO USE</p><h2 id="guide-title">一页课件，三种配合</h2></div><div class="guide-item"><span>01 / 动态演示</span><p>观察波形与参数变化，<br>把抽象关系变成可见的过程。</p></div><div class="guide-item"><span>02 / 知识板书</span><p>概念、公式和结论保留在侧，<br>方便讲授中随时回看。</p></div><div class="guide-item"><span>03 / 同步讲解</span><p>播放、暂停或逐句定位，<br>为提问、推导与实验留出时间。</p></div></section>
- </main>
- <footer><span>数字信号处理 · 2026—2027 第一学期</span><span>动态演示 + 静态知识 + 同步讲解</span></footer>
+<header class="masthead">
+<a aria-label="数字信号处理课件目录" class="school" href="index.html"><img alt="北京理工大学校徽" height="46" src="course-home/bit-emblem.png" width="46"/><span><strong>北京理工大学</strong><small>数字信号处理 · 课程课件</small></span></a>
+<nav aria-label="课件目录与使用说明"><a href="#chapters">课件目录</a><a href="#guide">使用说明</a></nav>
+</header>
+<main>
+<section aria-labelledby="course-title" class="hero">
+<div class="hero-copy"><p class="eyebrow">2026—2027 学年 · 第一学期</p><h1 id="course-title">数字信号处理</h1><p class="hero-line">让信号的变化，看得见。</p><p class="intro">从采样到频谱，从系统到滤波器。<br/>用动态演示理解过程，用静态板书梳理知识。</p><div class="hero-actions"><a class="primary" href="#chapters">浏览章节课件 <span aria-hidden="true">↓</span></a><span class="availability" id="availability">课件陆续整理中</span></div></div>
+<div aria-label="连续信号与离散样本示意" class="signal-card"><div class="signal-caption"><span>从连续到离散</span><span class="signal-tag">SIGNAL → SAMPLES</span></div><svg aria-label="连续正弦曲线及等间隔采样点示意" id="signal" role="img" viewbox="0 0 500 210"><g stroke="#e5eded" stroke-width="1"><path d="M25 45H475M25 105H475M25 165H475M100 25V190M200 25V190M300 25V190M400 25V190"></path></g><path d="M25 105H478" stroke="#a6b9bb"></path><g id="signal-trace"></g></svg><div class="signal-legend"><span><i class="line"></i>连续信号</span><span><i class="dot"></i>离散样本</span><span class="signal-note">观察 · 理解 · 实验</span></div></div>
+</section>
+<section aria-labelledby="catalog-title" class="catalog" id="chapters">
+<div class="section-head"><div><p class="eyebrow">COURSE CHAPTERS</p><h2 id="catalog-title">章节课件</h2></div><p>按章进入课堂，每一讲独立展开。</p></div>
+<div class="catalog-tools"><div aria-label="课件状态筛选" class="filters" role="group"><button aria-pressed="true" data-filter="all" type="button">全部章节 <span>7</span></button><button aria-pressed="false" data-filter="ready" type="button">已有课件 <span id="ready-count">3</span></button></div><label class="search"><span class="sr-only">搜索章节或知识点</span><svg aria-hidden="true" height="18" viewbox="0 0 24 24" width="18"><circle cx="10" cy="10" r="6"></circle><path d="m15 15 5 5"></path></svg><input autocomplete="off" id="search" placeholder="搜索章节或知识点" type="search"/></label></div>
+<div id="chapter-list"></div><p hidden="" id="no-results">没有匹配的章节，试试“采样”“傅里叶”或“滤波器”。</p><p class="sr-only" id="result-status" role="status"></p>
+<noscript><p>请启用 JavaScript 查看全部目录，也可直接打开已完成课件：</p><p><a href="01-数字信号处理概述/HTML动静课件样板/index.html" rel="noopener" target="_blank">第1章01 · 信号与系统</a> · <a href="02-离散时间信号与系统分析/数字信号处理 第2章01_HTML动静课件_双Logo版/index.html" rel="noopener" target="_blank">第2章01 · 采样与恢复</a> · <a href="03-离散傅里叶变换/数字信号处理 第3章01_HTML动静课件/index.html" rel="noopener" target="_blank">第3章01 · 四种傅里叶变换</a></p></noscript>
+<p class="catalog-note">课件在新标签页打开。这里展示的是本学期 HTML 课件整理进度，不代表各章内容已全部完成。</p>
+</section>
+<section aria-labelledby="guide-title" class="guide" id="guide"><div><p class="eyebrow">HOW TO USE</p><h2 id="guide-title">一页课件，三种配合</h2></div><div class="guide-item"><span>01 / 动态演示</span><p>观察波形与参数变化，<br/>把抽象关系变成可见的过程。</p></div><div class="guide-item"><span>02 / 知识板书</span><p>概念、公式和结论保留在侧，<br/>方便讲授中随时回看。</p></div><div class="guide-item"><span>03 / 同步讲解</span><p>播放、暂停或逐句定位，<br/>为提问、推导与实验留出时间。</p></div></section>
+</main>
+<footer><span>数字信号处理 · 2026—2027 第一学期</span><span>动态演示 + 静态知识 + 同步讲解</span></footer>
 </div><script src="course-home/catalog.js"></script><script src="course-home/home.js"></script>
-</body></html>
+<script data-site-navigation="true" src="../site-header.js"></script></body></html>

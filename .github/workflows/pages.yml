@@ -21,6 +21,11 @@ jobs:
       - uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: '1.10.18'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install navigation build dependencies
+        run: python -m pip install -r 课程网站/tools/requirements.txt
       - name: Render seven-chapter website
         run: quarto render 课程网站
       - name: Check local links and publication exclusions

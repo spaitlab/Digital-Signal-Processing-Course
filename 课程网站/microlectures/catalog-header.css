@@ -1,0 +1,11 @@
+/* Compact microlecture landing header; scoped to the catalog only. */
+body.microlecture-catalog main{max-width:1240px;margin:0 auto;padding:24px 32px 40px}
+.microlecture-catalog .catalog-heading{padding:0 0 10px;margin:0}
+.microlecture-catalog .catalog-title-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.microlecture-catalog .catalog-heading h1{font-size:32px;line-height:1.3;margin:0;font-weight:700}
+.microlecture-catalog .catalog-badge{font-size:12px;line-height:1.5;padding:3px 9px;border:1px solid #c9d9e5;border-radius:12px;color:#52677a;background:#eaf1f6;white-space:nowrap}
+.microlecture-catalog .catalog-heading>p{font-size:14px;margin:8px 0 0;color:var(--muted,#52677a)}
+.microlecture-catalog main>section:first-of-type{margin-top:8px}
+.microlecture-catalog main>.catalog{margin-top:12px}
+html[data-theme=dark] .microlecture-catalog .catalog-badge{background:#203648;border-color:#466077;color:#c5d9e8}
+@media(max-width:700px){body.microlecture-catalog main{padding:20px 16px 32px}.microlecture-catalog .catalog-heading h1{font-size:27px}.microlecture-catalog .catalog-title-row{gap:10px}}
