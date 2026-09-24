@@ -1,0 +1,21 @@
+{
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "generated_at": "2026-09-19 14:05:19",
+  "frames": 1200,
+  "frame_rate": 30,
+  "duration_s": 40,
+  "width": 1280,
+  "height": 720,
+  "quality": 90,
+  "file_size_bytes": 4.615213E+6,
+  "sample_alias_error": 3.219646771412954E-15,
+  "alias_fitted_amplitude": 1.0002508656843592,
+  "folded_8hz_to": 4,
+  "sinc_max_error": 0.00078677490690809426,
+  "zoh_max_error": 1.8655319641501711,
+  "linear_max_error": 0.718287250728689,
+  "sinc_terms_recovery": 121,
+  "sinc_terms_alias": 61,
+  "source_comparison_tolerance": 1E-10,
+  "all_checks_passed": true
+}

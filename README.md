@@ -4,15 +4,19 @@ Digital Signal Processing Course · SpaitLab
 
 本仓库用于维护《数字信号处理》课程的课件、课程网站、微课资料与实验代码。课程网站作为统一学习入口，视频成片存放于 Google Drive。
 
-> 当前状态：仓库结构已初始化。课件和课程网站内容尚未导入，GitHub Pages 尚未发布，媒体清单中的视频尚未上传和验证。
+> 当前状态：七章网站源码与采样微课导学样板已导入。首条微课已上传 Google Drive，分享权限和未登录短时起播已验证；手机及教学网络仍待验收，GitHub Pages 首次部署状态见 Actions。
+
+[访问课程网站](https://spaitlab.github.io/Digital-Signal-Processing-Course/) · [查看部署状态](https://github.com/spaitlab/Digital-Signal-Processing-Course/actions/workflows/pages.yml)
+
+网站入口在首次 Pages 部署成功后生效。
 
 ## 资源入口
 
 | 资源 | 入口 | 当前状态 |
 | --- | --- | --- |
-| 课程网站 | [网站目录说明](课程网站/README.md) | 待导入与发布 |
-| 课件下载 | [课件目录说明](课件/README.md) | 待整理正式教学版 PPTX、PDF |
-| 微课与视频 | [媒体管理说明](资源清单/README.md) · [媒体清单](资源清单/media-manifest.json) | 已登记本地微课，待上传 |
+| 课程网站 | [网站目录说明](课程网站/README.md) | 七章源码已导入，部署见 Actions |
+| 课件下载 | [课件目录说明](课件/README.md) | 已提供采样微课三页导学样板 |
+| 微课与视频 | [媒体管理说明](资源清单/README.md) · [媒体清单](资源清单/media-manifest.json) | 已登记 13 条，首条浅色版已验证未登录起播 |
 | 云端课程资源 | [Google Drive · Course](https://drive.google.com/drive/folders/1gHXmujkXIk45643K1fm7i8QP-Eqhe5_5) | 已确定存储目录 |
 | 原有配套程序 | [Digital-Signal-Processing](https://github.com/spaitlab/Digital-Signal-Processing) | 独立程序仓库 |
 
@@ -46,6 +50,6 @@ Digital Signal Processing Course · SpaitLab
 
 ## 使用与反馈
 
-目前处于资源整理阶段。发现错字、失效链接或实验问题，可通过本仓库 [Issues](https://github.com/spaitlab/Digital-Signal-Processing-Course/issues) 反馈，并注明章节或微课编号。
+目前处于首轮发布阶段。发现错字、失效链接或实验问题，可通过本仓库 [Issues](https://github.com/spaitlab/Digital-Signal-Processing-Course/issues) 反馈，并注明章节或微课编号。
 
 各资源的作者、来源与许可将在导入时逐项记录；当前尚未指定统一的内容或代码许可证。

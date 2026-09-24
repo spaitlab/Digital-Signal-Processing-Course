@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">口述史图文 · 访谈 1997-02-11；网页发布日期未核对 · 阅读时长未核对</span>
+<h3>Oral-History:James Kaiser</h3>
+<p>发布：ETHW / IEEE History Center；访谈 Andrew Goldstein、Janet Abbate。课堂看点：从贝尔实验室的语音实验到计算机上的滤波器设计：读 Kaiser 如何把连续系统经验带入数字计算，再联系本章结构与有限字长。1965 年论文见课程页原参考文献；本口述史不单独证明“digital filter”一词首次出现的优先权。</p>
+<p>课堂展示一张截图，课后阅读。图文片段起止不适用。核对日期：2026-09-19。未核对字段：网页发布日期、阅读时长；附带音频时长与片段未核对。</p>
+<div class="actions"><a class="action primary" href="https://ethw.org/Oral-History:James_Kaiser" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

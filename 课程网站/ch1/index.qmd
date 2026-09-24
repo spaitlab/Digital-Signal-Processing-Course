@@ -1,0 +1,59 @@
+---
+title: "第1章 数字信号处理概述"
+subtitle: "四页教材，一堂课：信号是什么，数字处理怎么做，为什么值得做，用什么工具做"
+---
+
+::: {.page-meta}
+[教材书内 1—4 页 · PDF 9—12 页]{} [1 课时]{} [核对 2026-09-18]{}
+:::
+
+::: {.keypoints}
+[本章主线]{.kp-title}
+
+- 信号是携带信息的函数；按“时间”和“幅值”各自连续还是离散分成四类（1.1）。这个“两个属性分别判断”的习惯，第3章还会再用一次。
+- 数字信号处理是一条链：预处理 → 采样与 A/D → 数字处理 → D/A → 平滑（1.2）。每一格都对应一段历史。
+- 数字系统的优点不是口号，每一条都能用一个小实验看到：字长决定精度，换系数就换系统，两次运行完全一样，一套设备轮流处理多路（1.3）。
+- 本课程三种工具各管一件事：Python 跟教材、MATLAB 课堂演示、MWORKS 国产平台对照；同一个数在三个平台上算出来一样（1.4）。
+:::
+
+## 知识点 {#sec-1}
+
+| 页 | 教材位置 | 问题从哪来 | 本页的图 | 状态 |
+|---|---|---|---|---|
+| [1.1 信号和系统](1.1-signals-systems.qmd) | 1—2 页 | Shannon 1948：把“信息”从载体里分出来 | 沿用 1.2 图的前两格：采样、量化 | 完整 |
+| [1.2 数字信号处理过程](1.2-dsp-chain.qmd) | 2 页，图 1.2.1 | Reeves 的 PCM 专利、T1 载波、Cooley–Tukey、第一块 DSP 芯片 | 模拟 → 采样 → 量化 → 处理 → D/A 四格图 | 完整 |
+| [1.3 数字系统的优点](1.3-advantages.qmd) | 2—3 页，图 1.3.1 | 1962 年 T1：24 路话音在一根线上时分复用 | 精度、灵活、可靠、时分复用四格图 | 完整 |
+| [1.4 数字信号处理软件工具](1.4-tools.qmd) | 3—4 页 | MATLAB、Python/NumPy/SciPy、MWORKS 各自的来历 | 三平台环境检查与同一个数 | 完整 |
+
+## 本章的图与脚本 {#sec-2}
+
+| 脚本 | 生成的图 | 核验 |
+|---|---|---|
+| [demo_dsp_chain.m](code/demo_dsp_chain.m) | 数字信号处理过程四格图 | [verification.json](code/results/verification.json)：量化误差不超过半个台阶；5 点平均对 2 Hz、15 Hz 的增益与拟合幅值一致 |
+| [demo_digital_advantages.m](code/demo_digital_advantages.m) | 数字系统优点四格图 | [verification-advantages.json](code/results/verification-advantages.json)：系数量化误差界；两次运行差为 0；时分复用与单独处理差 10⁻¹⁶ |
+
+Python 对照版在 `code/python/`，两份都在本机运行通过，数值与 MATLAB 一致到小数点后四位。只用基础 MATLAB，不需要 Signal Processing Toolbox。
+
+## 本章媒体一览 {#sec-media}
+
+| 页 | 类型 | 标题 | 时长 | 课堂或课后 | 网络 | 核对日期 |
+|---|---|---|---|---|---|---|
+| [1.2](1.2-dsp-chain.qmd#sec-3) | 本地动画 | 采样 → 量化 → 5 点平均 → D/A 与平滑（视频整理中） | 36 秒 | 课堂先预测、后播放，再读四格图 | 不需要 | 2026-09-19 |
+| [1.2](1.2-dsp-chain.qmd#sec-1) | 外部视频 | [How An Algorithm Could Have Stopped The Nuclear Arms Race](https://www.veritasium.com/videos/2022/11/3/how-an-algorithm-could-have-stopped-the-nuclear-arms-race)，Veritasium，2022-11-03 | 未核对；未逐段试看 | 目前供课前浏览；课堂片段待核验 | 需要 | 2026-09-19 |
+| [1.2](1.2-dsp-chain.qmd#sec-1) | 图文报道 | [Chip Hall of Fame: Texas Instruments TMS32010 Digital Signal Processor](https://spectrum.ieee.org/chip-hall-of-fame-texas-instruments-tms32010-digital-signal-processor)，IEEE Spectrum，2017-06-30 | 原站标注阅读约 1 分钟 | 课堂展示芯片图，课后阅读 | 需要 | 2026-09-19 |
+| [1.3](1.3-advantages.qmd#sec-3) | 本地动画 | 字长 → 换系数 → 两次运行 → 时分复用（视频整理中） | 40 秒 | 课堂先预测、后播放，再读四格图 | 不需要 | 2026-09-19 |
+| [1.3](1.3-advantages.qmd#sec-1) | 历史图文 | [The Metropolitan Digital Truck Plant](https://www.nokia.com/bell-labs/publications-and-media/publications/the-metropolitan-digital-truck-plant/)，Nokia Bell Labs，1981-07-01 | 阅读时长未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [1.1](1.1-signals-systems.qmd#sec-1) | 视频 | [The Bit Player Trailer](https://vimeo.com/323615460) | 未核对 | 课前浏览；课堂片段待教师选定 | 需要 | 2026-09-19 |
+| [1.4](1.4-tools.qmd#sec-1) | 官方培训视频 | [科学计算与系统建模仿真平台MWORKS培训](https://www.bilibili.com/video/BV1iV4y1t7GH/)，同元软控，2023-07-24 | 2 小时 59 分；课堂只取 Syslab 章节片段 | 课堂片段待教师试看后选定；其余课后 | 需要 | 2026-09-19 |
+| [1.4](1.4-tools.qmd#sec-1) | 视频 | [Origins of MATLAB](https://www.mathworks.com/videos/origins-of-matlab-70332.html) | 8 分 25 秒 | 课前浏览；课堂片段待教师选定 | 需要 | 2026-09-19 |
+
+开课前照表检查网络与播放。
+
+## 课时安排（1 课时） {#sec-3}
+
+| 分钟 | 内容 |
+|---|---|
+| 0—10 | 1.1：信号是函数；两个属性四类信号；系统。用图的前两格看采样和量化 |
+| 10—25 | 1.2：框图五步各讲一句历史；运行演示，先预测 3 位量化的台阶和平均后 15 Hz 剩多少 |
+| 25—37 | 1.3：四个小实验各看一格；重点是“字长”和“两次运行差为 0” |
+| 37—45 | 1.4：三种工具分工；三平台算同一个数；布置环境安装 |

@@ -1,0 +1,62 @@
+---
+title: "第6章 无限冲激响应数字滤波器设计"
+subtitle: "借模拟滤波器的百年家底：先按指标设计 Ha(s)，再用脉冲响应不变法或双线性变换把它搬到 z 平面"
+---
+
+::: {.page-meta}
+[教材书内 177—215 页 · PDF 185—223 页]{} [建议 6 课时]{} [核对 2026-09-18]{}
+:::
+
+::: {.keypoints}
+[本章主线]{.kp-title}
+
+- IIR 设计走的是“间接路线”：数字指标 → 模拟指标 → 模拟低通原型 Ha(s) → 变换到 H(z)。模拟原型只有两个参数要定：阶数 N 和截止频率 Ωc。
+- 巴特沃思：|Ha|²=1/[1+(Ω/Ωc)^{2N}]，单调，极点在圆上（6.1）。切比雪夫 I 型：|Ha|²=1/[1+ε²C_N²(Ω/Ωc)]，通带等纹波，过渡带更陡，极点在椭圆上；同样指标少两阶（6.2）。
+- 脉冲响应不变法：h(n)=ha(nT)，极点 s_i→e^{s_iT}，频率响应是 Ha 的周期延拓之和，有混叠，只适合带限的低通、带通（6.3）。双线性变换：来自梯形积分，s=(2/T)(1−z⁻¹)/(1+z⁻¹)，无混叠、保稳定，但频率轴被 tan 压缩，要先预畸变（6.4）。
+- 同一指标四条路都能达标；差别在阶数、相位和是否混叠。教材例 6.5（巴特沃思 + 脉冲响应不变）与例 6.8（切比雪夫 + 双线性）全程核过，每个数都能复现（6.5）。
+:::
+
+## 知识点 {#sec-1}
+
+| 页 | 教材位置 | 问题从哪来 | 本页的图 | 状态 |
+|---|---|---|---|---|
+| [6.1 巴特沃思模拟低通](6.1-butterworth.qmd) | 177—183 页 | Butterworth 1930：让放大器的通带“最平坦” | \|Ha\|² 曲线、极点在圆上、表 6.1.1 复现、按指标定 N 与 Ωc | 完整 |
+| [6.2 切比雪夫模拟低通](6.2-chebyshev.qmd) | 183—192 页 | 切比雪夫 1854 的最小偏差多项式；Darlington 1939 的逼近理论 | 切比雪夫多项式、等纹波、极点在椭圆上、与巴特沃思比阶数 | 完整 |
+| [6.3 脉冲响应不变法](6.3-impulse-invariance.qmd) | 192—201 页 | Rader–Gold 1967 的两条路线之一；Jackson 2000 的修正 | z=e^{sT} 的多对一映射、例 6.4、混叠、例 6.5 全程 | 完整 |
+| [6.4 双线性变换法](6.4-bilinear.qmd) | 201—213 页 | Tustin 1947 的梯形法；Golden–Kaiser 1964 用于数字滤波器 | 梯形积分的误差、频率映射、例 6.7、例 6.8 带预畸变 | 完整 |
+| [6.5 设计全流程与对比](6.5-design-compare.qmd) | 197—215 页 | Constantinides 1970：低通原型之后的频率变换（教材未讲，作展望） | 四种设计对比、群延迟、极点、Hz 指标的习题 | 完整 |
+
+## 本章的图与脚本 {#sec-2}
+
+| 脚本 | 图 | 核验 |
+|---|---|---|
+| [demo_butterworth.m](code/demo_butterworth.m) | 01-butterworth | [verification-butterworth.json](code/results/verification-butterworth.json)：表 6.1.1 复现差 ≤3×10⁻⁵；例 6.5 定阶 N=5.8858→6、Ωc=0.7032 |
+| [demo_chebyshev.m](code/demo_chebyshev.m) | 02-chebyshev | [verification-chebyshev.json](code/results/verification-chebyshev.json)：例 6.8 的 a、b、四个极点、K=0.0438 复现（差 4×10⁻⁵） |
+| [demo_impulse_invariance.m](code/demo_impulse_invariance.m) | 03-impulse-invariance | [verification-impulse-invariance.json](code/results/verification-impulse-invariance.json)：例 6.4 系数复现；例 6.5 三个二阶节复现；ωp/ωs 处 1.00/15.39 dB |
+| [demo_bilinear.m](code/demo_bilinear.m) | 04-bilinear | [verification-bilinear.json](code/results/verification-bilinear.json)：例 6.7 的印刷系数对应 T=0.01 而非 0.001；例 6.8 的 H(z) 复现（差 8×10⁻⁵） |
+| [demo_iir_design_compare.m](code/demo_iir_design_compare.m) | 05-iir-design-compare | [verification-iir-design-compare.json](code/results/verification-iir-design-compare.json)：四种设计阶数 6/6/4/4，ωs 处 15.4/17.7/21.6/23.6 dB |
+
+设计公式全部自写在 `code/` 的五个 `dsp_*.m` 里（巴特沃思、切比雪夫原型；脉冲响应不变；双线性；模拟/数字频率响应），只用基础 MATLAB；装了 Signal Processing Toolbox 时脚本会顺带与 `butter`、`cheby1`、`impinvar`、`bilinear`、`buttord`、`cheb1ord` 对照，本机全部一致。Python 对照版在 `code/python/`（公用 `dsp_iir.py`），五份全部运行通过。
+
+## 本章媒体一览 {#sec-media}
+
+| 页 | 类型 | 标题 | 时长 | 课堂或课后 | 网络 | 核对日期 |
+|---|---|---|---|---|---|---|
+| [6.4](6.4-bilinear.qmd#sec-3) | 本地动画 | 梯形积分、频率映射与预畸变（视频整理中） | 40 秒 | 课堂先预测、后播放 | 不需要 | 2026-09-19 |
+| [6.1](6.1-butterworth.qmd#sec-1) | 人物传记 · 二手资料 | [Stephen Butterworth](https://en.wikipedia.org/wiki/Stephen_Butterworth) | 未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [6.2](6.2-chebyshev.qmd#sec-1) | 官方机构动画入口 | [Four-bar approximate straight line mechanism](https://en.tcheb.ru/straight-line-approximator/) | 未核对 | 课前浏览；课堂片段待教师试看 | 需要 | 2026-09-19 |
+| [6.2](6.2-chebyshev.qmd#sec-1) | 人物传记 | [Sidney Darlington](https://ethw.org/Sidney_Darlington) | 未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [6.3](6.3-impulse-invariance.qmd#sec-1) | 口述史图文 | [Oral-History:Ben Gold](https://ethw.org/Oral-History:Ben_Gold) | 未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [6.4](6.4-bilinear.qmd#sec-1) | 论文原文 | [Design of Wideband Sampled-Data Filters](https://archive.org/details/bstj43-4-1533)，Golden 与 Kaiser，BSTJ 1964-07 | 阅读时长未核对 | 课堂展示摘要一段，课后阅读 | 需要 | 2026-09-19 |
+| [6.4](6.4-bilinear.qmd#sec-1) | 口述史图文 | [Oral-History:James Kaiser](https://ethw.org/Oral-History:James_Kaiser) | 未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+
+## 课时安排（建议 6 课时） {#sec-3}
+
+| 课时 | 内容 |
+|---|---|
+| 1 | 6.1 巴特沃思：幅度平方函数三条性质，极点为什么在圆上，表 6.1.1 怎么来的 |
+| 2 | 6.2 切比雪夫：多项式的等纹波性质，ε、N 的确定，极点在椭圆上 |
+| 3 | 6.3 脉冲响应不变法：z=e^{sT}，部分分式，混叠；例 6.4 |
+| 4 | 6.3—6.4 例 6.5 全程；双线性变换的来历与频率映射 |
+| 5 | 6.4 预畸变与例 6.8 全程；例 6.7 的 T 问题 |
+| 6 | 6.5 四种设计对比；习题 11 型 Hz 指标的题当堂做 |

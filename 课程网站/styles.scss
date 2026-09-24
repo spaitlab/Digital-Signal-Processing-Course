@@ -1,0 +1,211 @@
+/*-- scss:defaults --*/
+// 参考 MathWorks 文档站的配色与版式：白底、蓝色强调、灰色侧栏、细线表格
+$mw-blue: #0076a8;
+$mw-blue-dark: #005f87;
+$mw-text: #212121;
+$mw-muted: #5c5c5c;
+$mw-border: #d9d9d9;
+$mw-gray-bg: #f7f7f7;
+$mw-example-bg: #fbfbfb;
+
+$font-family-sans-serif: "Segoe UI", "Microsoft YaHei", "PingFang SC", "Noto Sans SC", "Helvetica Neue", Arial, sans-serif;
+$font-family-monospace: Consolas, "Courier New", "Microsoft YaHei", monospace;
+$body-color: $mw-text;
+$link-color: $mw-blue;
+$link-hover-color: $mw-blue-dark;
+$font-size-root: 15.5px;
+$h1-font-size: 1.9rem;
+$h2-font-size: 1.35rem;
+$h3-font-size: 1.1rem;
+$headings-font-weight: 600;
+$navbar-bg: #ffffff;
+$navbar-fg: $mw-text;
+$code-block-bg: $mw-gray-bg;
+$code-bg: #eef3f7;
+$code-color: #1a1a1a;
+$table-border-color: $mw-border;
+
+/*-- scss:rules --*/
+body { line-height: 1.65; }
+
+// 顶栏：白底、底部细线、蓝色标题
+.navbar {
+  border-bottom: 1px solid $mw-border;
+  box-shadow: none;
+  .navbar-brand { color: $mw-blue !important; font-weight: 600; }
+  .nav-link { color: $mw-text !important; }
+  .nav-link:hover, .nav-link.active { color: $mw-blue !important; }
+}
+
+// 左侧栏：树形目录，当前页蓝色左边条
+#quarto-sidebar {
+  border-right: 1px solid $mw-border;
+  .sidebar-title { color: $mw-blue; font-weight: 600; }
+  .sidebar-item .sidebar-link { color: $mw-text; padding: 0.2rem 0.4rem; cursor: pointer; }
+  .sidebar-item a.sidebar-link:hover { color: $mw-blue; text-decoration: underline; }
+  .sidebar-item .sidebar-link.active {
+    color: $mw-blue; font-weight: 600;
+    border-left: 3px solid $mw-blue; background: #eaf3f8;
+  }
+}
+
+// 右侧“本页内容”
+#quarto-margin-sidebar {
+  .sidebar-title, #toc-title { color: $mw-muted; font-size: 0.85rem; text-transform: none; }
+  .nav-link.active { color: $mw-blue; border-left: 2px solid $mw-blue; }
+}
+
+// 标题
+h1.title { color: $mw-text; border-bottom: 1px solid $mw-border; padding-bottom: 0.5rem; }
+h2 { border-bottom: 1px solid $mw-border; padding-bottom: 0.3rem; margin-top: 2.2rem; }
+h3 { color: $mw-blue-dark; margin-top: 1.6rem; }
+
+// 页眉元信息行（教材页码、核对日期）
+.page-meta {
+  color: $mw-muted; font-size: 0.85rem; margin: -0.4rem 0 1.2rem 0;
+  span + span::before { content: " · "; color: $mw-border; }
+}
+
+// 四栏编号徽标
+.col-badge {
+  display: inline-block; min-width: 1.6em; padding: 0 0.45em; margin-right: 0.4em;
+  background: $mw-blue; color: #fff; border-radius: 3px; font-size: 0.8em; font-weight: 600; vertical-align: 0.15em;
+}
+
+// “本页要点”框
+.keypoints {
+  background: #eaf3f8; border-left: 4px solid $mw-blue; padding: 0.8rem 1rem; margin: 1rem 0 1.5rem 0;
+  .kp-title { font-weight: 600; color: $mw-blue-dark; margin-bottom: 0.3rem; }
+  ul { margin-bottom: 0; }
+}
+
+// 示例容器：MathWorks 示例的白底细框 + 灰标题条
+.example {
+  border: 1px solid $mw-border; border-radius: 4px; margin: 1.2rem 0; background: $mw-example-bg;
+  > .example-title {
+    background: $mw-gray-bg; border-bottom: 1px solid $mw-border; padding: 0.45rem 0.9rem;
+    font-weight: 600; color: $mw-text;
+  }
+  > .example-body { padding: 0.8rem 0.9rem; }
+  .figure, figure { margin: 0.5rem 0; }
+  img { border: 1px solid $mw-border; background: #fff; }
+}
+
+// 教师提问
+.callout-note.callout-style-default > .callout-header { background: #eaf3f8; }
+.callout.ask { border-left-color: $mw-blue; }
+
+// 表格：细线、浅灰表头
+table.table, .table {
+  font-size: 0.93rem;
+  thead th { background: $mw-gray-bg; border-bottom: 2px solid $mw-border; font-weight: 600; }
+  td, th { border-color: $mw-border; vertical-align: top; }
+}
+
+// 代码块
+div.sourceCode { border: 1px solid $mw-border; border-left: 3px solid $mw-blue; border-radius: 3px; }
+pre code { font-size: 0.86rem; }
+
+// 页签（MATLAB / Python / Julia）
+.panel-tabset {
+  .nav-tabs { border-bottom: 1px solid $mw-border; }
+  .nav-link { color: $mw-muted; border: none; border-bottom: 3px solid transparent; }
+  .nav-link.active { color: $mw-blue; border-bottom: 3px solid $mw-blue; background: transparent; }
+}
+
+// 运行状态小标签
+.status { display: inline-block; font-size: 0.75rem; padding: 0 0.45em; border-radius: 3px; margin-left: 0.4em; vertical-align: 0.1em; }
+.status.ok { background: #e3f3e6; color: #1d6a2c; border: 1px solid #b8dfc0; }
+.status.ref { background: #f1f1f1; color: #5c5c5c; border: 1px solid #d9d9d9; }
+.status.todo { background: #fff4e0; color: #8a5a00; border: 1px solid #f0d9a8; }
+
+// “另请参阅”：MathWorks 风格的横排链接
+.see-also {
+  border-top: 1px solid $mw-border; margin-top: 2.5rem; padding-top: 0.9rem;
+  .sa-title { font-weight: 600; color: $mw-text; margin-bottom: 0.3rem; }
+  .sa-row { margin-bottom: 0.25rem; span.sa-label { color: $mw-muted; margin-right: 0.5rem; } }
+  a + a::before { content: " | "; color: $mw-border; }
+}
+
+// 历史出处列表
+.sources { font-size: 0.88rem; color: $mw-muted; li { margin-bottom: 0.2rem; } }
+
+// 自测组件
+.quiz {
+  border: 1px solid $mw-border; border-radius: 4px; padding: 0.7rem 0.9rem; margin: 0.8rem 0; background: #fff;
+  .q-text { font-weight: 500; margin-bottom: 0.45rem; }
+  .q-opts label { display: block; margin: 0.15rem 0; cursor: pointer; }
+  input[type=text] { width: 12em; padding: 0.15rem 0.4rem; border: 1px solid $mw-border; border-radius: 3px; }
+  button { background: $mw-blue; color: #fff; border: none; border-radius: 3px; padding: 0.25rem 0.8rem; margin-left: 0.5rem; cursor: pointer; }
+  button:hover { background: $mw-blue-dark; }
+  .q-result { margin-top: 0.45rem; font-size: 0.92rem; }
+  .q-result.ok { color: #1d6a2c; }
+  .q-result.bad { color: #a33; }
+  .q-explain { display: none; margin-top: 0.35rem; color: $mw-muted; font-size: 0.9rem; border-top: 1px dashed $mw-border; padding-top: 0.35rem; }
+}
+
+// 在 IDE 中打开
+.ide-links {
+  border: 1px solid $mw-border; border-radius: 4px; background: $mw-gray-bg; padding: 0.6rem 0.9rem; margin: 0.8rem 0 1.2rem 0; font-size: 0.9rem;
+  .ide-head { font-weight: 600; margin-bottom: 0.35rem; }
+  .ide-hint { font-weight: 400; color: $mw-muted; font-size: 0.82rem; margin-left: 0.4rem; }
+  .ide-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; padding: 0.25rem 0; border-top: 1px dashed $mw-border; }
+  .ide-tool { display: inline-block; min-width: 9.5em; font-weight: 600; color: $mw-blue-dark; }
+  .ide-file { font-family: $font-family-monospace; font-size: 0.85rem; color: $mw-text; margin-right: 0.3rem; }
+  .ide-btn {
+    background: #fff; color: $mw-blue; border: 1px solid $mw-blue; border-radius: 3px; padding: 0.05rem 0.55rem; font-size: 0.8rem; cursor: pointer; text-decoration: none;
+  }
+  .ide-btn:hover { background: $mw-blue; color: #fff; }
+  .ide-link { border-color: #5c9e31; color: #3d6e1f; }
+  .ide-link:hover { background: #5c9e31; color: #fff; }
+}
+
+// CodeBuddy 助教互动框
+.agent-box {
+  border: 1px solid $mw-border; border-left: 4px solid #5c9e31; border-radius: 4px;
+  background: #f6faf3; padding: 0.8rem 1rem; margin: 1.5rem 0;
+  .ab-title { font-weight: 600; color: #3d6e1f; display: block; margin-bottom: 0.3rem; }
+}
+.agent-prompt {
+  position: relative; background: #fff; border: 1px solid $mw-border; border-radius: 4px;
+  padding: 0.55rem 4.5rem 0.55rem 0.8rem; margin: 0.5rem 0; font-size: 0.92rem;
+  p { margin: 0; }
+  .ab-copy {
+    position: absolute; right: 0.5rem; top: 0.45rem; background: #fff; color: $mw-blue;
+    border: 1px solid $mw-blue; border-radius: 3px; padding: 0.1rem 0.6rem; font-size: 0.8rem; cursor: pointer;
+  }
+  .ab-copy:hover { background: $mw-blue; color: #fff; }
+}
+
+// 首页卡片
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; margin: 1rem 0 2rem 0; }
+.card-item {
+  border: 1px solid $mw-border; border-radius: 4px; padding: 0.9rem 1rem; background: #fff;
+  .card-title { font-weight: 600; color: $mw-blue; margin-bottom: 0.3rem; }
+  .card-meta { color: $mw-muted; font-size: 0.82rem; }
+}
+.card-item { cursor: pointer; }
+.card-item:hover { border-color: $mw-blue; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+
+// 媒体卡与视频（2026-09-19，样板：1.2）
+.actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 18px 0; }
+.action, .video-box button { border: 1px solid $mw-blue; background: white; color: $mw-blue-dark; border-radius: 4px; padding: 8px 13px; cursor: pointer; font: inherit; }
+.action.primary { background: $mw-blue; color: white; }
+.action:focus-visible, .video-box button:focus-visible { outline: 3px solid $mw-blue-dark; outline-offset: 3px; }
+.media-card { margin: 22px 0; border: 1px solid $mw-border; border-radius: 5px; background: $mw-gray-bg; overflow: hidden; }
+.media-card img { display: block; width: 100%; max-height: 450px; object-fit: contain; background: white; }
+.media-card img[hidden] { display: none; }
+.media-card figcaption { padding: 10px 15px; font-size: .85rem; color: $mw-muted; }
+.media-fallback { padding: 32px; color: $mw-muted; }
+.video-box { min-height: 175px; background: $mw-gray-bg; display: grid; place-items: center; padding: 20px; margin: 18px 0; }
+.video-box video, .video-box iframe { display: block; width: 100%; aspect-ratio: 16/9; border: none; }
+.video-box:has(video), .video-box:has(iframe) { padding: 0; }
+.media-note { font-size: .85rem; color: $mw-muted; }
+.classroom-media-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; margin: 20px 0; }
+.classroom-media-card { border: 1px solid $mw-border; border-top: 4px solid $mw-blue; border-radius: 10px; padding: 20px; background: $mw-gray-bg; }
+.classroom-media-card h3 { font-size: 1.12rem; margin: 12px 0; overflow-wrap: anywhere; }
+.classroom-media-card p { font-size: .91rem; line-height: 1.7; }
+.classroom-media-card .action { display: inline-block; margin: 5px 4px 0 0; text-decoration: none; }
+.media-type { font-size: .8rem; font-weight: 600; color: $mw-blue-dark; }
+@media (max-width: 760px) { .classroom-media-grid { grid-template-columns: 1fr; } .media-card img { max-height: 300px; } }
+@media print { .video-box, .actions { display: none !important; } .classroom-media-card { break-inside: avoid; } }

@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">作者公开资料 PDF · 履历日期 2010-05-01；所列自述文章 2005-03 · 阅读时长未核对</span>
+<h3>James H. McClellan 公开履历：2005 年算法自述书目</h3>
+<p>发布：James H. McClellan / Georgia Tech 公开站点附件。课堂看点：作者履历列出与 Parks 合著的 A personal history of the Parks–McClellan algorithm（2005 年 3 月），并列出 1972 年线性相位 FIR 设计论文。由作者的研究轨迹引出教材末尾的最优设计展望；这份履历不是自述全文，不据此宣称已核对课程作业诞生故事。</p>
+<p>课堂展示一张截图，课后阅读。图文片段起止不适用。核对日期：2026-09-19。未核对字段：附件上线日期、阅读时长；IEEE 自述全文未读取。</p>
+<div class="actions"><a class="action primary" href="https://bpb-us-e1.wpmucdn.com/sites.gatech.edu/dist/5/554/files/2016/12/JMc2010-cvEXTERNAL.pdf?bid=554" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

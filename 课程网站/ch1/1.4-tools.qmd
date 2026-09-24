@@ -1,0 +1,165 @@
+---
+title: "1.4 数字信号处理软件工具"
+subtitle: "Python 跟教材，MATLAB 做演示，MWORKS 做对照：同一个数，三个平台算出来一样"
+---
+
+::: {.page-meta}
+[教材书内 3—4 页 · PDF 11—12 页]{} [8 分钟]{} [核对 2026-09-18]{}
+:::
+
+::: {.keypoints}
+[本页要点]{.kp-title}
+
+- 教材主语言是 Python：NumPy 管数组与数值计算，SciPy 加上信号处理等专业函数，Matplotlib 画图。
+- 本课程另外用 MATLAB（教师课堂演示，本站所有图由它生成）和 MWORKS Syslab（国产平台，Julia 语言，在核心知识点做对照）。
+- 工具只是算数的地方。同一个信号的能量在三个平台上算出同一个数，说明数学与工具无关。
+:::
+
+::: {.callout-tip}
+## 配套微课 · 教师试播
+[第一次仿真：三种工具能算出同一个结果吗？](../microlectures/1.4-tools/index.html) · 约3分58秒。生成200个样本，检查下标、端点、逐元素平方与跨语言一致性；附可下载入门脚本。本次微课验证MATLAB、Python和独立Julia运行时，MWORKS Syslab界面试运行另行记录。
+:::
+
+## [①]{.col-badge} 问题从哪来：三种工具各自的来历 {#sec-1}
+
+**MATLAB。** 1970 年代末，Cleve Moler 在新墨西哥大学为了让学生不写 Fortran 就能调用 LINPACK 和 EISPACK 的矩阵程序，写了第一版 MATLAB；Jack Little 和 Steve Bangert 后来用 C 重写并加入 M 文件和工具箱，三人于 1984 年创立 MathWorks。它从一开始就是“矩阵实验室”，信号在里面就是向量。
+
+**Python 与科学计算库。** Python 由 Guido van Rossum 在 1990 年前后设计（教材第 3 页）。使它能做信号处理的是三个库：NumPy 提供多维数组与向量化运算，2020 年 Nature 上的综述文章追溯了它的形成；SciPy 在其上提供信号处理、线性代数等专业函数，2020 年 Nature Methods 上的 SciPy 1.0 论文是正式出处；Matplotlib 负责画图。
+
+**MWORKS。** 苏州同元软控的科学计算与系统建模平台，Syslab 面向科学计算，使用 Julia 语言，函数库以 Ty 开头（TyMath、TySignalProcessing 等）；Sysplorer 面向 Modelica 系统建模。本机版本 Syslab 26.6.1，Julia 1.10.10。
+
+::: {.classroom-media-grid}
+
+{{< include ../_cards/s1-mworks-training.qmd >}}
+
+{{< include ../_cards/s1-matlab-origins.qmd >}}
+
+:::
+
+::: {.media-note}
+外部素材需要联网，核对日期见各卡；课前先核对可访问性，未逐段试看的视频暂作课前资料。
+:::
+
+::: {.sources}
+- C. Moler, "The origins of MATLAB," MathWorks 技术文章。[链接](https://www.mathworks.com/company/technical-articles/the-origins-of-matlab.html)
+- C. R. Harris et al., "Array programming with NumPy," *Nature* 585 (2020) 357–362. [doi:10.1038/s41586-020-2649-2](https://doi.org/10.1038/s41586-020-2649-2)
+- P. Virtanen et al., "SciPy 1.0: fundamental algorithms for scientific computing in Python," *Nature Methods* 17 (2020) 261–272. [doi:10.1038/s41592-019-0686-2](https://doi.org/10.1038/s41592-019-0686-2)
+- MWORKS：同元软控官网 [tongyuan.cc](https://www.tongyuan.cc/)；版本信息来自本机安装
+:::
+
+## [②]{.col-badge} 三种工具在本课程里的分工 {#sec-2}
+
+| 工具 | 角色 | 在本站的位置 | 本机版本 |
+|---|---|---|---|
+| Python + NumPy / SciPy / Matplotlib | 主教材语言，学生自己跑 | 每页“仿真演示”的 Python 页签；`code/python/` 每页一个文件 | Python 3.11，NumPy、SciPy 版本见下方环境检查 |
+| MATLAB | 教师课堂演示；本站所有图由它生成并核验 | MATLAB 页签；`.m` 源码与 `.mlx` Live Script | R2025b |
+| MWORKS Syslab | 国产平台对照，“同一数学、不同工具” | 核心知识点的 Syslab 页签（如 [3.4](../ch3/3.4-properties.qmd)） | Syslab 26.6.1，Julia 1.10.10 |
+
+三者写法上的几个差别，第一次切换时最容易出错：
+
+| 事项 | MATLAB | Python | Julia（Syslab） |
+|---|---|---|---|
+| 数组下标 | 从 1 开始 | 从 0 开始 | 从 1 开始 |
+| 逐元素运算 | `.*` `./` `.^` | 默认逐元素 | `.*` `./` `.^`，或整体加 `@.` |
+| 生成序列 | `0:199` | `np.arange(200)` | `0:199` |
+| FFT 归一化 | 正变换不除 N，逆变换除 N | 同 MATLAB（默认） | 同 MATLAB（TyMath） |
+
+FFT 约定三者一致，所以第 3 章的例子可以逐点对照；换别的库时先看归一化。
+
+## [③]{.col-badge} 仿真演示：环境检查，以及同一个数 {#sec-3}
+
+上课前每个平台跑一遍下面的检查。三段代码算的是同一件事：2 Hz 正弦、100 Hz 采样、200 个样本，求样本个数和能量 Σx²。理论上恰好 4 个整周期，能量等于 N/2 = 100。
+
+::: {.panel-tabset}
+#### Python [已运行]{.status .ok}
+
+```python
+import numpy as np, scipy, matplotlib
+x = np.sin(2*np.pi*2*np.arange(200)/100)
+print("samples=%d energy=%.12g" % (x.size, (x**2).sum()))     # samples=200 energy=100
+print(np.__version__, scipy.__version__, matplotlib.__version__)
+```
+
+#### MATLAB [已运行]{.status .ok}
+
+```matlab
+x = sin(2*pi*2*(0:199)/100);
+fprintf('samples=%d energy=%.12g\n', numel(x), sum(x.^2));    % samples=200 energy=100
+version
+```
+
+#### MWORKS Syslab [已运行]{.status .ok}
+
+```julia
+using TyMath
+x = sin.(2π .* 2 .* (0:199) ./ 100)
+println("samples = ", length(x), "  energy = ", round(sum(x .^ 2); digits = 6))   # 200, 100.0
+```
+:::
+
+三个平台都得到 samples = 200、energy = 100（浮点误差在 10⁻¹² 以内）。这不是巧合，是同一个公式。
+
+## [④]{.col-badge} 检查与思考 {#sec-4}
+
+::: {.quiz data-type="number" data-answer="100" data-tol="0.001"}
+::: {.q-text}
+1. 2 Hz 正弦以 100 Hz 采样取 200 个样本，Σx² 等于多少？
+:::
+::: {.q-explain}
+200 个样本恰好 4 个整周期，sin² 的平均值是 1/2，能量 = 200×1/2 = 100。
+:::
+:::
+
+::: {.quiz data-type="choice" data-answer="B"}
+::: {.q-text}
+2. Python 里 `np.arange(200)` 与 MATLAB 里 `0:199` 生成的序列
+:::
+::: {.q-opts}
+[不同：Python 从 0 到 200]{data-opt="A"}
+[相同：都是 0 到 199 共 200 个整数]{data-opt="B"}
+[不同：MATLAB 从 1 到 199]{data-opt="C"}
+[不同：Python 少一个元素]{data-opt="D"}
+:::
+::: {.q-explain}
+两者都是 0…199。容易混的是下标：MATLAB 的第 1 个元素是 x(1)，Python 是 x[0]。
+:::
+:::
+
+::: {.quiz data-type="multi" data-answer="A,B"}
+::: {.q-text}
+3. 教材 1.4 提到的 Python 科学计算库中，哪些直接提供 FFT？
+:::
+::: {.q-opts}
+[NumPy（numpy.fft）]{data-opt="A"}
+[SciPy（scipy.fft）]{data-opt="B"}
+[Matplotlib]{data-opt="C"}
+[Python 标准库 math]{data-opt="D"}
+:::
+::: {.q-explain}
+NumPy 和 SciPy 都有 fft 模块，默认归一化相同；Matplotlib 只负责画图。
+:::
+:::
+
+**短答题**
+
+4. 为什么本课程坚持在核心知识点上用三个平台算同一个例子？
+5. 换一个 FFT 库之前应当先确认什么？
+
+::: {.callout-tip collapse="true" appearance="simple"}
+## 教师参考要点
+4. 让学生看到结论来自数学而不是某个软件；同时熟悉三种语法的对应关系。
+5. 正变换的指数符号和 1/N 放在哪一边（归一化约定）。
+:::
+
+{{< include _agent-box.qmd >}}
+
+::: {.see-also}
+[另请参阅]{.sa-title}
+
+::: {.sa-row}
+[先修]{.sa-label} [1.3 数字系统的优点](1.3-advantages.qmd)
+:::
+::: {.sa-row}
+[后继]{.sa-label} [备课法](../method.qmd) · [3.4 三平台对照示范](../ch3/3.4-properties.qmd) · [3.3 DFT 定义与归一化](../ch3/3.3-dft.qmd)
+:::
+:::

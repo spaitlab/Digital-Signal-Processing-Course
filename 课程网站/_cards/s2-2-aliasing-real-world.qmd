@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">动图报道 · 2021-04-30 · 未核对</span>
+<h3>Ingenuity’s Shadow During Third Flight</h3>
+<p>发布：NASA/JPL-Caltech。课堂看点：摄像机逐帧取样，旋翼影子的周期运动被采样后可以看起来静止。相同叶片形成的图案也有重复周期，不能把表观频率直接当成机械转速。原站说明动图加快了播放速度，不能据播放速度倒推拍摄帧率。</p>
+<p>未逐段试看，课堂片段待教师选定。核对日期：2026-09-19。未核对字段：播放时长、片段起止。</p>
+<div class="actions"><a class="action primary" href="https://science.nasa.gov/resource/ingenuitys-shadow-during-third-flight/" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

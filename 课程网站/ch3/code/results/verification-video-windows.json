@@ -1,0 +1,31 @@
+{
+  "window_peak_sidelobe_db": [
+    -13.250301389481315,
+    -31.467540978230438,
+    -42.313225804025251,
+    -58.112380034885042
+  ],
+  "window_first_null_bins": [
+    1.0023193359375,
+    2.0419921875,
+    2.091796875,
+    3.06298828125
+  ],
+  "weak_tone_contrast_db_rect": -2.16326729102936,
+  "weak_tone_contrast_db_hann": 24.811794629960161,
+  "weak_tone_amplitude_hann": 0.0050681577188991843,
+  "contrast_bins": [
+    20,
+    17
+  ],
+  "frames": 1080,
+  "frame_rate": 30,
+  "duration_s": 36,
+  "width": 1280,
+  "height": 720,
+  "quality": 90,
+  "file_size_bytes": 4.26479E+6,
+  "all_checks_passed": true,
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "generated_at": "2026-09-19 14:50:38"
+}

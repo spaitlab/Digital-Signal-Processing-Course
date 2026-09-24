@@ -1,0 +1,22 @@
+{
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "run_at": "2026-09-18 18:26:27",
+  "fs": 100,
+  "lowpass_taps": 21,
+  "cutoff_hz": 6,
+  "coef_err_max_16bit": 1.1944963393184516E-5,
+  "coef_err_max_4bit": 0.057728014223006781,
+  "stopband_worst_db_16bit": -25.15195870373099,
+  "stopband_worst_db_4bit": -13.81212766594304,
+  "stopband_worst_db_ideal": -25.139079711499541,
+  "lowpass_gain_2Hz": 0.93975647936710172,
+  "lowpass_gain_15Hz": 0.0040208361746302563,
+  "highpass_gain_2Hz": 0.060243520632898354,
+  "highpass_gain_15Hz": 1.0040208361746301,
+  "repeat_run_max_diff": 0,
+  "analog_drift_runs": 100,
+  "analog_output_spread_max": 0.045760124378037448,
+  "tdm_channels": 4,
+  "tdm_vs_separate_max_diff": 1.1102230246251565E-16,
+  "all_checks_passed": true
+}

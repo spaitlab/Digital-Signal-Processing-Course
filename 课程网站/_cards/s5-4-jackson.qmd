@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">人物报道 · 发布日期未核对（网址归档目录为 2010-11） · 阅读时长未核对</span>
+<h3>All in the University Family</h3>
+<p>发布：University of Rhode Island / Rhody Today。课堂看点：从 Jackson 的贝尔实验室经历与数字信号处理教学，进入本页 1970 年舍入噪声、动态范围、二阶节配对与排序的研究。人物报道提供背景，技术结论依据本页原论文与仿真。</p>
+<p>课堂展示一张截图，课后阅读。图文片段起止不适用。核对日期：2026-09-19。未核对字段：准确发布日期、阅读时长。</p>
+<div class="actions"><a class="action primary" href="https://www.uri.edu/news/2010/11/all-in-the-university-family/" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

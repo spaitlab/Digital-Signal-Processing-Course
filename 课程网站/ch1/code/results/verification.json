@@ -1,0 +1,17 @@
+{
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "run_at": "2026-09-18 18:25:12",
+  "fs": 100,
+  "duration_s": 2,
+  "signal": "2 Hz (amp 1) + 15 Hz (amp 0.5)",
+  "quant_step_3bit": 0.5,
+  "quant_step_8bit": 0.015625,
+  "quant_err_max_3bit": 0.24604150092336874,
+  "quant_err_max_8bit": 0.0075366290172799166,
+  "moving_average_taps": 5,
+  "gain_2Hz_formula": 0.98427914497724356,
+  "gain_15Hz_formula": 0.31150730316701031,
+  "amp_2Hz_fitted": 0.9855290734943627,
+  "amp_15Hz_fitted": 0.156139889636777,
+  "all_checks_passed": true
+}

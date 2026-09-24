@@ -1,0 +1,36 @@
+<script>
+(() => {
+  for (const button of document.querySelectorAll('button[data-video]')) {
+    button.addEventListener('click', () => {
+      const box = button.closest('.video-box');
+      if (!box || !button.dataset.video) return;
+      let player;
+      if (button.dataset.kind === 'mp4') {
+        player = document.createElement('video');
+        player.controls = true;
+        player.preload = 'metadata';
+        player.playsInline = true;
+        if (button.dataset.poster) player.poster = button.dataset.poster;
+      } else if (button.dataset.kind === 'iframe') {
+        player = document.createElement('iframe');
+        player.allow = 'fullscreen; picture-in-picture';
+        player.allowFullscreen = true;
+        player.referrerPolicy = 'strict-origin-when-cross-origin';
+      } else return;
+      player.title = button.dataset.title || '课程视频';
+      player.src = button.dataset.video;
+      box.replaceChildren(player);
+      player.focus();
+    });
+  }
+  for (const img of document.querySelectorAll('.official-image')) {
+    const fallback = () => {
+      img.hidden = true;
+      const note = img.closest('figure')?.querySelector('.media-fallback');
+      if (note) note.hidden = false;
+    };
+    img.addEventListener('error', fallback);
+    if (img.complete && !img.naturalWidth) fallback();
+  }
+})();
+</script>

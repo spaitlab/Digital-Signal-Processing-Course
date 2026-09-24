@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">官方机构动画入口 · 发布日期未核对 · 时长未核对</span>
+<h3>Four-bar approximate straight line mechanism</h3>
+<p>发布：Mathematical Etudes Fund；项目获俄罗斯科学院 Steklov 数学所支持。课堂看点：观察连杆末端怎样逼近直线，先问“允许一点偏差，怎样让最大偏差尽量小”，再引入本页等纹波。该机构用作逼近问题的直观引子，不把页面所示模型说成 1854 年走路机器。</p>
+<p>视频未逐段试看，课堂片段待教师选定。核对日期：2026-09-19。未核对字段：发布日期、视频总时长、课堂片段起止；未逐段试看。</p>
+<div class="actions"><a class="action primary" href="https://en.tcheb.ru/straight-line-approximator/" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

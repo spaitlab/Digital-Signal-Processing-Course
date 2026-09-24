@@ -1,0 +1,59 @@
+---
+title: "第4章 快速傅里叶变换"
+subtitle: "FFT 不是新的变换，是算 DFT 的快办法：分而治之、蝶形、位反转，以及它能做什么"
+---
+
+::: {.page-meta}
+[教材书内 124—149 页 · PDF 132—157 页]{} [建议 6 课时]{} [核对 2026-09-18]{}
+:::
+
+::: {.keypoints}
+[本章主线]{.kp-title}
+
+- 直接算 DFT 要 N² 次复乘，N=2048 时约 420 万次；把 N 点拆成两个 N/2 点反复做下去，只要 (N/2)log₂N 次，快 372 倍（4.1—4.2）。
+- 拆的方式有两种：按输入序号奇偶拆是“按时间抽取”（DIT），按输出序号奇偶拆是“按频率抽取”（DIF）；两者互为转置，运算量相同；IFFT 可以共用 FFT 程序（4.3）。
+- 实序列只有 N 个自由变量，用共轭对称可以一次复 FFT 算两个实序列，或用 N 点 FFT 算 2N 点实序列（4.4）。
+- FFT 最常见的用处是把卷积和相关变成“变换—相乘—反变换”：补零到 N ≥ N₁+N₂−1，长信号用重叠相加分段（4.5）。
+:::
+
+## 知识点 {#sec-1}
+
+| 页 | 教材位置 | 问题从哪来 | 本页的图 | 状态 |
+|---|---|---|---|---|
+| [4.1 DFT 的效率问题](4.1-dft-cost.qmd) | 124—125 页 | 1965 年 Garwin 的急需与 Cooley–Tukey 的论文；两百年前高斯已经会 | 复乘次数曲线、本机实测用时 | 完整 |
+| [4.2 按时间抽取的 FFT](4.2-dit.qmd) | 126—138 页 | 从 Danielson–Lanczos 的“加倍”到蝶形与位反转 | 自写 DIT 与 fft 对照、N=8 位反转、三级蝶形逐级结果 | 完整 |
+| [4.3 按频率抽取的 FFT 与 IFFT](4.3-dif-ifft.qmd) | 139—143 页 | Gentleman 与 Sande 1966：另一种拆法 | 两种蝶形、DIF 逐级结果、共轭法 IFFT、往返误差 | 完整 |
+| [4.4 实序列 FFT](4.4-real-fft.qmd) | 143—145 页 | Bergland 1968：实数据的 FFT 该省一半 | 一次 FFT 分两路、2N 点实序列用 N 点 FFT、运算量对比 | 完整 |
+| [4.5 FFT 的应用](4.5-applications.qmd) | 145—148 页 | Stockham 1966：高速卷积与相关 | 快速卷积、conv 与 FFT 法用时、重叠相加、相关找时延 | 完整 |
+
+## 本章的图与脚本 {#sec-2}
+
+| 脚本 | 图 | 核验 |
+|---|---|---|
+| [demo_fft_cost.m](code/demo_fft_cost.m) | 01-fft-cost-dit | [verification-fft-cost.json](code/results/verification-fft-cost.json)：N=2048 比值 372.4；自写 DIT 与 fft 差 7×10⁻¹⁴；位反转 0 4 2 6 1 5 3 7 |
+| [demo_dif_ifft.m](code/demo_dif_ifft.m) | 02-dif-ifft | [verification-dif-ifft.json](code/results/verification-dif-ifft.json)：自写 DIF 与 fft 差 6×10⁻¹⁴；共轭法 IFFT 差 10⁻¹⁶ |
+| [demo_real_fft.m](code/demo_real_fft.m) | 03-real-fft | [verification-real-fft.json](code/results/verification-real-fft.json)：两路拆分差 10⁻¹⁵；2N 点合成差 10⁻¹⁴ |
+| [demo_fast_convolution.m](code/demo_fast_convolution.m) | 04-fast-convolution | [verification-fast-conv.json](code/results/verification-fast-conv.json)：快速卷积差 10⁻¹⁶；重叠相加差 10⁻¹⁶；回声时延 37 找回 37 |
+
+自写的 DIT、DIF 只用循环和加减乘，是为了让学生看见蝶形；课堂上真正算用 `fft`。Python 对照版在 `code/python/`，四份全部本机运行通过。
+
+## 本章媒体一览 {#sec-media}
+
+| 页 | 类型 | 标题 | 时长 | 课堂或课后 | 网络 | 核对日期 |
+|---|---|---|---|---|---|---|
+| [4.2](4.2-dit.qmd#sec-3) | 本地动画 | 奇偶拆分、位反转与三级蝶形（视频整理中） | 42 秒 | 课堂先预测、后播放 | 不需要 | 2026-09-19 |
+| [4.1](4.1-dft-cost.qmd#sec-1) | 视频 | [How An Algorithm Could Have Stopped The Nuclear Arms Race](https://www.veritasium.com/videos/2022/11/3/how-an-algorithm-could-have-stopped-the-nuclear-arms-race) | 未核对 | 课前浏览；课堂片段待教师试看 | 需要 | 2026-09-19 |
+| [4.1](4.1-dft-cost.qmd#sec-1) | 图文 | [History of DSP at Rice](https://www.ece.rice.edu/dsp/overview/history.shtml) | 未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [4.2](4.2-dit.qmd#sec-1) | 图文 | [Cornelius Lanczos](https://mathshistory.st-andrews.ac.uk/Biographies/Lanczos/) | 未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [4.2](4.2-dit.qmd#sec-1) | 科普视频 | [The Fast Fourier Transform (FFT): Most Ingenious Algorithm Ever?](https://www.youtube.com/watch?v=h7apO7q16V0)，Reducible，2020-11-14 | 28 分 23 秒；课堂只取一小段 | 课前浏览；课堂片段待教师试看 | 需要 | 2026-09-19 |
+| [4.5](4.5-applications.qmd#sec-1) | 图文 | [One More: Pioneer in Sound](https://continuum.utah.edu/departments/pioneer-in-sound/) | 未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+
+## 课时安排（建议 6 课时） {#sec-3}
+
+| 课时 | 内容 |
+|---|---|
+| 1 | 4.1 效率问题：数 N²，讲 1965 年的故事，看实测用时 |
+| 2—3 | 4.2 按时间抽取：拆一次、拆到底、蝶形、位反转、原位运算；N=8 手推一遍 |
+| 4 | 4.3 按频率抽取与转置关系；IFFT 共用 FFT 程序 |
+| 5 | 4.4 实序列 FFT 两种办法 |
+| 6 | 4.5 快速卷积（补零、重叠相加）与快速相关 |

@@ -1,0 +1,31 @@
+{
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "run_at": "2026-09-18 19:18:19",
+  "cos_0p3pi_period": 20,
+  "cos_0p3_periodic": false,
+  "x": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "h": [
+    3,
+    2,
+    1
+  ],
+  "conv": [
+    3,
+    8,
+    14,
+    20,
+    11,
+    4
+  ],
+  "sum_abs_h_0p8": 4.9994683088016885,
+  "sum_abs_h_1p2_partial": 8813.6294078145074,
+  "sum_abs_h_0p8_twosided": 8.9989366176033752,
+  "step_response_final_stable": 4.9994683088016867,
+  "step_response_final_unstable": 8813.6294078145074,
+  "all_checks_passed": true
+}

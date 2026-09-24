@@ -1,0 +1,40 @@
+{
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "run_at": "2026-09-24 07:47:30",
+  "b": [
+    1,
+    1
+  ],
+  "a": [
+    1,
+    -1.2,
+    0.72
+  ],
+  "zeros_real": [
+    0,
+    -1
+  ],
+  "poles_real": [
+    0.59999999999999987,
+    0.59999999999999987
+  ],
+  "poles_imag": [
+    0.59999999999999987,
+    -0.59999999999999987
+  ],
+  "pole_radius": 0.8485281374238568,
+  "geometric_vs_direct_max_err": 1.9539925233402755E-14,
+  "complex_factor_max_err": 1.9214237003936263E-14,
+  "sum_abs_h_stable": 12.109248689724083,
+  "tail_abs_h_stable_after_200": 6.561090254904281E-14,
+  "unstable_pole": 1.2,
+  "transversal_a1": 0.9,
+  "transversal_M": 8,
+  "transversal_zero_radius": 0.8999999999999998,
+  "moving_average_4_zero_angles_over_pi": [
+    0.50000000000000033,
+    1,
+    1.4999999999999998
+  ],
+  "all_checks_passed": true
+}

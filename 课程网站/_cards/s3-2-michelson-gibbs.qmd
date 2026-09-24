@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">视频系列 · 未核对 · 时长未核对</span>
+<h3>Albert Michelson’s Harmonic Analyzer — Companion Video Series</h3>
+<p>发布：engineerguy / Bill Hammack。课堂看点：齿轮、弹簧与杠杆也能合成正弦。官网提供 Introduction、Synthesis、Analysis、Operation 四集及机器输出说明，可联系本页 Gibbs 现象。官网区分书中复原的 20 项机器和 1898 年论文中的 80 轮版本，课堂不要混为一台。</p>
+<p>未逐段试看，课堂片段起止未核对。核对日期：2026-09-19。未核对字段：发布日期；时长未核对；视频起止时间。</p>
+<div class="actions"><a class="action primary" href="https://engineerguy.com/fourier/" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

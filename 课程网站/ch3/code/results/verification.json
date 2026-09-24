@@ -1,0 +1,53 @@
+{
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "run_at": "2026-09-18 18:29:02",
+  "fs": 8000,
+  "record_samples": 512,
+  "padded_samples": 4096,
+  "original_grid_hz": 15.625,
+  "padded_grid_hz": 1.953125,
+  "tone_pair_hz": [
+    1000,
+    1008
+  ],
+  "leakage_cycles": [
+    7,
+    7.3
+  ],
+  "window_length": 51,
+  "window_names": [
+    "矩形",
+    "Hann",
+    "Hamming",
+    "Blackman"
+  ],
+  "window_first_null_bins": [
+    1.0023193359375,
+    2.0419921875,
+    2.091796875,
+    3.06298828125
+  ],
+  "window_peak_sidelobe_db": [
+    -13.250301389481315,
+    -31.467540978230438,
+    -42.313225804025251,
+    -58.112380034885042
+  ],
+  "weak_tone_contrast_db_rect": -2.16326729102936,
+  "weak_tone_contrast_db_hann": 24.811794629960161,
+  "weak_tone_amplitude_hann": 0.0050681577188991843,
+  "weak_tone_rel_error_hann": 0.013631543779836844,
+  "offgrid_leakage_norm": 186.40747907132754,
+  "checks_max_abs_error": {
+    "linear_by_hand": 0,
+    "circular_5_folded": 0,
+    "linear_via_fft_6": 4.4408920985006262E-16,
+    "linear_via_fft_8": 8.8817841970012523E-16,
+    "frequency_sampling_time_folding": 3.5527136788005009E-15,
+    "zero_padding_same_dtft_grid": 0,
+    "alias_400_to_200_at_fs600": 3.5138558729386205E-13,
+    "coherent_rectangular_other_bins": 3.3279584868778196E-16,
+    "hann_coherent_gain_padding_amplitude": 4.4408920985006262E-16
+  },
+  "all_checks_passed": true
+}

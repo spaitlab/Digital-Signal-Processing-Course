@@ -1,0 +1,112 @@
+<script>
+// 静态站自测组件：不联网、不存成绩。
+// 用法：<div class="quiz" data-type="number|choice|multi" data-answer="..." data-tol="0.01">
+//         <div class="q-text">题干</div>
+//         <div class="q-opts"> 选项（choice/multi 时） </div>
+//         <div class="q-explain">参考要点</div>
+//       </div>
+(function () {
+  function setup(q) {
+    var type = q.dataset.type || "number";
+    var answer = (q.dataset.answer || "").trim();
+    var tol = parseFloat(q.dataset.tol || "0");
+    var opts = q.querySelector(".q-opts");
+    var explain = q.querySelector(".q-explain");
+    var ctrl = document.createElement("div");
+    ctrl.className = "q-ctrl";
+    var input = null;
+    var name = "q" + Math.random().toString(36).slice(2, 8);
+    if (type === "number") {
+      input = document.createElement("input");
+      input.type = "text";
+      input.placeholder = "输入数值";
+      ctrl.appendChild(input);
+    } else if (opts) {
+      var items = Array.prototype.slice.call(opts.querySelectorAll("[data-opt]"));
+      opts.innerHTML = "";
+      items.forEach(function (it) {
+        var lab = document.createElement("label");
+        var box = document.createElement("input");
+        box.type = type === "multi" ? "checkbox" : "radio";
+        box.name = name;
+        box.value = it.dataset.opt;
+        lab.appendChild(box);
+        lab.appendChild(document.createTextNode(" " + it.dataset.opt + ". " + it.textContent));
+        opts.appendChild(lab);
+      });
+    }
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.textContent = "检查";
+    ctrl.appendChild(btn);
+    var res = document.createElement("div");
+    res.className = "q-result";
+    if (explain) { q.insertBefore(ctrl, explain); q.insertBefore(res, explain); }
+    else { q.appendChild(ctrl); q.appendChild(res); }
+    btn.addEventListener("click", function () {
+      var ok = false, shown = "";
+      if ((type === 'number' && !(input.value || '').trim()) || (type !== 'number' && !q.querySelector('input:checked'))) {
+        res.textContent = '请先作答，再查看反馈。'; return;
+      }
+      if (type === "number") {
+        var v = parseFloat((input.value || "").replace(/，/g, ",").replace(/[^\d.eE+-]/g, ""));
+        var a = parseFloat(answer);
+        ok = isFinite(v) && Math.abs(v - a) <= (tol || 0);
+        shown = "参考值 " + answer + (tol ? "（容差 ±" + tol + "）" : "");
+      } else {
+        var chosen = Array.prototype.slice.call(q.querySelectorAll("input:checked")).map(function (b) { return b.value; }).sort().join(",");
+        var want = answer.split(",").map(function (s) { return s.trim(); }).sort().join(",");
+        ok = chosen === want;
+        shown = "参考答案 " + want;
+      }
+      res.textContent = ok ? "✓ 正确。" + shown : "✗ 再想想。" + shown;
+      res.className = "q-result " + (ok ? "ok" : "bad");
+      if (explain) explain.style.display = "block";
+    });
+  }
+  // 助教提示词：把 [本页] 替换成页面标题，并加“复制”按钮
+  function setupPrompt(p) {
+    var title = (document.querySelector("h1.title") || {}).textContent || document.title;
+    title = title.trim();
+    p.innerHTML = p.innerHTML.replace(/\[本页\]/g, title);
+    var btn = document.createElement("button");
+    btn.type = "button"; btn.className = "ab-copy"; btn.textContent = "复制";
+    btn.addEventListener("click", function () {
+      var text = p.innerText.replace(/\s*复制\s*$/, "").replace(/^\s*(讲一遍|记笔记|做作业)\s*/, "").trim();
+      var done = function () { btn.textContent = "已复制"; setTimeout(function () { btn.textContent = "复制"; }, 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, done);
+      else { var ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch (e) {} document.body.removeChild(ta); done(); }
+    });
+    p.appendChild(btn);
+  }
+  function setupIde(box) {
+    var head = document.createElement('p');
+    head.className = 'ide-head';
+    head.textContent = '下载本页实验代码：保存到自己的文件夹后，在相应软件中运行。';
+    box.appendChild(head);
+    [['matlab','MATLAB'],['python','Python'],['julia','MWORKS / Julia']].forEach(function(entry) {
+      var rel = box.dataset[entry[0]];
+      if (!rel) return;
+      var a = document.createElement('a');
+      a.className = 'ide-btn ide-link'; a.href = 'code/' + rel;
+      a.setAttribute('download',''); a.textContent = entry[1] + ' · ' + rel;
+      box.appendChild(a);
+    });
+  }
+  // 首页章节卡片：整张卡可点，等同于点标题链接
+  function setupCard(card) {
+    var a = card.querySelector("a.card-title");
+    if (!a) return;
+    card.addEventListener("click", function (ev) {
+      if (ev.target.closest("a")) return;   // 直接点在链接上时交给浏览器
+      window.location.href = a.href;
+    });
+  }
+  document.addEventListener("DOMContentLoaded", function () {
+    Array.prototype.slice.call(document.querySelectorAll(".quiz")).forEach(setup);
+    Array.prototype.slice.call(document.querySelectorAll(".agent-prompt")).forEach(setupPrompt);
+    Array.prototype.slice.call(document.querySelectorAll(".card-item")).forEach(setupCard);
+    Array.prototype.slice.call(document.querySelectorAll(".ide-links")).forEach(setupIde);
+  });
+})();
+</script>

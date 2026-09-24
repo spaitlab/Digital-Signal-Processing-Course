@@ -1,0 +1,162 @@
+---
+title: "3.5 频域采样"
+subtitle: "对 X(z) 在单位圆上采样：采多少点，时域才不会折叠"
+---
+
+::: {.page-meta}
+[教材书内 93—95 页 · PDF 101—103 页]{} [3.5.1 采样点数的限制，3.5.2 内插公式]{} [1 课时]{}
+:::
+
+::: {.keypoints}
+[本页要点]{.kp-title}
+
+- 对长度 M 的序列，在单位圆上等间隔取 N 点，IDFT 得到的是原序列以 N 为周期叠加后的一个周期：$x_N(n)=\sum_r x(n+rN)$。
+- N ≥ M 时各周期副本不重叠，能精确恢复；N < M 时时域折叠（混叠的时域版本）。
+- 反过来，N 点 DFT 系数可以内插出整条 X(z)：内插公式。补零就是在同一条 DTFT 上采更密的点，不增加信息。
+:::
+
+## [①]{.col-badge} 问题从哪来：采样定理的对偶 {#sec-1}
+
+时域采样定理说：带限信号可以在时域采样而不丢失信息。Nyquist 1928 年在电报传输理论中给出了“每秒能独立传送的脉冲数不超过带宽两倍”的结论；Shannon 1949 年把它写成现在教科书里的采样定理，并在同一篇文章里讨论了时间与频率的对偶。教材第 96 页把这两句话并排写出：**时域采样定理说明带限信号可以时域采样，频域采样理论说明时限信号（有限长序列）也可以频域采样而不丢失信息。** 本节讨论的就是后一句：采多少点才够，以及采得够时怎样从这些点插值回整条曲线。
+
+这个结论在第 7 章还会被反过来用：先规定若干频率点上的响应，再由内插公式得到滤波器，即“频率采样法”设计 FIR。
+
+::: {.sources}
+- H. Nyquist, "Certain topics in telegraph transmission theory," *Trans. AIEE* 47(2) (1928) 617–644. [doi:10.1109/T-AIEE.1928.5055024](https://doi.org/10.1109/T-AIEE.1928.5055024)
+- C. E. Shannon, "Communication in the presence of noise," *Proc. IRE* 37(1) (1949) 10–21. [doi:10.1109/JRPROC.1949.232969](https://doi.org/10.1109/JRPROC.1949.232969)
+:::
+
+## [②]{.col-badge} 理论与推导 {#sec-2}
+
+### 3.5.1 对 X(z) 采样时采样点数的限制 {#sec-2-1}
+
+设 x(n) 长度为 M（0 ≤ n ≤ M−1），$X(z)=\sum_{n=0}^{M-1}x(n)z^{-n}$。在单位圆上取 N 个等间隔点 $z_k=e^{j2\pi k/N}$：
+
+$$
+\widetilde X(k)=X(z)\big|_{z=e^{j2\pi k/N}}=\sum_{n=0}^{M-1}x(n)e^{-j\frac{2\pi}{N}kn}.
+$$
+
+对这 N 个值做 IDFT，并把求和顺序交换：
+
+$$
+x_N(n)=\frac1N\sum_{k=0}^{N-1}\widetilde X(k)e^{j\frac{2\pi}{N}kn}
+=\sum_{m=0}^{M-1}x(m)\underbrace{\frac1N\sum_{k=0}^{N-1}e^{j\frac{2\pi}{N}k(n-m)}}_{=1\ \text{当}\ m\equiv n\ (\mathrm{mod}\ N)}
+=\sum_{r=-\infty}^{\infty}x(n+rN).
+$$
+
+中间那个和就是 3.2 的离散正交性。结论：**频域采 N 点，时域就以 N 为周期叠加。** 只有 N ≥ M 时，各副本不重叠，取一个周期就是原序列。
+
+::: {.callout-note .ask appearance="simple"}
+**教师提问：** 这和 2.1 的时域采样定理在形式上有什么相同之处？（时域采样使频谱以 fₛ 为周期重复，重复副本不重叠要求 fₛ ≥ 2f_max；这里频域采样使时域以 N 为周期重复，不重叠要求 N ≥ M。）
+:::
+
+### 3.5.2 X(z) 的内插公式 {#sec-2-2}
+
+N ≥ M 时 $x(n)=x_N(n)$，把 IDFT 代回 X(z) 定义并对 n 求几何级数：
+
+$$
+X(z)=\sum_{n=0}^{N-1}\Big[\frac1N\sum_{k=0}^{N-1}\widetilde X(k)e^{j\frac{2\pi}{N}kn}\Big]z^{-n}
+=\frac{1-z^{-N}}{N}\sum_{k=0}^{N-1}\frac{\widetilde X(k)}{1-e^{j\frac{2\pi}{N}k}z^{-1}}.
+$$
+
+N 个 DFT 值决定了整条 X(z)。取 $z=e^{j\omega}$ 就是 DTFT 的内插公式：**DFT 值之间的频谱不是“没有”，而是由这 N 个值唯一确定。**
+
+### 补零：同一条 DTFT，采更密的点 {#sec-2-3}
+
+对同一段长度 M 的记录补零到 N_fft 点再做 DFT，得到的是这段记录的 DTFT 在 2π/N_fft 间隔上的采样。它让曲线看起来更平滑，但记录没有变长，DTFT 本身没有变，所以**不增加分辨两个相近频率的能力**。这一点在 [3.6](3.6-approximation.qmd) 的栅栏效应里继续讨论。
+
+## [③]{.col-badge} 仿真演示 {#sec-3}
+
+::: {.ide-links data-matlab="demo_dft.m" data-python="python/3.5-frequency-sampling.py"}
+:::
+
+脚本 [demo_dft.m](code/demo_dft.m) [已运行]{.status .ok} 演示 2。核验记录 [verification-dft.json](code/verification-dft.json) 中 `frequency_sampling_time_folding` 与 `zero_padding_same_dtft_grid` 两项对应本节。
+
+:::: {.example}
+::: {.example-title}
+频域只采 4 点：[1,2,3,4,5,6] 变成 [6,8,3,4]
+:::
+::: {.example-body}
+**运行前问学生：** 6 点序列的 DTFT 只在 4 个等间隔频率取值，再做 4 点 IDFT，会得到 [1,2,3,4] 吗？
+
+![图（右下）：x[4]、x[5] 折回叠加到 n=0、1；左上与右上说明补零只是把同一条 DTFT 采得更密](img/dft-02-zero-padding.png){width=100%}
+
+结果是 [6,8,3,4]：6=1+5，8=2+6。**注意 `fft(x,4)` 会先把 x 截断到 4 点，得到 [1,2,3,4] 的 DFT，那不是对 6 点序列的完整 DTFT 采样。** 要直接按定义对 6 点求指数和，或先按模 4 折叠。
+
+::: {.panel-tabset}
+#### MATLAB [已运行]{.status .ok}
+
+```matlab
+xLong = 1:6;
+sampledDTFT = exp(-2j*pi*(0:3)'*(0:5)/4) * xLong(:);   % 完整 DTFT 在 4 点上的值
+folded = real(ifft(sampledDTFT))                       % [6 8 3 4]
+% 对照：补零不改变包络
+fs = 8000; M = 512; n = 0:M-1; xTone = cos(2*pi*103*n/fs);
+X512 = fft(xTone); X4096 = fft(xTone, 4096);
+max(abs(X4096(1:8:end) - X512))                        % 0：补零后每隔 8 点就是原 DFT
+```
+
+#### Python [对照]{.status .ref}
+
+```python
+import numpy as np
+xlong = np.arange(1, 7)
+sampled = np.exp(-2j*np.pi*np.outer(np.arange(4), np.arange(6))/4) @ xlong
+print(np.round(np.fft.ifft(sampled).real, 6))         # [6. 8. 3. 4.]
+print(np.fft.ifft(np.fft.fft(xlong, 4)).real)         # [1. 2. 3. 4.]：截断，不是频域采样
+fs, M = 8000, 512; n = np.arange(M); x = np.cos(2*np.pi*103*n/fs)
+assert np.allclose(np.fft.fft(x, 4096)[::8], np.fft.fft(x))
+```
+:::
+:::
+::::
+
+## [④]{.col-badge} 检查与思考 {#sec-4}
+
+::: {.quiz data-type="choice" data-answer="C"}
+::: {.q-text}
+1. 对 [1,2,3,4,5,6] 的完整 DTFT 取 4 个等间隔样值后 IDFT，得到什么？
+:::
+::: {.q-opts}
+[[1,2,3,4]]{data-opt="A"}
+[[3,4,5,6]]{data-opt="B"}
+[[6,8,3,4]]{data-opt="C"}
+[[1,2,3,4,5,6] 的前 4 点均值]{data-opt="D"}
+:::
+::: {.q-explain}
+时域以 4 为周期叠加：x[4]+x[0]=6，x[5]+x[1]=8。
+:::
+:::
+
+::: {.quiz data-type="number" data-answer="1.953125" data-tol="0.001"}
+::: {.q-text}
+2. fs=8000 Hz，记录 512 点，补零到 4096 点。补零后的频率网格间隔是多少 Hz？
+:::
+::: {.q-explain}
+8000/4096=1.953125 Hz；原网格 8000/512=15.625 Hz。记录时长按 M/fs 为 0.064 s，首末样本时间差 511/8000 s。网格变密，记录没变。
+:::
+:::
+
+**短答题**
+
+3. 长度 M 的序列频域采 N 点，写出 IDFT 结果与原序列的关系；N 取多大才能精确恢复？
+4. 内插公式说明了什么：DFT 值之间的频谱“没有”还是“被确定”？
+
+::: {.callout-tip collapse="true" appearance="simple"}
+## 教师参考要点
+3. x_N(n)=Σ_r x(n+rN)；N ≥ M。
+4. 被 N 个 DFT 值唯一确定；补零得到的就是这条曲线上更密的点。
+:::
+
+{{< include _agent-box.qmd >}}
+
+::: {.see-also}
+[另请参阅]{.sa-title}
+
+::: {.sa-row}
+[先修]{.sa-label} 2.1 采样定理 · [3.2 离散正交性](3.2-dfs.qmd) · [3.3 DFT 定义](3.3-dft.qmd)
+:::
+::: {.sa-row}
+[后继]{.sa-label} [3.6 栅栏效应与补零](3.6-approximation.qmd) · 第7章 频率采样法设计 FIR
+:::
+:::

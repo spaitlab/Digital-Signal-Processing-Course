@@ -1,0 +1,30 @@
+{
+  "odd_harmonic_counts": [
+    1,
+    5,
+    25,
+    101
+  ],
+  "gibbs_overshoot_fraction_of_jump": [
+    0.13661977236758138,
+    0.091164104428802628,
+    0.089556550944146829,
+    0.089493956848148426
+  ],
+  "square_wave_grid_rmse": [
+    0.43511042062989491,
+    0.20073182409166271,
+    0.089468137585197824,
+    0.043676023165016481
+  ],
+  "frames": 1020,
+  "frame_rate": 30,
+  "duration_s": 34,
+  "width": 1280,
+  "height": 720,
+  "quality": 90,
+  "file_size_bytes": 2.93264E+6,
+  "all_checks_passed": true,
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "generated_at": "2026-09-19 14:59:46"
+}

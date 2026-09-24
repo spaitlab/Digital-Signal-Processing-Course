@@ -1,0 +1,192 @@
+---
+title: "3.3 离散傅里叶变换"
+subtitle: "从周期序列取一个周期：N 个独立复值，隐含周期性"
+---
+
+::: {.page-meta}
+[教材书内 62—64 页 · PDF 70—72 页]{} [式 (3.3.1)—(3.3.2)，例 3.2]{} [核对 2026-09-17]{} [1 课时，可与 3.2 合并]{}
+:::
+
+::: {.keypoints}
+[本页要点]{.kp-title}
+
+- DFT 就是 DFS 取一个周期：输入 N 个时域值，输出 N 个频域值，正变换负指数，逆变换正指数且带 1/N。
+- 三个小节回答三个问题：为什么只有 N 个独立值（3.3.1）、为什么说它隐含周期性（3.3.2）、它和连续傅里叶变换是什么关系（3.3.3）。
+- 例 3.2 是六点序列 n/6 的 DFT；“例 3.2”是例题号，不是“第 3.2 节”。
+:::
+
+## [①]{.col-badge} 问题从哪来：定义和算法要分开讲 {#sec-1}
+
+DFT 作为“N 个样本的三角级数系数”，比电子计算机早一个半世纪。Heideman、Johnson 与 Burrus 1984 年的考证指出，高斯 1805 年为插值小行星轨道观测数据而写的手稿（1866 年才随全集出版）里，已经有了对采样数据算三角级数系数并利用分组降低计算量的做法。Danielson 与 Lanczos 1942 年在 X 射线散射的傅里叶分析中，又给出了把 N 点计算拆成两个 N/2 点的“加倍”技巧，并报告了手工计算的耗时。Cooley 与 Tukey 1965 年在《Mathematics of Computation》上发表的算法，才使这类方法在计算机上普及。
+
+给学生的落点：**本节定义的是数学对象 DFT；怎样算得快是第 4 章 FFT 的事。** 代码里调用 `fft` 得到的就是 DFT，不是另一种变换。
+
+::: {.classroom-media-grid}
+
+{{< include ../_cards/s3-3-gauss-fft.qmd >}}
+
+:::
+
+::: {.media-note}
+外部素材需要联网，核对日期见各卡；视频未逐段试看，课堂片段待教师选定。
+:::
+
+::: {.sources}
+- M. T. Heideman, D. H. Johnson, C. S. Burrus, "Gauss and the history of the fast Fourier transform," *IEEE ASSP Magazine* 1(4) (1984) 14–21. [doi:10.1109/MASSP.1984.1162257](https://doi.org/10.1109/MASSP.1984.1162257)
+- G. C. Danielson, C. Lanczos, *J. Franklin Institute* 233(4) (1942) 365–380. [doi:10.1016/S0016-0032(42)90767-1](https://doi.org/10.1016/S0016-0032(42)90767-1)
+- J. W. Cooley, J. W. Tukey, *Mathematics of Computation* 19 (1965) 297–301. [doi:10.1090/S0025-5718-1965-0178586-1](https://doi.org/10.1090/S0025-5718-1965-0178586-1)
+:::
+
+## [②]{.col-badge} 理论与推导 {#sec-2}
+
+### 定义（教材式 (3.3.1)、(3.3.2)） {#sec-2-1}
+
+记旋转因子 $W_N=e^{-j2\pi/N}$：
+
+$$
+X(k)=\sum_{n=0}^{N-1}x(n)W_N^{kn},\quad k=0,\dots,N-1;
+\qquad
+x(n)=\frac1N\sum_{k=0}^{N-1}X(k)W_N^{-kn},\quad n=0,\dots,N-1.
+$$
+
+与 3.2 的 DFS 相比，公式一模一样，只是把周期序列换成有限长序列：**DFT 把有限长序列看作周期序列的一个周期来处理。**
+
+::: {.callout-note .ask appearance="simple"}
+**教师提问：** 正变换指数为负、逆变换为正、1/N 放在逆变换，这三条是数学必然还是约定？答：正负号配对和 1/N 出现是必然的（来自正交性），把哪一个记为“正变换”、1/N 放哪一边是约定。NumPy、MATLAB 默认与本书一致；换 `norm="ortho"` 就变了，用别人的代码要先看约定。
+:::
+
+### 3.3.1 只有 N 个独立的复值 {#sec-2-2}
+
+x(n) 有 N 个值，X(k) 也只有 N 个值。k 取 N 以外的整数时，$W_N^{(k+N)n}=W_N^{kn}W_N^{Nn}=W_N^{kn}$，得不到新信息。用 N 次单位根的图讲：k 走一圈回到原处。
+
+### 3.3.2 隐含周期性 {#sec-2-3}
+
+把式 (3.3.1) 中的 k 换成 k+rN、把式 (3.3.2) 中的 n 换成 n+rN，都不改变结果。所以 DFT 在数学上把 x(n) 和 X(k) 都当作以 N 为周期的序列。**这是变换的数学解释，不等于实际采到的物理信号是周期的**；理解 3.4 的圆周移位、圆周卷积时要一直带着这一点。
+
+### 3.3.3 DFT 是连续傅里叶变换的近似 {#sec-2-4}
+
+对连续信号 x_a(t) 以间隔 T 采样得 x(n)，再做 DFT，得到的 X(k) 是 x(n) 的 DTFT 在 [0, 2π] 上的 N 点等间隔采样。若要用它近似 CTFT 的数值，需乘以 T（教材 3.6.1）；近似的误差来自采样和截断，即 [3.6](3.6-approximation.qmd) 的混叠、栅栏、泄漏。
+
+### 例 3.2：六点序列的 DFT（书内 63—64 页） {#sec-2-5}
+
+x(n)=n/6，n=0,…,5。对等差序列有闭式：k≠0 时 $\sum_{n=0}^{N-1}nW_N^{kn}=\frac{-N}{1-W_N^{k}}$，于是 $X(k)=\frac{-1}{1-W_6^{k}}$，X(0)=15/6=2.5。
+
+| k | 0 | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|---|
+| X(k) | 2.5 | −0.5+0.866j | −0.5+0.289j | −0.5 | −0.5−0.289j | −0.5−0.866j |
+
+实序列的 DFT 满足 X(N−k)=X*(k)，表里 k=1 与 5、2 与 4 互为共轭。
+
+## [③]{.col-badge} 仿真演示 {#sec-3}
+
+::: {.ide-links data-matlab="matlab/dft_example_3_3.m" data-python="python/3.3-dft.py"}
+:::
+
+:::: {.example}
+::: {.example-title}
+例 3.2 的三种算法：定义式矩阵、fft、手算闭式
+:::
+::: {.example-body}
+**运行前问学生：** X(0) 是多少？X(3) 是实数还是复数？为什么？
+
+::: {.panel-tabset}
+#### MATLAB [对照]{.status .ref}
+
+```matlab
+N = 6; n = 0:N-1; k = n';
+x = n/6;
+Xdef  = exp(-1i*2*pi*k*n/N) * x.';          % 定义式：N×N 复指数矩阵
+Xfft  = fft(x).';                            % 与 fft 对照
+Xform = [sum(x), -1./(1-exp(-1i*2*pi*(1:N-1)/N))].';   % 等差序列闭式
+disp(max(abs(Xdef-Xfft)));  disp(max(abs(Xdef-Xform)));
+xback = exp(1i*2*pi*n'*k'/N) * Xdef / N;     % 往返重构 idft(dft(x))
+disp(max(abs(xback - x.')));
+```
+
+#### Python [对照]{.status .ref}
+
+教材配套程序（仓库文件 example3.4.1.ipynb，对应本版例 3.2）用复指数矩阵实现 `dft` 与 `idft`。原程序分别打印 `dft(ys)` 和 `idft(ys)`，两者作用于同一数组，不构成往返重构；要演示重构应写 `idft(dft(ys))`。
+
+```python
+import numpy as np
+N = 6; n = np.arange(N)
+x = n/6
+W = np.exp(-2j*np.pi*np.outer(n, n)/N)      # 定义式矩阵
+X = W @ x
+assert np.allclose(X, np.fft.fft(x))
+X_form = np.r_[x.sum(), -1/(1-np.exp(-2j*np.pi*np.arange(1, N)/N))]
+assert np.allclose(X, X_form)
+x_back = W.conj() @ X / N                     # idft(dft(x))
+assert np.allclose(x_back, x)
+print(np.round(X, 3))
+```
+:::
+
+单独计算 `idft(ys)` 是合法的：把 ys 解释为频域系数，求它对应的时域序列。只有当目标是恢复原时域序列时，它才不是所需的往返重构。
+:::
+::::
+
+## [④]{.col-badge} 检查与思考 {#sec-4}
+
+::: {.quiz data-type="number" data-answer="2.5" data-tol="0.001"}
+::: {.q-text}
+1. 例 3.2：x(n)=n/6，n=0,…,5。X(0) 等于多少？
+:::
+::: {.q-explain}
+X(0)=Σx(n)=(0+1+2+3+4+5)/6=2.5。直流分量就是序列之和。
+:::
+:::
+
+::: {.quiz data-type="multi" data-answer="A,C"}
+::: {.q-text}
+2. 下列哪些说法正确？
+:::
+::: {.q-opts}
+[N 点 DFT 的 X(k+N)=X(k)]{data-opt="A"}
+[DFT 隐含周期性说明被采样的物理信号一定是周期的]{data-opt="B"}
+[实序列的 DFT 满足 X(N−k)=X*(k)]{data-opt="C"}
+[fft 算出的是 DFT 的近似值]{data-opt="D"}
+:::
+::: {.q-explain}
+A、C 正确。B：周期性是数学解释，不是物理断言。D：fft 是 DFT 的精确快速算法，误差只有浮点舍入。
+:::
+:::
+
+::: {.quiz data-type="choice" data-answer="B"}
+::: {.q-text}
+3. 手算 x=[1,0,−1,0] 的 4 点 DFT。
+:::
+::: {.q-opts}
+[[0,0,0,0]]{data-opt="A"}
+[[0,2,0,2]]{data-opt="B"}
+[[2,0,2,0]]{data-opt="C"}
+[[0,1,0,1]]{data-opt="D"}
+:::
+::: {.q-explain}
+x(n)=cos(πn/2)=cos(2π·1·n/4)，记录内恰好 1 个周期，能量只在 k=1 和 k=3，各为 2。按定义：X(1)=1·1+(−1)·e^{−jπ}=2。
+:::
+:::
+
+**短答题**
+
+4. 写出 N 点 DFT 与 IDFT，标明指数符号与归一化。若把 1/N 改放到正变换，逆变换要怎样改？
+5. 原文件 example3.4.1.ipynb 对应本版哪一例、哪一节？编号能直接照搬吗？
+
+::: {.callout-tip collapse="true" appearance="simple"}
+## 教师参考要点
+4. 正变换 Σx(n)W^{kn}，逆变换 (1/N)ΣX(k)W^{−kn}。若 1/N 放正变换，逆变换就不带系数；教材 3.6.1 指出用 DFT 近似傅里叶级数系数时这样放更方便。
+5. 对应例 3.2，第 3.3 节，书内 63—64 页。仓库文件名是旧编号，不能按文件名推断本版节号。
+:::
+
+{{< include _agent-box.qmd >}}
+
+::: {.see-also}
+[另请参阅]{.sa-title}
+
+::: {.sa-row}
+[先修]{.sa-label} [3.2 离散傅里叶级数](3.2-dfs.qmd)
+:::
+::: {.sa-row}
+[后继]{.sa-label} [3.4 DFT 的性质](3.4-properties.qmd) · [3.6 用 DFT 逼近连续信号](3.6-approximation.qmd) · 第4章 FFT
+:::
+:::

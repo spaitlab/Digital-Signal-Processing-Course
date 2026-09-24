@@ -1,0 +1,18 @@
+---
+title: "课件下载"
+toc: false
+---
+
+## 第2章 · 采样与混叠
+
+本轮提供配套微课的课堂导学样板，包含观看入口、二维码与课后实验指引。
+
+[下载 PPTX](downloads/DSP-2.1-sampling-guide.pptx){.btn .btn-primary} [查看 PDF](downloads/DSP-2.1-sampling-guide.pdf){.btn .btn-outline-primary}
+
+[进入采样与混叠微课](microlectures/2.1-sampling/index.html) · [阅读 2.1 采样定理讲义](ch2/2.1-sampling.qmd)
+
+## 各章正式课件
+
+第1至第7章的正式教学版 PPTX、PDF 正在核对版本和素材来源，将按章补充。现阶段可以先使用网站讲义与实验代码。
+
+[进入课程目录](index.qmd)

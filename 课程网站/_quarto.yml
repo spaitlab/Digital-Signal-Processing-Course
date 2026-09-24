@@ -1,0 +1,218 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+  - microlectures/**
+  - downloads/**
+  - ch1/code/**
+  - ch2/code/**
+  - ch3/code/**
+  - ch4/code/**
+  - ch5/code/**
+  - ch6/code/**
+  - ch7/code/**
+  - ch1/media/*-poster.png
+  - ch2/media/*-poster.png
+  - ch3/media/*-poster.png
+  - ch4/media/*-poster.png
+  - ch5/media/*-poster.png
+  - ch6/media/*-poster.png
+  - ch7/media/*-poster.png
+  - ch7/lab-fir01/**
+  render:
+  - '*.qmd'
+  - ch*/*.qmd
+  - '!**/_*.qmd'
+lang: zh
+execute:
+  enabled: false
+website:
+  title: 数字信号处理 · 课程站
+  description: 数字信号处理课程讲义、实验代码、课件与微课，覆盖第1至第7章。
+  navbar:
+    background: '#ffffff'
+    foreground: '#212121'
+    logo-alt: 数字信号处理
+    left:
+    - text: 首页
+      href: index.qmd
+    - text: 课程章节
+      menu:
+      - text: 第1章 概述
+        href: ch1/index.qmd
+      - text: 第2章 信号与系统
+        href: ch2/index.qmd
+      - text: 第3章 离散傅里叶变换
+        href: ch3/index.qmd
+      - text: 第4章 FFT
+        href: ch4/index.qmd
+      - text: 第5章 滤波器结构
+        href: ch5/index.qmd
+      - text: 第6章 IIR 设计
+        href: ch6/index.qmd
+      - text: 第7章 FIR 设计
+        href: ch7/index.qmd
+    - text: 备课法
+      href: method.qmd
+    - text: 微课
+      href: microlectures/index.html
+    - text: 课件下载
+      href: downloads.qmd
+    right:
+    - icon: github
+      href: https://github.com/spaitlab/Digital-Signal-Processing-Course
+      aria-label: 课程资源仓库
+    search: true
+  sidebar:
+  - id: ch1
+    title: 第1章 数字信号处理概述
+    style: docked
+    background: '#f7f7f7'
+    collapse-level: 2
+    contents:
+    - text: 第1章总览
+      href: ch1/index.qmd
+    - text: 1.1 信号和系统
+      href: ch1/1.1-signals-systems.qmd
+    - text: 1.2 数字信号处理过程
+      href: ch1/1.2-dsp-chain.qmd
+    - text: 1.3 数字系统的优点
+      href: ch1/1.3-advantages.qmd
+    - text: 1.4 软件工具
+      href: ch1/1.4-tools.qmd
+  - id: ch2
+    title: 第2章 离散时间信号和系统分析
+    style: docked
+    background: '#f7f7f7'
+    collapse-level: 2
+    contents:
+    - text: 第2章总览
+      href: ch2/index.qmd
+    - text: 2.1 采样定理
+      href: ch2/2.1-sampling.qmd
+    - text: 2.2 时域分析
+      href: ch2/2.2-time-domain.qmd
+    - text: 2.3 频域分析
+      href: ch2/2.3-frequency-domain.qmd
+    - text: 2.4 系统函数
+      href: ch2/2.4-system-function.qmd
+  - id: ch3
+    title: 第3章 离散傅里叶变换
+    style: docked
+    background: '#f7f7f7'
+    collapse-level: 2
+    contents:
+    - text: 第3章总览
+      href: ch3/index.qmd
+    - text: 3.1 四种傅里叶变换
+      href: ch3/3.1-fourier-forms.qmd
+    - text: 3.2 离散傅里叶级数
+      href: ch3/3.2-dfs.qmd
+    - text: 3.3 离散傅里叶变换
+      href: ch3/3.3-dft.qmd
+    - text: 3.4 DFT 的性质
+      href: ch3/3.4-properties.qmd
+    - text: 3.5 频域采样
+      href: ch3/3.5-frequency-sampling.qmd
+    - text: 3.6 用 DFT 逼近连续信号
+      href: ch3/3.6-approximation.qmd
+    - text: 3.7 窗函数和加权
+      href: ch3/3.7-windows.qmd
+  - id: ch4
+    title: 第4章 快速傅里叶变换
+    style: docked
+    background: '#f7f7f7'
+    collapse-level: 2
+    contents:
+    - text: 第4章总览
+      href: ch4/index.qmd
+    - text: 4.1 DFT 的效率问题
+      href: ch4/4.1-dft-cost.qmd
+    - text: 4.2 按时间抽取的 FFT
+      href: ch4/4.2-dit.qmd
+    - text: 4.3 按频率抽取与 IFFT
+      href: ch4/4.3-dif-ifft.qmd
+    - text: 4.4 实序列 FFT
+      href: ch4/4.4-real-fft.qmd
+    - text: 4.5 FFT 的应用
+      href: ch4/4.5-applications.qmd
+  - id: ch5
+    title: 第5章 数字滤波器的结构
+    style: docked
+    background: '#f7f7f7'
+    collapse-level: 2
+    contents:
+    - text: 第5章总览
+      href: ch5/index.qmd
+    - text: 5.1 基本概念
+      href: ch5/5.1-concepts.qmd
+    - text: 5.2 IIR 直接型
+      href: ch5/5.2-iir-direct.qmd
+    - text: 5.3 IIR 级联与并联
+      href: ch5/5.3-iir-cascade-parallel.qmd
+    - text: 5.4 FIR 直接/级联/线性相位
+      href: ch5/5.4-fir-structures.qmd
+    - text: 5.5 FIR 频率采样型
+      href: ch5/5.5-frequency-sampling.qmd
+  - id: ch6
+    title: 第6章 IIR 数字滤波器设计
+    style: docked
+    background: '#f7f7f7'
+    collapse-level: 2
+    contents:
+    - text: 第6章总览
+      href: ch6/index.qmd
+    - text: 6.1 巴特沃思模拟低通
+      href: ch6/6.1-butterworth.qmd
+    - text: 6.2 切比雪夫模拟低通
+      href: ch6/6.2-chebyshev.qmd
+    - text: 6.3 脉冲响应不变法
+      href: ch6/6.3-impulse-invariance.qmd
+    - text: 6.4 双线性变换法
+      href: ch6/6.4-bilinear.qmd
+    - text: 6.5 设计全流程与对比
+      href: ch6/6.5-design-compare.qmd
+  - id: ch7
+    title: 第7章 FIR 数字滤波器设计
+    style: docked
+    background: '#f7f7f7'
+    collapse-level: 2
+    contents:
+    - text: 第7章总览
+      href: ch7/index.qmd
+    - text: 7.1 线性相位四型
+      href: ch7/7.1-linear-phase.qmd
+    - text: 7.2 零点与滑动平均（FIR-01）
+      href: ch7/7.2-zeros-moving-average.qmd
+    - text: 7.3 窗函数法思想
+      href: ch7/7.3-window-method.qmd
+    - text: 7.4 典型窗与设计步骤
+      href: ch7/7.4-windows-design.qmd
+    - text: 7.5 频率采样法
+      href: ch7/7.5-frequency-sampling-design.qmd
+  page-navigation: true
+  page-footer:
+    left: 数字信号处理课程 · SpaitLab
+    right: 讲义 · 实验 · 微课
+  search:
+    location: navbar
+    type: overlay
+  site-url: https://spaitlab.github.io/Digital-Signal-Processing-Course/
+  repo-url: https://github.com/spaitlab/Digital-Signal-Processing-Course
+format:
+  html:
+    theme:
+    - cosmo
+    - styles.scss
+    toc: true
+    toc-title: 本页内容
+    toc-depth: 3
+    toc-location: right
+    html-math-method: mathjax
+    code-copy: true
+    code-overflow: wrap
+    include-after-body:
+    - quiz.html
+    - media.html
+    fig-align: center
+    smooth-scroll: true

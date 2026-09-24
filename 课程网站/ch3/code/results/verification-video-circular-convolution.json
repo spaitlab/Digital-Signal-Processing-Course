@@ -1,0 +1,51 @@
+{
+  "linear": [
+    2,
+    7,
+    13,
+    13,
+    7,
+    6
+  ],
+  "circular_5": [
+    8,
+    7,
+    13,
+    13,
+    7
+  ],
+  "circular_6": [
+    2.0000000000000004,
+    7,
+    13,
+    13,
+    7,
+    6
+  ],
+  "circular_8": [
+    2,
+    6.9999999999999991,
+    13,
+    13,
+    7,
+    6.0000000000000009,
+    0,
+    0
+  ],
+  "checks_max_abs_error": {
+    "linear_by_hand": 0,
+    "circular_5_folded": 0,
+    "linear_via_fft_6": 4.4408920985006262E-16,
+    "linear_via_fft_8": 8.8817841970012523E-16
+  },
+  "frames": 1200,
+  "frame_rate": 30,
+  "duration_s": 40,
+  "width": 1280,
+  "height": 720,
+  "quality": 90,
+  "file_size_bytes": 1.478187E+6,
+  "all_checks_passed": true,
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "generated_at": "2026-09-19 14:52:45"
+}

@@ -1,0 +1,8 @@
+<section class="classroom-media-card">
+<span class="media-type">历史图文 · 1981-07-01 · 阅读时长未核对</span>
+<h3>The Metropolitan Digital Truck Plant</h3>
+<p>发布机构：Nokia Bell Labs（贝尔实验室历史文献页面，题名沿用官网）。原文明确记载：T1 于 1962 年引入，承载 24 路话音，速率为 1.544 Mb/s，与本页数字一致；1981-07-01 是文献日期，不是 T1 投用年份。</p>
+<p>课堂看点：24 路电话挤进一根线，中继器只判 0 和 1。课堂只展示原站的一张截图，课后阅读。这里“一根线”指共享传输线路，原文使用 wire pairs（线对）；中继判决是本页教学概括，原文此段重点讲通道复用。</p>
+<p>核对日期：2026-09-19。</p>
+<div class="actions"><a class="action primary" href="https://www.nokia.com/bell-labs/publications-and-media/publications/the-metropolitan-digital-truck-plant/" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

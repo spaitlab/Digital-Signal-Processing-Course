@@ -1,0 +1,63 @@
+---
+title: "第7章 有限冲激响应数字滤波器设计"
+subtitle: "FIR 的两大优点——必然稳定、可以严格线性相位；两种设计法——把理想响应截断加窗，或在频点上钉住采样值"
+---
+
+::: {.page-meta}
+[教材书内 216—271 页 · PDF 224—279 页]{} [建议 6 课时]{} [核对 2026-09-18]{}
+:::
+
+::: {.keypoints}
+[本章主线]{.kp-title}
+
+- h(n) 对称或反对称 ⇒ H(e^{jω})=H(ω)e^{jθ(ω)}，θ 是直线，群延迟 (N−1)/2 个样本。对称/反对称 × N 奇/偶得四类，各有固有零点，决定能做什么类型的滤波器（7.1）。
+- 线性相位 FIR 的零点四个一组（z、1/z、z*、1/z*）。最简单的 FIR 是 M 点滑动平均：零点在 k·fs/M，通带不平、过渡带宽，所以要“设计”（7.2，含 FIR-01 实验）。
+- 窗函数法：理想 hd(n) 无限长，截断就是乘矩形窗、频域卷积 sin(Nω/2)/sin(ω/2)：过冲 8.95% 不随 N 减小（吉布斯），过渡带随 N 变窄，阻带只有 −21 dB（7.3）。换窗压旁瓣：汉宁 44、汉明 53、布莱克曼 74、凯塞可调；先按阻带选窗，再按过渡带定 N（7.4）。
+- 频率采样法：在 N 个频点给 H(k)，按线性相位约束配相位，IDFT 得 h(n)；采样点之间由内插公式决定，过渡带留 1—2 个可调采样点，阻带从 −16 dB 提到 −66 dB（7.5）。
+:::
+
+## 知识点 {#sec-1}
+
+| 页 | 教材位置 | 问题从哪来 | 本页的图 | 状态 |
+|---|---|---|---|---|
+| [7.1 线性相位 FIR 的四种类型](7.1-linear-phase.qmd) | 216—229 页 | Herrmann–Schüßler 1970；Rabiner 1971 的综述 | 例 7.1—7.4 的 H(ω) 与 DTFT 对照 | 完整 |
+| [7.2 零点特性与滑动平均（FIR-01）](7.2-zeros-moving-average.qmd) | 229—230 页 + 实验 | Slutzky 1937：滑动平均本身会“制造”周期；Kallmann 1940 的横截滤波器 | 零点四个一组、M=4 滑动平均、预测与仿真核对、M=4/8/10 | 完整 |
+| [7.3 窗函数法的设计思想](7.3-window-method.qmd) | 230—236 页 | Gibbs 1899：截断傅里叶级数的过冲 | 截断、吉布斯、矩形窗频谱、−21 dB 与 4π/N | 完整 |
+| [7.4 典型窗与设计步骤](7.4-windows-design.qmd) | 236—255 页 | Blackman–Tukey 1958、Kaiser 1966/1980、Harris 1978 | 六种窗、表 7.2.2 复现、例 7.13—7.16 | 完整 |
+| [7.5 频率采样法](7.5-frequency-sampling-design.qmd) | 255—271 页 | Gold–Jordan 1969 的直接搜索；Parks–McClellan 1972 作展望 | 例 7.17/7.19/7.20、过渡采样扫描、内插公式核验 | 完整 |
+
+## 本章的图与脚本 {#sec-2}
+
+| 脚本 | 图 | 核验 |
+|---|---|---|
+| [demo_linear_phase_types.m](code/demo_linear_phase_types.m) | 01-linear-phase-types | [verification-linear-phase-types.json](code/results/verification-linear-phase-types.json)：四型公式与 DTFT 差 10⁻¹⁴；固有零点核验 |
+| [demo_fir_zeros_moving_average.m](code/demo_fir_zeros_moving_average.m) | 02-fir-zeros-moving-average | [verification-fir-zeros-moving-average.json](code/results/verification-fir-zeros-moving-average.json)：零点倒数配对差 10⁻¹⁵；FIR-01 预测=实测（50 Hz 增益 0.9393，250 Hz 为 0，延迟 1.5 ms） |
+| [demo_window_method.m](code/demo_window_method.m) | 03-window-method | [verification-window-method.json](code/results/verification-window-method.json)：过冲 9.1/9.0/9.0%；矩形窗旁瓣 −13.3 dB；N=51 阻带 20.9 dB |
+| [demo_windows_design.m](code/demo_windows_design.m) | 04-windows-design | [verification-windows-design.json](code/results/verification-windows-design.json)：六窗低通阻带 21.7/26.1/44.0/53.1/75.4/78.8 dB；例 7.16 按教材参数 47.5 dB 不达标，N=45 达标 |
+| [demo_frequency_sampling_design.m](code/demo_frequency_sampling_design.m) | 05-frequency-sampling-design | [verification-frequency-sampling-design.json](code/results/verification-frequency-sampling-design.json)：无/一个/最优一个/两个过渡采样 16/30/42/66 dB |
+
+窗函数、理想低通、频率采样设计全部自写（只用基础 MATLAB 的 `besseli`），装了工具箱时可与 `fir1`、`fir2` 对照。Python 对照版在 `code/python/`，五份全部本机运行通过。FIR-01 实验包（学生任务单、随堂测验、Python/MATLAB/Syslab/Sysplorer 跨平台脚本）在 [lab-fir01/](lab-fir01/index.md)。
+
+## 本章媒体一览 {#sec-media}
+
+| 页 | 类型 | 标题 | 时长 | 课堂或课后 | 网络 | 核对日期 |
+|---|---|---|---|---|---|---|
+| [7.4](7.4-windows-design.qmd#sec-3) | 本地动画 | 换窗取舍与按指标设计（视频整理中） | 40 秒 | 课堂先预测、后播放 | 不需要 | 2026-09-19 |
+| [7.1](7.1-linear-phase.qmd#sec-1) | 口述史图文 | [Oral-History:Lawrence Rabiner](https://ethw.org/Oral-History:Lawrence_Rabiner) | 阅读时长未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [7.2](7.2-zeros-moving-average.qmd#sec-1) | 历史图文 | [The Meaning of Slutsky](https://www.minneapolisfed.org/article/2009/the-meaning-of-slutsky) | 阅读时长未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [7.3](7.3-window-method.qmd#sec-1) | 视频系列 | [Albert Michelson’s Harmonic Analyzer — Companion Video Series](https://engineerguy.com/fourier/) | 时长未核对 | 课前浏览；课堂片段待教师试看 | 需要 | 2026-09-19 |
+| [7.3](7.3-window-method.qmd#sec-1) | 口述史图文 | [Oral-History:Ben Gold](https://ethw.org/Oral-History:Ben_Gold) | 阅读时长未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [7.4](7.4-windows-design.qmd#sec-1) | 人物报道 | [Statistician John W. Tukey dies](https://www.princeton.edu/news/2000/07/28/statistician-john-w-tukey-dies) | 阅读时长未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [7.4](7.4-windows-design.qmd#sec-1) | 口述史图文 | [Oral-History:James Kaiser](https://ethw.org/Oral-History:James_Kaiser) | 阅读时长未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [7.5](7.5-frequency-sampling-design.qmd#sec-1) | 作者公开资料 PDF | [James H. McClellan 公开履历：2005 年算法自述书目](https://bpb-us-e1.wpmucdn.com/sites.gatech.edu/dist/5/554/files/2016/12/JMc2010-cvEXTERNAL.pdf?bid=554) | 阅读时长未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+
+## 课时安排（建议 6 课时） {#sec-3}
+
+| 课时 | 内容 |
+|---|---|
+| 1 | 7.1 线性相位条件与四类 H(ω)，例 7.1—7.4 |
+| 2 | 7.2 零点特性；FIR-01 实验：先填预测表，再跑，再对 |
+| 3 | 7.3 窗函数法思想：截断、卷积、吉布斯、4π/N、−21 dB |
+| 4 | 7.4 六种窗与表 7.2.2；例 7.13 低通全程 |
+| 5 | 7.4 例 7.14—7.16 高通、带通、带阻；例 7.16 为什么不达标 |
+| 6 | 7.5 频率采样法：例 7.17—7.20，过渡采样怎么选 |

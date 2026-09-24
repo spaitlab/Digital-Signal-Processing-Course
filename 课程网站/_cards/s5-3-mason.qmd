@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">人物档案 PDF · 文件日期 1967-01-04；数字化发布日期未核对 · 阅读时长未核对</span>
+<h3>Samuel J. Mason 任命公告（档案说明题名）</h3>
+<p>发布：MIT News Office 档案 / MIT Libraries。课堂看点：MIT 任命公告回顾 Mason 的电子电路与反馈理论工作。从这份人物档案进入本页 1953 年信号流图论文：箭头和节点怎样把反馈关系写成可计算的结构。公告是背景材料，1953 年论文结论仍以本页原文献为依据。</p>
+<p>课堂展示一张截图，课后阅读。图文片段起止不适用。核对日期：2026-09-19。未核对字段：数字化发布日期、阅读时长；文件无独立标题，卡题为内容说明。</p>
+<div class="actions"><a class="action primary" href="https://cdn.libraries.mit.edu/dissemination/diponline/AC0069_NewReleases/NewsRelease_1960/AC0069_1967/AC0069_196701_004.pdf" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

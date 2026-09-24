@@ -1,0 +1,243 @@
+---
+title: "3.4 离散傅里叶变换的性质"
+subtitle: "圆周移位与圆周卷积：用 FFT 算卷积要补多少零"
+---
+
+::: {.page-meta}
+[教材书内 64—92 页 · PDF 72—100 页]{} [3.4.1 线性，3.4.8 圆周移位，3.4.9 圆周卷积，3.4.11 帕塞瓦尔，3.4.12 对称性]{} [2 课时]{}
+:::
+
+::: {.keypoints}
+[本页要点]{.kp-title}
+
+- DFT 的“移位”和“卷积”都是**圆周**的，因为 DFT 把序列当作周期序列的一个周期（3.3.2）。
+- 圆周卷积定理：时域 L 点圆周卷积 ⇔ 频域逐点相乘。要用它算线性卷积，先补零到 L ≥ N_x+N_h−1，否则越界样本绕回叠加。
+- 帕塞瓦尔：$\sum|x(n)|^2=\frac1N\sum|X(k)|^2$，复序列要取模平方。
+- 实序列的 DFT 共轭对称：X(N−k)=X*(k)。
+:::
+
+## [①]{.col-badge} 问题从哪来：Stockham 1966，用 FFT 做“高速卷积” {#sec-1}
+
+FFT 出现后一年，Stockham 在 1966 年春季联合计算机会议上发表《高速卷积与相关》，指出长序列的卷积可以“变换、相乘、反变换”来算，计算量从 N² 量级降到 N log N 量级。但 DFT 逐点相乘对应的是**圆周**卷积，不是线性卷积。要得到线性卷积，必须先把两个序列补零到足够长；对更长的信号则分段处理（重叠相加、重叠保留）。**本节的圆周卷积和补零长度条件，就是这类算法能否正确工作的前提。**
+
+::: {.classroom-media-grid}
+
+{{< include ../_cards/s3-4-stockham-caruso.qmd >}}
+
+:::
+
+::: {.media-note}
+外部素材需要联网，核对日期见各卡；视频未逐段试看，课堂片段待教师选定。
+:::
+
+::: {.sources}
+- T. G. Stockham Jr., "High-speed convolution and correlation," *Proc. AFIPS Spring Joint Computer Conference* (1966) 229–233. [doi:10.1145/1464182.1464209](https://doi.org/10.1145/1464182.1464209)
+:::
+
+## [②]{.col-badge} 理论与推导 {#sec-2}
+
+### 3.4.1 线性 {#sec-2-1}
+
+同一 N 点变换下 $\mathrm{DFT}_N[ax_1+bx_2]=aX_1+bX_2$。两序列长度不同时，教材取 N=max(N₁,N₂)，把短的补零到共同长度再做变换。**不能把不同长度、不同频率网格的两组 FFT 结果直接逐元素相加。**
+
+### 3.4.8 圆周移位 {#sec-2-2}
+
+有限长序列的“移位”要在周期延拓上做，再取一个周期：$y(n)=x((n-m))_N R_N(n)$，越界的样本从另一端绕回。频域：
+
+$$
+Y(k)=\sum_{n=0}^{N-1}x((n-m))_N W_N^{kn}
+\overset{n-m\to n'}{=}W_N^{km}\sum_{n'}x(n')W_N^{kn'}=W_N^{km}X(k)=e^{-j\frac{2\pi}{N}km}X(k).
+$$
+
+换元后求和范围仍是一个完整周期，这一步依赖周期延拓。幅度不变，相位加线性项；幅度为零的频点相位不宜解释。向右移 m 点对应 `np.roll(x, m)`、`circshift(x, m)`。
+
+### 3.4.9 圆周卷积及其与线性卷积的关系 {#sec-2-3}
+
+L 点圆周卷积定义：$y(n)=\sum_{m=0}^{L-1}x(m)\,h((n-m))_L,\ n=0,\dots,L-1$。定理：
+
+$$
+Y(k)=X(k)H(k)\quad\Longleftrightarrow\quad y=x\circledast_L h.
+$$
+
+**推导（三行）。** 把 $x(m)=\frac1L\sum_k X(k)W_L^{-km}$、$h((n-m))_L=\frac1L\sum_l H(l)W_L^{-l(n-m)}$ 代入定义，对 m 求和用离散正交性 $\sum_m W_L^{-(k-l)m}=L\delta_{kl}$，只剩 k=l 项：$y(n)=\frac1L\sum_kX(k)H(k)W_L^{-kn}$，正是 X(k)H(k) 的 IDFT。
+
+**与线性卷积的关系。** 线性卷积长度 N_x+N_h−1。圆周卷积等于线性卷积以 L 为周期叠加后取一个周期（与 [3.5](3.5-frequency-sampling.qmd) 的时域折叠是同一个结论）。所以
+
+$$
+L\ \ge\ N_x+N_h-1\quad\Longrightarrow\quad x\circledast_L h=x*h\ \text{（后面补零）}.
+$$
+
+L 小于此界时，尾部样本绕回叠加到开头。特殊零值抵消的例子不能用来否定通用长度条件。
+
+::: {.callout-note .ask appearance="simple"}
+**教师提问：** x=[1,2,3]、h=[2,3,1,2]，线性卷积几点？做 5 点圆周卷积时哪一项会被折回、加到哪里？（6 点；第 6 项的 6 折回加到 n=0，2+6=8。）
+:::
+
+### 3.4.11 帕塞瓦尔定理 {#sec-2-4}
+
+$$
+\sum_{n=0}^{N-1}|x(n)|^2=\frac1N\sum_{k=0}^{N-1}|X(k)|^2.
+$$
+
+教材式 (3.4.29) 时域写作 x²(n)，适用于实序列；复序列必须用模平方。例：x=[1, j] 的能量是 2，而 Σx² = 0。若改用 `norm="ortho"`，两域能量直接相等，要先声明归一化。
+
+### 3.4.12 对称性 {#sec-2-5}
+
+实序列 x(n) 的 DFT 满足 $X(N-k)=X^*(k)$：幅度偶对称、相位奇对称。所以画实信号的谱只画 0 到 N/2（单边谱），这是 3.7 幅值校正“乘 2”的来源。
+
+## [③]{.col-badge} 仿真演示 {#sec-3}
+
+::: {.ide-links data-matlab="demo_dft.m" data-python="python/3.4-properties.py" data-julia="julia/3.4-circular-convolution.jl"}
+:::
+
+<div class="video-box">
+<p class="media-pending">课堂动画正在整理上线；请先查看下方静态图和实验代码。</p>
+</div>
+
+::: {.media-note}
+由 [make_circular_convolution_video.m](code/make_circular_convolution_video.m) 生成；[动画核验记录](code/results/verification-video-circular-convolution.json)。先让学生预测“5 点圆周卷积哪一项会被折回、折到哪”，再播放。点击加载后再按播放键。
+:::
+
+脚本 [demo_dft.m](code/demo_dft.m) [已运行]{.status .ok} 演示 1。核验记录 [verification-dft.json](code/verification-dft.json)：`linear_by_hand`、`circular_5_folded`、`linear_via_fft_6`、`linear_via_fft_8`。
+
+:::: {.example}
+::: {.example-title}
+圆周卷积与线性卷积：x=[1,2,3]，h=[2,3,1,2]
+:::
+::: {.example-body}
+**运行前问学生：** 线性卷积几点？5 点圆周卷积哪一项折回？L=6 和 L=8 的结果一样吗？
+
+![图：左上两个序列；右上线性卷积 [2 7 13 13 7 6]；左下 L=5 时第 6 项折回 n=0；右下 L≥6 时与线性卷积重合，L=8 尾部为补零](img/dft-01-circular-convolution.png){width=100%}
+
+这是三平台对照的示范页：同一数学、三份代码，结果逐点一致。教材配套程序 example3.5.2.ipynb 对这两个序列取 5 点，算的是圆周卷积，图题“线性卷积”容易误解。
+
+::: {.panel-tabset}
+#### MATLAB [已运行]{.status .ok}
+
+```matlab
+x = [1 2 3]; h = [2 3 1 2];
+linearConv = conv(x, h)                     % [2 7 13 13 7 6]
+circ = @(x,h,L) real(ifft(fft(x,L).*fft(h,L)));   % L 不小于两输入长度，避免 fft(x,L) 隐式截断
+circ(x, h, 5)                               % [8 7 13 13 7]：第 6 项折回 n=0
+circ(x, h, 6)                               % [2 7 13 13 7 6]
+circ(x, h, 8)                               % [2 7 13 13 7 6 0 0]
+```
+
+#### Python [对照]{.status .ref}
+
+```python
+import numpy as np
+def circular_convolution(x, h, length):
+    if length < max(len(x), len(h)):
+        raise ValueError('长度不小于两输入长度，避免 FFT 隐式截断')
+    return np.fft.ifft(np.fft.fft(x, length) * np.fft.fft(h, length)).real
+x, h = [1, 2, 3], [2, 3, 1, 2]
+print(np.convolve(x, h))                    # [ 2  7 13 13  7  6]
+print(np.round(circular_convolution(x, h, 5)))   # [ 8.  7. 13. 13.  7.]
+print(np.round(circular_convolution(x, h, 6)))   # [ 2.  7. 13. 13.  7.  6.]
+```
+
+#### MWORKS Syslab [已运行]{.status .ok}
+
+Julia 1.10，TyMath 的 `fft`/`ifft`。2026-09-18 在 Syslab 26.6 会话中执行，输出与 MATLAB、Python 逐点一致。
+
+```julia
+using TyMath
+x = [1.0, 2.0, 3.0]; h = [2.0, 3.0, 1.0, 2.0]
+pad(v, L) = vcat(v, zeros(L - length(v)))
+circconv(x, h, L) = real.(ifft(fft(pad(x, L)) .* fft(pad(h, L))))   # L 点圆周卷积
+circconv(x, h, 5)    # [8, 7, 13, 13, 7]
+circconv(x, h, 6)    # [2, 7, 13, 13, 7, 6]
+circconv(x, h, 8)    # [2, 7, 13, 13, 7, 6, 0, 0]
+```
+:::
+:::
+::::
+
+:::: {.example}
+::: {.example-title}
+圆周移位与帕塞瓦尔：不出图，直接核对数值
+:::
+::: {.example-body}
+::: {.panel-tabset}
+#### MATLAB [对照]{.status .ref}
+
+```matlab
+N = 8; n = 0:N-1; x = randn(1,N) + 1i*randn(1,N); X = fft(x);
+Y = fft(circshift(x, 2));                          % 向右圆周移 2 点
+max(abs(Y - X.*exp(-1i*2*pi*n*2/N)))              % ~1e-15
+sum(abs(x).^2) - sum(abs(X).^2)/N                  % ~1e-15：复序列取模平方
+```
+
+#### Python [对照]{.status .ref}
+
+```python
+import numpy as np
+rng = np.random.default_rng(20260917); N = 8; k = np.arange(N)
+x = rng.normal(size=N) + 1j*rng.normal(size=N); X = np.fft.fft(x)
+assert np.allclose(np.fft.fft(np.roll(x, 2)), X*np.exp(-2j*np.pi*k*2/N))   # 圆周移位
+assert np.allclose(np.sum(abs(x)**2), np.sum(abs(X)**2)/N)                 # 帕塞瓦尔
+print(np.sum(np.array([1, 1j])**2), np.sum(abs(np.array([1, 1j]))**2))     # 0 与 2
+```
+:::
+:::
+::::
+
+## [④]{.col-badge} 检查与思考 {#sec-4}
+
+::: {.quiz data-type="choice" data-answer="B"}
+::: {.q-text}
+1. y(n)=x((n−2))_N 对应什么频域变化？
+:::
+::: {.q-opts}
+[Y(k)=X(k)·e^{+j4πk/N}]{data-opt="A"}
+[Y(k)=X(k)·e^{−j4πk/N}，幅度不变]{data-opt="B"}
+[Y(k)=X(k−2)]{data-opt="C"}
+[Y(k)=X(k)，移位不改变 DFT]{data-opt="D"}
+:::
+::: {.q-explain}
+向右圆周移 2 点，乘 W_N^{2k}=e^{−j2π·2k/N}。幅度不变，相位加线性项。
+:::
+:::
+
+::: {.quiz data-type="number" data-answer="8" data-tol="0"}
+::: {.q-text}
+2. [1,2,3] 与 [2,3,1,2] 做 5 点圆周卷积，n=0 处的值是多少？
+:::
+::: {.q-explain}
+线性卷积 [2,7,13,13,7,6]；L=5 时第 6 项折回加到首项：2+6=8。整个结果 [8,7,13,13,7]。
+:::
+:::
+
+::: {.quiz data-type="number" data-answer="2" data-tol="0"}
+::: {.q-text}
+3. 默认 DFT 约定下，复序列 x=[1, j] 的时域能量 Σ|x(n)|² 等于多少？
+:::
+::: {.q-explain}
+|1|²+|j|²=2。DFT=[1+j, 1−j]，频域模平方和 4，除以 N=2 得 2。若误写成 Σx²，得 1+(−1)=0。
+:::
+:::
+
+**短答题**
+
+4. 两个长度不同的序列如何验证 DFT 的线性性质？
+5. 上题的 5 点圆周卷积如何改成得到完整线性卷积？至少取多少点？
+
+::: {.callout-tip collapse="true" appearance="simple"}
+## 教师参考要点
+4. 补零至共同长度 N ≥ max(N₁,N₂)，比较 fft(ax+by, N) 与 a·fft(x,N)+b·fft(y,N)。
+5. L ≥ 3+4−1 = 6；补零后 FFT 相乘再 IFFT，取前 6 项。
+:::
+
+{{< include _agent-box.qmd >}}
+
+::: {.see-also}
+[另请参阅]{.sa-title}
+
+::: {.sa-row}
+[先修]{.sa-label} 2.2.4 卷积运算 · [3.2 离散正交性](3.2-dfs.qmd) · [3.3.2 隐含周期性](3.3-dft.qmd)
+:::
+::: {.sa-row}
+[后继]{.sa-label} [3.5 频域采样](3.5-frequency-sampling.qmd) · [3.7 单边谱与幅值校正](3.7-windows.qmd) · 第4章 FFT 与快速卷积
+:::
+:::

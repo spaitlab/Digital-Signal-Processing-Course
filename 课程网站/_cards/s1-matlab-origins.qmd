@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">视频 · 2012-08-24 · 8 分 25 秒</span>
+<h3>Origins of MATLAB</h3>
+<p>发布：MathWorks；讲述者 Cleve Moler。课堂看点：Moler 回顾影响 MATLAB 的人物与技术，并展示早期代码及输出。连接本页“工具从数学计算需求中生长”的线索。官网视频发布于 2012 年；内容回顾 2004 年公司二十周年，不能混作发布日期。</p>
+<p>未逐段试看，课堂片段待教师选定。核对日期：2026-09-19。未核对字段：片段起止。</p>
+<div class="actions"><a class="action primary" href="https://www.mathworks.com/videos/origins-of-matlab-70332.html" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

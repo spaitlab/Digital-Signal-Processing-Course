@@ -1,0 +1,34 @@
+{
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "run_at": "2026-09-18 19:48:14",
+  "N1": 1000,
+  "N2": 101,
+  "Nfft": 2048,
+  "fast_conv_err": 1.1102230246251565E-15,
+  "timing_N": [
+    1024,
+    2048,
+    4096,
+    8192,
+    16384
+  ],
+  "conv_seconds": [
+    0.0001641,
+    8.7E-5,
+    0.0002526,
+    0.0008011,
+    0.0024674
+  ],
+  "fftconv_seconds": [
+    0.0001161,
+    4.53E-5,
+    8.7E-5,
+    0.0001709,
+    0.0003723
+  ],
+  "overlap_add_block": 1024,
+  "overlap_add_err": 1.1102230246251565E-15,
+  "echo_delay_true": 37,
+  "echo_delay_found": 37,
+  "all_checks_passed": true
+}

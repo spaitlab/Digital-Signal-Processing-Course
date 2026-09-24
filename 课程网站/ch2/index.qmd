@@ -1,0 +1,78 @@
+---
+title: "第2章 离散时间信号和系统分析"
+subtitle: "从采样定理到系统函数：全书的基础章"
+---
+
+::: {.page-meta}
+[教材书内 5—53 页 · PDF 13—61 页]{} [建议 8 课时]{} [核对 2026-09-18]{}
+:::
+
+::: {.keypoints}
+[本章主线]{.kp-title}
+
+- **采样**把连续时间信号变成序列，频谱随之以 f_s 为周期重复；f_s 不够就混叠，够了就能用内插公式恢复（2.1）。
+- **序列与系统**在时域用卷积描述：翻转、平移、相乘、求和；稳定看 Σ|h| 是否收敛，因果看 n<0 时 h 是否为零（2.2）。
+- **频域**：输入 e^{jωn} 输出还是 e^{jωn}，乘的那个数就是频率响应；DTFT 以 2π 为周期；z 变换把它推广到整个 z 平面，收敛域决定唯一性（2.3）。
+- **系统函数** H(z) 把差分方程、零极点、频率响应连成一条线：因果有理系统的极点全部严格在单位圆内才稳定；|H| 可以拿尺子在 z 平面上量出来；FIR 的零点排在圆上（2.4）。
+:::
+
+::: {.callout-tip}
+## 课程微课 · 教师试播
+[2.3-A 为什么平均会压低某些频率？](../microlectures/2.3-frequency-response/index.html) · 约4分48秒，频率响应与稳态比较。
+
+[2.3-B 同一个z变换式子，为什么可能对应两个序列？](../microlectures/2.3-z-transform/index.html) · 约5分35秒，收敛域、边界反例和部分和实验。
+
+[2.4-A 脉冲响应趋于零，就一定稳定吗？](../microlectures/2.4-stability/index.html) · 约5分38秒，绝对可和、调和尾部反例与非因果稳定系统。
+
+[2.4-B 零极点图，怎样变成频率响应？](../microlectures/2.4-poles-zeros/index.html) · 约6分04秒，向量长度与角度、原点零点及暂态对照。
+
+[2.2-A 连续正弦是周期的，采样后一定周期吗？](../microlectures/2.2-sequences/index.html) · 约4分40秒。
+
+[2.2-B 为什么知道脉冲响应，就能计算输出？](../microlectures/2.2-convolution/index.html) · 约5分32秒，逐点卷积实验、索引与输出尾部。
+
+[2.1-A 为什么5Hz会采成“1Hz”？](../microlectures/2.1-sampling/index.html) · 约5分09秒，附采样率与波形实验、教师说明。
+
+[2.1-B 为什么连上采样点，还不等于恢复原信号？](../microlectures/2.1-reconstruction/index.html) · 约5分43秒，附sinc叠加、恢复方法和截断误差实验。
+:::
+
+## 知识点 {#sec-1}
+
+| 页 | 教材位置 | 问题从哪来 | 本页的图 | 状态 |
+|---|---|---|---|---|
+| [2.1 采样定理](2.1-sampling.qmd) | 5—12 页 | Whittaker 1915 的内插级数，Nyquist 1928，Shannon 1949 | 5 Hz 正弦够与不够、频谱周期延拓、内插恢复、混叠不可逆 | 完整 |
+| [2.2 时域分析](2.2-time-domain.qmd) | 13—24 页 | 从“单位采样响应”到卷积：Dirac 的 δ 与 Kronecker 的 δ | 周期性、卷积翻转平移、Σ\|h\| 部分和 | 完整 |
+| [2.3 频域分析](2.3-frequency-domain.qmd) | 24—40 页 | z 变换的名字：Ragazzini 与 Zadeh 1952；生成函数的老根 | 5 点平均的 \|H\|、实序列对称性、ROC、s→z 映射 | 完整 |
+| [2.4 系统函数](2.4-system-function.qmd) | 40—49 页 | Slutzky 1927：滑动平均会“制造”周期 | 零极点向量、几何法、稳定与发散、FIR 零点 | 完整 |
+
+## 本章的图与脚本 {#sec-2}
+
+| 脚本 | 图 | 核验 |
+|---|---|---|
+| [demo_sampling.m](code/demo_sampling.m) | 01-sampling | [verification-sampling.json](code/results/verification-sampling.json)：6 Hz 样本与 1 Hz 正弦逐点重合；sinc 内插误差 8×10⁻⁴，零阶保持 1.87，线性 0.72 |
+| [demo_sequences_systems.m](code/demo_sequences_systems.m) | 02-sequences-systems | [verification-sequences.json](code/results/verification-sequences.json)：卷积 [3 8 14 20 11 4]；Σ0.8ⁿ→5，Σ0.8^{\|n\|}→9，1.2ⁿ 发散 |
+| [demo_frequency_domain.m](code/demo_frequency_domain.m) | 03-frequency-domain | [verification-frequency.json](code/results/verification-frequency.json)：实测输出幅度与 \|H\| 差 <10⁻¹⁰；对称性误差 0；DTFT 直接求和与 X(z) 差 5×10⁻⁴ |
+| [demo_system_function.m](code/demo_system_function.m) | 04-system-function | [verification-system.json](code/results/verification-system.json)：几何法与直接求值差 10⁻¹⁴；h 满足差分方程；四点平均零点在 ±j、−1 |
+
+Python 对照版在 `code/python/`，四份全部本机运行通过。只用基础 MATLAB。
+
+## 本章媒体一览 {#sec-media}
+
+| 页 | 类型 | 标题 | 时长 | 课堂或课后 | 网络 | 核对日期 |
+|---|---|---|---|---|---|---|
+| [2.1](2.1-sampling.qmd#sec-3) | 本地动画 | 采样率、频谱重复与 sinc 内插（视频整理中） | 40 秒 | 课堂先预测、后播放 | 不需要 | 2026-09-19 |
+| [2.1](2.1-sampling.qmd#sec-1) | 视频 | [The Bit Player Trailer](https://vimeo.com/323615460) | 未核对 | 课前浏览；课堂片段待教师选定 | 需要 | 2026-09-19 |
+| [2.1](2.1-sampling.qmd#sec-1) | 动图报道 | [Ingenuity’s Shadow During Third Flight](https://science.nasa.gov/resource/ingenuitys-shadow-during-third-flight/) | 未核对 | 课堂原站展示、课后阅读 | 需要 | 2026-09-19 |
+| [2.2](2.2-time-domain.qmd#sec-1) | 历史图文 | [Paul Adrien Maurice Dirac](https://mathshistory.st-andrews.ac.uk/Biographies/Dirac/) | 阅读时长未核对 | 课堂原站展示、课后阅读 | 需要 | 2026-09-19 |
+| [2.4](2.4-system-function.qmd#sec-1) | 历史图文 | [The Meaning of Slutsky](https://www.minneapolisfed.org/article/2009/the-meaning-of-slutsky) | 阅读时长未核对 | 课堂原站展示、课后阅读 | 需要 | 2026-09-19 |
+
+## 课时安排（建议 8 课时） {#sec-3}
+
+| 课时 | 内容 |
+|---|---|
+| 1—2 | 2.1 采样：图①②看混叠，推导频谱周期延拓；第二课时内插公式与图③④ |
+| 3 | 2.2 序列表示、典型序列、周期性判断 |
+| 4 | 2.2 卷积（图②③手算一遍）、线性非时变、稳定与因果 |
+| 5 | 2.3 频率响应与 DTFT，对称性 |
+| 6 | 2.3 z 变换、收敛域、三种变换的关系 |
+| 7 | 2.4 系统函数与差分方程、零极点、几何法 |
+| 8 | 2.4 稳定性、IIR 与 FIR；例 2.10 横向滤波器与四点平均 |

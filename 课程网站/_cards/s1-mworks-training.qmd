@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">官方培训视频 · 2023-07-24 · 2 小时 59 分</span>
+<h3>科学计算与系统建模仿真平台MWORKS培训</h3>
+<p>发布账号：同元软控（bilibili 官方账号）。视频说明列出五个章节：公司概况、MWORKS 产品介绍、系统建模仿真环境 Sysplorer、科学计算环境 Syslab、数字化教学应用案例。课堂看点：只取“科学计算环境 Syslab”章节里界面与 Ty 函数库的介绍片段，配合本页三平台分工；全长近 3 小时，其余供课后按需查看。</p>
+<p>未逐段试看，Syslab 章节的起止时间待教师试看后填写。核对日期：2026-09-19（教师侧复核：标题、账号、发布日期、总时长均取自原站页面数据）。未核对字段：片段起止。</p>
+<div class="actions"><a class="action primary" href="https://www.bilibili.com/video/BV1iV4y1t7GH/" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

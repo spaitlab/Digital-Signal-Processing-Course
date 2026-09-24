@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">图文报道 · 2017-06-30 · 原站标注阅读约 1 分钟</span>
+<h3>Chip Hall of Fame: Texas Instruments TMS32010 Digital Signal Processor</h3>
+<p>发布：IEEE Spectrum。课堂看点：把“数字处理”这一格与实际芯片对应起来。课堂可在原站展示芯片图，课后阅读；图文起止时间不适用，视频时长不适用。1983 是芯片年份，不是报道发布日期。</p>
+<p>核对日期：2026-09-19。</p>
+<div class="actions"><a class="action primary" href="https://spectrum.ieee.org/chip-hall-of-fame-texas-instruments-tms32010-digital-signal-processor" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

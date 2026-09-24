@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">科普视频 · 2020-11-14 · 28 分 23 秒</span>
+<h3>The Fast Fourier Transform (FFT): Most Ingenious Algorithm Ever?</h3>
+<p>发布账号：Reducible（YouTube 官方频道）。课堂看点：递归拆分怎样一步步变成快速算法，再回到本页 N=8 动画逐级看蝶形。全长近半小时，课堂只取讲“奇偶分开、各算一半”的那一小段，其余供课前或课后观看。</p>
+<p>未逐段试看，课堂片段起止待教师试看后填写。核对日期：2026-09-19（教师侧复核：标题、账号、发布日期、总时长取自原站页面数据）。未核对字段：片段起止。</p>
+<div class="actions"><a class="action primary" href="https://www.youtube.com/watch?v=h7apO7q16V0" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

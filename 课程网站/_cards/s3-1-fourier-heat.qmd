@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">视频 · 2019-06-30 · 时长未核对</span>
+<h3>But what is a Fourier series? From heat flow to circle drawings</h3>
+<p>发布：3Blue1Brown / Grant Sanderson。课堂看点：正弦的二阶导数仍是自身的倍数，把温度曲线拆成这些成分，便能逐个研究热传导。官方课程把热流问题与傅里叶级数连在一起；1807 年史实和推导仍见本页正文及文献。</p>
+<p>未逐段试看，课堂片段起止未核对。核对日期：2026-09-19。未核对字段：时长未核对；视频起止时间。</p>
+<div class="actions"><a class="action primary" href="https://www.3blue1brown.com/lessons/fourier-series/" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

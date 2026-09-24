@@ -1,0 +1,16 @@
+{
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "run_at": "2026-09-18 19:45:12",
+  "N": 64,
+  "two_real_err": [
+    2.7307875685720004E-15,
+    3.5596458096434965E-15
+  ],
+  "M": 128,
+  "long_real_err": 1.0048591735576161E-14,
+  "cost_two_separate": 384,
+  "cost_two_trick": 192,
+  "cost_long_direct": 448,
+  "cost_long_trick": 256,
+  "all_checks_passed": true
+}

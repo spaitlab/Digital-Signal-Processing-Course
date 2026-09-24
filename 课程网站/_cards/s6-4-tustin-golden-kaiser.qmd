@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">论文原文 · 1964-07（BSTJ 第 43 卷第 4 期） · 阅读时长未核对</span>
+<h3>Design of Wideband Sampled-Data Filters</h3>
+<p>发布：Bell System Technical Journal；R. M. Golden、J. F. Kaiser。课堂看点：摘要第一句就说“利用双线性 z 变换，在零到半采样频率之间保持连续滤波器的幅度特性”，这就是本页的预畸变设计流程；Tustin 1947 年的梯形积分与它用的是同一个代换。课堂展示摘要一段，课后阅读。互联网档案馆存有贝尔系统技术杂志公开档案，可直接翻页；Wiley 页为期刊正式入口。</p>
+<p>图文片段起止不适用。核对日期：2026-09-19（教师侧复核：标题、作者、卷期与摘要取自互联网档案馆 BSTJ 档案页）。未核对字段：阅读时长。</p>
+<div class="actions"><a class="action primary" href="https://archive.org/details/bstj43-4-1533" target="_blank" rel="noopener noreferrer">▶ 在档案馆打开原文</a><a class="action" href="https://onlinelibrary.wiley.com/doi/10.1002/j.1538-7305.1964.tb04095.x" target="_blank" rel="noopener noreferrer">期刊页 ↗</a></div>
+</section>

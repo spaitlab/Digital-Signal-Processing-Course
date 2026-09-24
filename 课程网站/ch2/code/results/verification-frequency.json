@@ -1,0 +1,39 @@
+{
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "run_at": "2026-09-18 19:22:37",
+  "moving_average_taps": 5,
+  "test_omega_over_pi": [
+    0.2,
+    0.4,
+    0.8
+  ],
+  "measured_output_amplitude": [
+    0.647213595499958,
+    3.7345498301031167E-15,
+    1.0772060116306953E-15
+  ],
+  "formula_amplitude": [
+    0.647213595499958,
+    5.5511151231257827E-17,
+    6.2063353831181828E-17
+  ],
+  "x": [
+    1,
+    2,
+    3,
+    2,
+    1
+  ],
+  "symmetry_mag_err": 0,
+  "symmetry_re_err": 0,
+  "symmetry_im_err": 0,
+  "symmetry_phase_err": 0,
+  "pole": 0.8,
+  "right_sided_dtft_vs_Xz_err": 0.000531691198313311,
+  "left_sided_partial_abs_sum": 37610.81922631312,
+  "T": 0.01,
+  "Omega_s": 628.31853071795865,
+  "z_of_Omega_s_real": 1,
+  "z_of_Omega_s_imag": -2.4492935982947064E-16,
+  "all_checks_passed": true
+}

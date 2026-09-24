@@ -1,12 +1,12 @@
 # 媒体资源清单
 
-[media-manifest.json](media-manifest.json) 记录本地已有微课的编号、标题、主题版本及待填的云端链接。本次仅登记文件存在情况，不代表内容验收或已上线。
+[media-manifest.json](media-manifest.json) 记录本地已有微课的编号、标题、主题版本及待填的云端链接。共登记 13 条微课。`2.1-sampling` 浅色版已上传，分享权限已确认，未登录桌面浏览器短时起播已通过，手机与教学网络待验收；其余条目待上传。
 
 ## 云端存储
 
 课程资源根目录：[Google Drive · Course](https://drive.google.com/drive/folders/1gHXmujkXIk45643K1fm7i8QP-Eqhe5_5)。
 
-计划在其下建立 `Digital-Signal-Processing/微课/第01章/` 至 `第07章/`，并另建 `课堂动画/` 与 `离线下载包/`。这些子目录目前尚未创建。
+计划在其下建立 `Digital-Signal-Processing/微课/第01章/` 至 `第07章/`，并另建 `课堂动画/` 与 `离线下载包/`。目前已建立 `Digital-Signal-Processing/微课/第02章/2.1-采样与混叠/`，其余目录按实际上传需要创建。
 
 ## 清单字段
 

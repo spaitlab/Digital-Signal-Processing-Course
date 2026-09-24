@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">人物传记 · 首次发布未核对；更新 1997-10 · 阅读时长未核对</span>
+<h3>Cornelius Lanczos</h3>
+<p>发布：MacTutor / University of St Andrews；J. J. O’Connor、E. F. Robertson。课堂看点：从 Lanczos 的数值计算工作引出奇偶分开、各算一半。1942 年 Danielson–Lanczos 的 X 射线散射论文及加倍方法见本页正文与 sources；传记另提到更早的 Fourier 系数计算工作，不把两篇工作合为一篇。</p>
+<p>图文起止时间不适用。核对日期：2026-09-19。未核对字段：首次发布日期、阅读时长。</p>
+<div class="actions"><a class="action primary" href="https://mathshistory.st-andrews.ac.uk/Biographies/Lanczos/" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">历史图文 · 2009-12-01 · 阅读时长未核对</span>
+<h3>The Meaning of Slutsky</h3>
+<p>发布：Federal Reserve Bank of Minneapolis。课堂看点：原站有随机数与十项移动和的示意图。相邻输出共享样本，平滑后会出现相关的、类似周期的起伏；这不等于生成严格周期信号，也不能把起伏周期直接等同于平均点数。可与本页四点平均的系统函数联系。</p>
+<p>图文起止时间不适用。核对日期：2026-09-19（教师侧复核补发布日期）。未核对字段：阅读时长。</p>
+<div class="actions"><a class="action primary" href="https://www.minneapolisfed.org/article/2009/the-meaning-of-slutsky" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

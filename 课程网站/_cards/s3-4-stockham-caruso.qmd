@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">历史图文（附档案视频说明） · 2013-02-20 · 时长未核对</span>
+<h3>One More: Pioneer in Sound</h3>
+<p>发布：University of Utah / Continuum；Roy Webb。课堂看点：Stockham 用数字处理修复 Caruso 早期录音，大学报道还介绍了档案演示视频。借此追问“变换、相乘、反变换怎样用于声音处理”；本页以补零后的圆周卷积演示计算前提，不把真实修复简化为一次卷积。</p>
+<p>未逐段试看，课堂片段起止未核对。核对日期：2026-09-19。未核对字段：时长未核对；视频起止时间。</p>
+<div class="actions"><a class="action primary" href="https://continuum.utah.edu/departments/pioneer-in-sound/" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

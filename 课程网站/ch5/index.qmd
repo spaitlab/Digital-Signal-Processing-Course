@@ -1,0 +1,61 @@
+---
+title: "第5章 数字滤波器的结构"
+subtitle: "同一个 H(z) 可以用很多种方式算出来：直接型、级联型、并联型、线性相位型、频率采样型；差别不在结果，在乘法器、延时单元和系数舍入的后果"
+---
+
+::: {.page-meta}
+[教材书内 150—176 页 · PDF 158—184 页]{} [建议 6 课时]{} [核对 2026-09-18]{}
+:::
+
+::: {.keypoints}
+[本章主线]{.kp-title}
+
+- 数字滤波器就是一个线性时不变系统，分 IIR（有反馈，h(n) 无限长）和 FIR（无反馈，h(n) 有限长）；指标用容限图 δ₁、δ₂、ωp、ωs 和 dB 衰减来说；结构用信号流图来画（5.1）。
+- IIR：直接 I 型两条延时链，直接 II 型合成一条（典范型），转置型把流图反向；三者输出逐点相同（5.2）。把 H(z) 拆成二阶节串起来是级联型，拆成部分分式加起来是并联型；系数舍入时二阶节各管各的极点，直接型的极点互相牵连（5.3）。
+- FIR：横截型一条延时链；级联型按共轭零点对分组；h(n) 对称时先加后乘，乘法器减半，相位必然线性（5.4）。频率采样型用梳状滤波器乘谐振器实现 FIR，靠零极点对消；工程上要把 r 取得略小于 1（5.5）。
+:::
+
+## 知识点 {#sec-1}
+
+| 页 | 教材位置 | 问题从哪来 | 本页的图 | 状态 |
+|---|---|---|---|---|
+| [5.1 数字滤波器的基本概念](5.1-concepts.qmd) | 150—153 页 | 1965—1967 年“数字滤波器”一词的出现；容限图从模拟滤波器继承 | IIR/FIR 脉冲响应、幅频响应、容限图上量指标、信号流图 | 完整 |
+| [5.2 IIR 直接型结构](5.2-iir-direct.qmd) | 153—159 页 | Mason 1953：信号流图本来是为反馈放大器发明的 | 直接 I 型、II 型、转置型三种实现与 filter 逐点对照、零极点图 | 完整 |
+| [5.3 IIR 级联型与并联型](5.3-iir-cascade-parallel.qmd) | 159—164 页 | Kaiser 1965、Jackson 1970：直接型对系数误差太敏感 | 例 5.3 的级联与并联、六阶系统系数舍入后的极点位移 | 完整 |
+| [5.4 FIR 直接型、级联型与线性相位型](5.4-fir-structures.qmd) | 165—171 页 | Kallmann 1940 的“横截滤波器”；Herrmann–Schüßler 1970 的线性相位设计 | 例 5.5/5.6、对称 h(n) 的乘法器减半、四类线性相位 FIR | 完整 |
+| [5.5 FIR 频率采样型结构](5.5-frequency-sampling.qmd) | 171—175 页 | Rader–Gold 1967：用 IIR 的零极点对消实现 FIR | 梳状滤波器、零极点对消、r=1 与 r<1、系数舍入的残余 | 完整 |
+
+## 本章的图与脚本 {#sec-2}
+
+| 脚本 | 图 | 核验 |
+|---|---|---|
+| [demo_filter_concepts.m](code/demo_filter_concepts.m) | 01-filter-concepts | [verification-filter-concepts.json](code/results/verification-filter-concepts.json)：例 5.1 极点最大模 0.670；示例低通 δ₁=0.0040、αs=49.2 dB；100 Hz 正弦增益理论=实测 2.864 |
+| [demo_iir_direct.m](code/demo_iir_direct.m) | 02-iir-direct | [verification-iir-direct.json](code/results/verification-iir-direct.json)：三种直接型与 filter 差 0；延时单元 8/4/4 |
+| [demo_iir_cascade_parallel.m](code/demo_iir_cascade_parallel.m) | 03-iir-cascade-parallel | [verification-iir-cascade-parallel.json](code/results/verification-iir-cascade-parallel.json)：级联差 3×10⁻¹⁵，并联差 2×10⁻¹⁵；舍入到 2⁻⁸ 后极点位移直接型 0.163（越出单位圆）、级联型 0.002 |
+| [demo_fir_structures.m](code/demo_fir_structures.m) | 04-fir-structures | [verification-fir-structures.json](code/results/verification-fir-structures.json)：横截/级联/线性相位差 ≤2×10⁻¹⁶；相位斜率 −3.500 |
+| [demo_frequency_sampling.m](code/demo_frequency_sampling.m) | 05-frequency-sampling | [verification-frequency-sampling.json](code/results/verification-frequency-sampling.json)：频率采样型与直接型差 2×10⁻¹⁵；系数舍入后残余 r=1 为 1.4×10⁻³ 不衰减、r=0.99 为 7×10⁻⁷ |
+
+每种结构都用循环逐样本自写了一遍（只有加、乘、延时），再和内置 `filter` 逐点比较，目的是让学生看见流图里的每条支路在程序里是哪一行。Python 对照版在 `code/python/`，五份全部本机运行通过。
+
+## 本章媒体一览 {#sec-media}
+
+| 页 | 类型 | 标题 | 时长 | 课堂或课后 | 网络 | 核对日期 |
+|---|---|---|---|---|---|---|
+| [5.3](5.3-iir-cascade-parallel.qmd#sec-3) | 本地动画 | 系数舍入与极点位移（视频整理中） | 40 秒 | 课堂先预测、后播放；越出单位圆时暂停 | 不需要 | 2026-09-19 |
+| [5.1](5.1-concepts.qmd#sec-1) | 口述史图文 | [Oral-History:James Kaiser](https://ethw.org/Oral-History:James_Kaiser) | 未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [5.1](5.1-concepts.qmd#sec-1) | 口述史图文 | [Oral-History:Ben Gold](https://ethw.org/Oral-History:Ben_Gold) | 未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [5.2](5.2-iir-direct.qmd#sec-1) | 人物档案 PDF | [Samuel J. Mason 任命公告（档案说明题名）](https://cdn.libraries.mit.edu/dissemination/diponline/AC0069_NewReleases/NewsRelease_1960/AC0069_1967/AC0069_196701_004.pdf) | 未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [5.3](5.3-iir-cascade-parallel.qmd#sec-1) | 口述史图文 | [Oral-History:James Kaiser](https://ethw.org/Oral-History:James_Kaiser) | 未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [5.3](5.3-iir-cascade-parallel.qmd#sec-1) | 人物报道 | [All in the University Family](https://www.uri.edu/news/2010/11/all-in-the-university-family/) | 未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [5.5](5.5-frequency-sampling.qmd#sec-1) | 口述史图文 | [Oral-History:Ben Gold](https://ethw.org/Oral-History:Ben_Gold) | 未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+
+## 课时安排（建议 6 课时） {#sec-3}
+
+| 课时 | 内容 |
+|---|---|
+| 1 | 5.1 概念：IIR/FIR、频率响应、容限图与 dB、信号流图三要素 |
+| 2 | 5.2 直接 I 型 → 直接 II 型 → 转置型；例 5.1 手画流图，程序逐样本验证 |
+| 3 | 5.3 级联型与并联型：例 5.3 拆两种；系数舍入的对比实验 |
+| 4 | 5.4 FIR 横截型、级联型；线性相位的推导与结构 |
+| 5 | 5.5 频率采样型：梳状 × 谐振器，零极点对消，r<1，实系数二阶节 |
+| 6 | 习题课：5.4 节 1—10 题选讲（例 5.4 的稳定性问题见 5.3 页） |

@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">历史图文 · 首次发布未核对；更新 2003-10 · 阅读时长未核对</span>
+<h3>Paul Adrien Maurice Dirac</h3>
+<p>发布：MacTutor，University of St Andrews；J. J. O’Connor、E. F. Robertson。课堂看点：借人物史引出 δ：连续时间 Dirac δ 是广义函数；离散单位样本 δ[n] 是普通序列，与 Kronecker δ 的取值规则相同。两者都有筛选作用，却不能直接当成同一个函数。传记用于人物背景，具体定义依本页②栏。</p>
+<p>图文起止时间不适用。核对日期：2026-09-19。未核对字段：首次发布日期、阅读时长。</p>
+<div class="actions"><a class="action primary" href="https://mathshistory.st-andrews.ac.uk/Biographies/Dirac/" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

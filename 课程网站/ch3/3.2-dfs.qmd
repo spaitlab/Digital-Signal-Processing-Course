@@ -1,0 +1,178 @@
+---
+title: "3.2 离散傅里叶级数"
+subtitle: "对 DTFT 采样，时域就周期化：计算机能算的那一种表示"
+---
+
+::: {.page-meta}
+[教材书内 57—61 页 · PDF 65—69 页]{} [式 (3.2.1)—(3.2.4)]{} [1 课时，可与 3.3 合并]{}
+:::
+
+::: {.keypoints}
+[本页要点]{.kp-title}
+
+- 计算机只能接收离散输入、给出离散输出，四种表示里只有第四种两端都离散，所以它有实用价值。
+- 推导路线：对周期序列的 DTFT 在 ω = 2πk/N 处采样 → 得到 DFS 正变换；用离散正交性 → 得到逆变换。
+- X̃(k) 只有 N 个独立值；k 和 n 都以 N 为周期。
+:::
+
+## [①]{.col-badge} 问题从哪来：从上一节哪一步推出来的 {#sec-1}
+
+这一节没有单独的名人故事，它是 [3.1](3.1-fourier-forms.qmd) 两条关系的直接推论。教材第 57 页的论证可以直接讲给学生：
+
+> 用数字计算机做频谱分析，输入必须是离散值，输出的频谱值自然也是离散的。前三种形式或者信号连续、或者频谱连续，都不适合计算机。要让它们能算，就得在时域采样、或在频域采样、或两者都采样。**时域采样导致频域周期，频域采样导致时域周期，最后两者都成为周期离散函数**，也就是第四种形式。
+
+这个论证的历史背景是：在电子计算机之前，从有限个样本算傅里叶系数就已经是天文、气象和 X 射线晶体学的日常工作。Heideman、Johnson 和 Burrus 1984 年的考证指出，高斯 1805 年为插值小行星轨道观测数据，已经写下了对 N 个样本做“分组再合并”的算法；Danielson 与 Lanczos 1942 年在 X 射线散射的实用傅里叶分析中又独立给出了“把 N 点分成两半”的技巧。这些工作算的都是**有限个样本上的三角级数系数**，也就是本节的对象。为什么要“分组”，留到第 4 章。
+
+::: {.sources}
+- M. T. Heideman, D. H. Johnson, C. S. Burrus, "Gauss and the history of the fast Fourier transform," *IEEE ASSP Magazine* 1(4) (1984) 14–21. [doi:10.1109/MASSP.1984.1162257](https://doi.org/10.1109/MASSP.1984.1162257)
+- G. C. Danielson, C. Lanczos, "Some improvements in practical Fourier analysis and their application to X-ray scattering from liquids," *J. Franklin Institute* 233(4) (1942) 365–380. [doi:10.1016/S0016-0032(42)90767-1](https://doi.org/10.1016/S0016-0032(42)90767-1)
+:::
+
+## [②]{.col-badge} 理论与推导 {#sec-2}
+
+### 数学准备 {#sec-2-1}
+
+| 数学知识 | 接入 | 本节用途 |
+|---|---|---|
+| 几何级数 | $\sum_{k=0}^{N-1}q^k=\frac{1-q^N}{1-q}$，q≠1 | 离散正交性 |
+| N 次单位根 | $e^{j2\pi k/N}$，k=0,…,N−1 在单位圆上 N 等分 | 说明为什么 k 只需取 N 个值 |
+
+### 从 DTFT 采样到 DFS（教材 3.2.1 的路线） {#sec-2-2}
+
+周期序列 $\widetilde x(n)$ 在一个周期内有 N 个值。先把它一个周期的 DTFT 写出来（教材式 (3.2.1)）：
+
+$$
+\widetilde X(e^{j\omega})=\sum_{n=0}^{N-1}\widetilde x(n)e^{-j\omega n}.
+$$
+
+再对 ω 采样。时域周期为 N 个样本，按“一个域的采样间隔倒数是另一个域的周期”，频域谱线间距为 ω_I = 2π/N（式 (3.2.2)），取 ω = kω_I（式 (3.2.3)），得到
+
+$$
+\widetilde X(k)=\widetilde X(e^{j\omega})\Big|_{\omega=2\pi k/N}=\sum_{n=0}^{N-1}\widetilde x(n)e^{-j\frac{2\pi}{N}kn},\qquad k=0,1,\dots,N-1.
+\tag{3.2.4}
+$$
+
+::: {.callout-note .ask appearance="simple"}
+**教师提问：** k 为什么只取 0 到 N−1？把 k 换成 k+N，指数多出 $e^{-j2\pi n}=1$，结果不变。所以 X̃(k) 以 N 为周期，只有 N 个独立值。这与 DTFT 以 2π 为周期是同一件事：2π 对应 N 个频率点。
+:::
+
+### 逆变换：离散正交性把 x̃(n) 挑出来 {#sec-2-3}
+
+备课需要的一行：
+
+$$
+\sum_{k=0}^{N-1}e^{j\frac{2\pi}{N}k(n-r)}
+=\begin{cases}N,& n\equiv r\pmod N,\\ 0,&\text{其他}.\end{cases}
+$$
+
+“其他”情形就是公比 $q=e^{j2\pi(n-r)/N}\ne1$ 而 $q^N=1$ 的几何级数，和为 0。把式 (3.2.4) 两边乘 $e^{j2\pi kr/N}$ 并对 k 求和，只留下 n≡r 的那一项，得到
+
+$$
+\widetilde x(n)=\frac1N\sum_{k=0}^{N-1}\widetilde X(k)e^{j\frac{2\pi}{N}kn}.
+$$
+
+本书把 1/N 放在逆变换。若写成“基函数加权和”的投影系数 a_k，则 a_k = X̃(k)/N。这与 3.1 的 FS 系数 c_m 带 1/T 是同一个道理：基函数在一个周期上的“能量”是 N。
+
+### 主要性质（教材 3.2.2） {#sec-2-4}
+
+| 性质 | 表述 | 一句话理由 |
+|---|---|---|
+| 线性 | $a\widetilde x_1+b\widetilde x_2\leftrightarrow a\widetilde X_1+b\widetilde X_2$ | 求和是线性的 |
+| 时移 | $\widetilde x(n-m)\leftrightarrow e^{-j\frac{2\pi}{N}km}\widetilde X(k)$ | 换元 n−m→n，周期性保证求和范围不变 |
+| 频移 | $e^{j\frac{2\pi}{N}ln}\widetilde x(n)\leftrightarrow \widetilde X(k-l)$ | 与时移对偶 |
+| 周期卷积 | $\sum_{m=0}^{N-1}\widetilde x_1(m)\widetilde x_2(n-m)\leftrightarrow \widetilde X_1(k)\widetilde X_2(k)$ | 3.4 圆周卷积的来源 |
+
+## [③]{.col-badge} 仿真演示 {#sec-3}
+
+::: {.ide-links data-matlab="matlab/dfs_example_3_2.m" data-python="python/3.2-dfs.py"}
+:::
+
+本节沿用 3.1 图 1 的第四行：一个周期 [1,1,0,0,0,0,0,1]（N=8）的 DFS 系数 X̃(k)=1+2cos(2πk/8)，图上可以看到系数每 8 个索引重复一次。核验记录里 `dfs_fft_error`、`dfs_inverse_error` 两项分别检查了直接求和与 `fft` 的一致性、逆变换重构。
+
+:::: {.example}
+::: {.example-title}
+手算 + 核对：N=8，一个周期 [1,1,0,0,0,0,0,1]
+:::
+::: {.example-body}
+**运行前问学生：** X̃(0) 是多少？X̃(4) 是多少？X̃(8) 和 X̃(0) 什么关系？
+
+::: {.panel-tabset}
+#### MATLAB [已运行]{.status .ok}
+
+```matlab
+N = 8; nn = 0:N-1; kk = (0:N-1)';
+onePeriod = double(ismember(nn,[0,1,N-1]));          % [1 1 0 0 0 0 0 1]
+directDFS = exp(-1i*2*pi*kk*nn/N)*onePeriod.';       % 按定义直接求和
+fftDFS    = fft(onePeriod).';                        % 与 fft 对照
+inverse   = exp(1i*2*pi*nn'*kk'/N)*directDFS/N;      % 逆变换，1/N 在这里
+disp(real(directDFS.'))      % 3  2.4142  1  -0.4142  -1  -0.4142  1  2.4142
+disp(max(abs(inverse - onePeriod.')))                % ~1e-16
+```
+
+#### Python [对照]{.status .ref}
+
+```python
+import numpy as np
+N = 8; n = np.arange(N); k = n[:, None]
+x = np.isin(n, [0, 1, N-1]).astype(float)            # [1 1 0 0 0 0 0 1]
+X = np.exp(-2j*np.pi*k*n/N) @ x                      # 按定义直接求和
+assert np.allclose(X, np.fft.fft(x))                 # 与 fft 一致
+x_back = np.exp(2j*np.pi*n[:, None]*n/N) @ X / N     # 逆变换
+assert np.allclose(x_back, x)
+print(np.round(X.real, 4))   # [ 3.  2.4142  1. -0.4142 -1. -0.4142  1.  2.4142]
+```
+:::
+
+结果 X̃(k)=1+2cos(2πk/8)：k=0 为 3，k=4 为 −1，k=8 回到 3。
+:::
+::::
+
+## [④]{.col-badge} 检查与思考 {#sec-4}
+
+::: {.quiz data-type="number" data-answer="-1" data-tol="0.001"}
+::: {.q-text}
+1. 一个周期 [1,1,0,0,0,0,0,1]，N=8。X̃(4) 等于多少？
+:::
+::: {.q-explain}
+X̃(4)=1+2cos(π)=−1。也可以按定义：n=0、1、7 三项分别为 1、e^{−jπ}=−1、e^{−j7π}=−1，和为 −1。
+:::
+:::
+
+::: {.quiz data-type="choice" data-answer="C"}
+::: {.q-text}
+2. 逆变换里的 1/N 来自哪里？
+:::
+::: {.q-opts}
+[习惯约定，没有理由]{data-opt="A"}
+[为了让幅值不超过 1]{data-opt="B"}
+[基函数 e^{j2πkn/N} 在一个周期上的内积等于 N]{data-opt="C"}
+[为了和 FFT 的输出一致]{data-opt="D"}
+:::
+::: {.q-explain}
+离散正交性：同一基函数与自身共轭乘积求和为 N，其他为 0。教材把 1/N 放在逆变换，这是约定；放在正变换也可以，但要声明。
+:::
+:::
+
+**短答题**
+
+3. 用几何级数说明：n≢r (mod N) 时，$\sum_{k=0}^{N-1}e^{j2\pi k(n-r)/N}=0$。
+4. “DFS 的 k 只取 0 到 N−1”和“DTFT 以 2π 为周期”是同一件事吗？用 ω=2πk/N 说明。
+
+::: {.callout-tip collapse="true" appearance="simple"}
+## 教师参考要点
+3. 公比 q=e^{j2π(n−r)/N}，q≠1 且 q^N=e^{j2π(n−r)}=1，故 (1−q^N)/(1−q)=0。
+4. 是。ω 增加 2π 对应 k 增加 N；DTFT 的一个 2π 周期被 N 个采样点覆盖。
+:::
+
+{{< include _agent-box.qmd >}}
+
+::: {.see-also}
+[另请参阅]{.sa-title}
+
+::: {.sa-row}
+[先修]{.sa-label} [3.1 四种傅里叶变换](3.1-fourier-forms.qmd) · 2.3.2 DTFT
+:::
+::: {.sa-row}
+[后继]{.sa-label} [3.3 离散傅里叶变换](3.3-dft.qmd) · [3.4 圆周卷积](3.4-properties.qmd)
+:::
+:::

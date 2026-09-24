@@ -175,7 +175,7 @@
       "id": "2.1-sampling",
       "title": "采样与混叠 · 2.1微课",
       "chapter": 2,
-      "status": "pending_upload",
+      "status": "verified",
       "planned_page_path": "microlectures/2.1-sampling/index.html",
       "page_url": null,
       "version": null,
@@ -183,10 +183,10 @@
         {
           "theme": "light",
           "source_relative_path": "microlectures/2.1-sampling/film-light.mp4",
-          "file_id": null,
-          "share_url": null,
-          "embed_url": null,
-          "sha256": null
+          "file_id": "1LBLf-nTxmVAUHyqUkV6GWcENDZIc3L93",
+          "share_url": "https://drive.google.com/file/d/1LBLf-nTxmVAUHyqUkV6GWcENDZIc3L93/view?usp=drivesdk",
+          "embed_url": "https://drive.google.com/file/d/1LBLf-nTxmVAUHyqUkV6GWcENDZIc3L93/preview",
+          "sha256": "ff8c266850ad6d0b4d4f8c9f4d089f72be0bf695dee8f41d79b517f27b52c55e"
         },
         {
           "theme": "dark",
@@ -202,7 +202,17 @@
         "subtitles.vtt"
       ],
       "mirror_url": null,
-      "verified_at": null
+      "verified_at": "2026-09-24T00:46:41.647406+00:00",
+      "verification": {
+        "sharing": "anyone_reader_confirmed",
+        "playback": "anonymous_preview_started",
+        "tested_variant": "light",
+        "observed_current_time_seconds": 6.008236,
+        "duration_seconds": 308.75573696145125,
+        "scope": "未登录桌面浏览器：Drive 预览与本地课程页面内嵌播放器短时起播通过；尚未验收全片、手机或目标教学网络。",
+        "embedded_playback": "anonymous_local_course_page_started",
+        "embedded_observed_current_time_seconds": 6.944349
+      }
     },
     {
       "id": "2.2-convolution",
@@ -435,5 +445,7 @@
       "mirror_url": null,
       "verified_at": null
     }
-  ]
+  ],
+  "course_folder_id": "1h5HqJ8l64kSLeRwXDkdTkkCxfHOgLaOi",
+  "course_folder_url": "https://drive.google.com/drive/folders/1h5HqJ8l64kSLeRwXDkdTkkCxfHOgLaOi"
 }

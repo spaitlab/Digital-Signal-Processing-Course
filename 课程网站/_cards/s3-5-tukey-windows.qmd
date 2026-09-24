@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">人物报道 · 2000-07-28 · 阅读时长未核对</span>
+<h3>Statistician John W. Tukey dies</h3>
+<p>发布：Princeton University。课堂看点：从 Tukey 对统计学和通信技术的贡献引入有限记录的谱分析。人物报道作导览；Hann、Hamming 的命名与 1958 年文章、Harris 1978 年窗综述的依据见本页 sources，不把讣告当作命名原始证据。</p>
+<p>图文起止时间不适用。核对日期：2026-09-19。未核对字段：阅读时长未核对。</p>
+<div class="actions"><a class="action primary" href="https://www.princeton.edu/news/2000/07/28/statistician-john-w-tukey-dies" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

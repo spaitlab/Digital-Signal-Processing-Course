@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">视频 · 未核对 · 未核对</span>
+<h3>The Bit Player Trailer</h3>
+<p>发布：IEEE Information Theory Society（Vimeo 账号）。课堂看点：采样定理的课堂问题：满足带限与采样率条件时，样本与原信号携带同一份信息。此预告片用作 Shannon 人物引子；Nyquist 1928、Shannon 1949 的定理沿革见本页正文及文献，不把预告片当作推导证明。</p>
+<p>未逐段试看，课堂片段待教师选定。核对日期：2026-09-19。未核对字段：发布日期、时长、片段起止。</p>
+<div class="actions"><a class="action primary" href="https://vimeo.com/323615460" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

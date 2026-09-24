@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">人物传记 · 二手资料 · 首次发布及最近修订日期未核对 · 时长未核对</span>
+<h3>Stephen Butterworth</h3>
+<p>发布：Wikipedia（百科二手资料）。课堂看点：先认识海军研究背景下的物理学家，再读本页 1930 年放大器论文：为什么要把通带做得最平坦。未找到可读的英国物理学会、皇家学会或大学官方人物专页，按任务书采用百科作人物背景；技术依据仍是课程页原文献。</p>
+<p>图文片段起止不适用。核对日期：2026-09-19。未核对字段：网页日期、阅读时长。</p>
+<div class="actions"><a class="action primary" href="https://en.wikipedia.org/wiki/Stephen_Butterworth" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

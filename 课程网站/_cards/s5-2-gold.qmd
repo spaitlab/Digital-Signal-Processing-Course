@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">口述史图文 · 访谈 1997-03-15；网页发布日期未核对 · 阅读时长未核对</span>
+<h3>Oral-History:Ben Gold</h3>
+<p>发布：ETHW / IEEE History Center；访谈 Andrew Goldstein。课堂看点：Gold 回顾与 Rader 在林肯实验室的合作：语音问题推动了数字滤波、时域与频域设计及量化研究。联系本章 IIR、FIR 与频率采样；1967 年综述的书目信息见课程页原参考文献。</p>
+<p>课堂展示一张截图，课后阅读。图文片段起止不适用。核对日期：2026-09-19。未核对字段：网页发布日期、阅读时长；关联音频未核对。</p>
+<div class="actions"><a class="action primary" href="https://ethw.org/Oral-History:Ben_Gold" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

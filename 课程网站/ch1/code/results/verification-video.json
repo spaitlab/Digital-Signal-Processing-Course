@@ -1,0 +1,16 @@
+{
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "generated_at": "2026-09-19 11:04:38",
+  "frames": 1080,
+  "frame_rate": 30,
+  "duration_s": 36,
+  "width": 1280,
+  "height": 720,
+  "quality": 90,
+  "file_size_bytes": 2.285224E+6,
+  "quant_err_max_3bit": 0.24604150092336874,
+  "quant_err_max_8bit": 0.0075366290172799166,
+  "amp_2Hz_fitted": 0.9855290734943627,
+  "amp_15Hz_fitted": 0.156139889636777,
+  "all_checks_passed": true
+}

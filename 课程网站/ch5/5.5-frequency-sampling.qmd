@@ -1,0 +1,188 @@
+---
+title: "5.5 FIR 滤波器的频率采样型结构"
+subtitle: "梳状滤波器乘一组谐振器：用零极点对消实现 FIR；r 略小于 1 的修正；合并成实系数二阶节"
+---
+
+::: {.page-meta}
+[教材书内 171—175 页 · PDF 179—183 页]{} [5.3.4 频率采样型]{} [1 课时]{}
+:::
+
+::: {.keypoints}
+[本页要点]{.kp-title}
+
+- 由内插公式（第 3 章式 (3.5.5)）：H(z)=(1−z⁻ᴺ)·(1/N)Σ_k H(k)/(1−W_N^{−k}z⁻¹)。前一因子是**梳状滤波器**（N 个零点均布在单位圆上），后一因子是 N 个**谐振器**并联，极点 e^{j2πk/N} 正好落在梳状零点上——零极点对消，整体仍是 FIR（式 (5.3.6)）。
+- 好处：H(k) 直接就是频率响应在采样点的值，改滤波器只改 H(k)；H(k)=0 的节不用做。
+- 麻烦：极点在单位圆上，系数舍入后对消不完全，可能不稳定。修正：零、极点一起缩到半径 r<1 的圆上（式 (5.3.7)）。
+- 复数谐振器 k 与 N−k 合并成实系数二阶节（式 (5.3.10)），k=0（和 N/2）为一阶节。
+:::
+
+## [①]{.col-badge} 问题从哪来：Rader 与 Gold 1967，用 IIR 的办法算 FIR {#sec-1}
+
+1967 年 Rader 与 Gold 的综述里提出了频率采样滤波器：既然 N 点 FIR 的频率响应由它在 N 个等间隔频率上的采样值完全确定，就直接用这些采样值 H(k) 做系数，结构是一个梳状滤波器接一排谐振器。这样做的吸引力在当时很实际：一个只在少数频点非零的窄带滤波器，只需要少数几个谐振器，比 N 个乘法器的横截型省得多；而且 H(k) 可以在线更改。1970 年 Rabiner、Gold 与 McGonegal 进一步给出了在过渡带优化几个采样值以压低阻带的设计方法。零极点对消的脆弱性也从一开始就被注意到，教材给出的 r<1 修正正是应对它。
+
+课堂落点：**FIR 不一定非用横截型；频率采样型把 FIR 写成了“梳状 × 谐振器”的 IIR 形式，靠零极点对消保持有限长。** 这也是第 3 章频域采样定理的一个直接应用。
+
+::: {.classroom-media-grid}
+
+{{< include ../_cards/s5-2-gold.qmd >}}
+
+:::
+
+::: {.media-note}
+外部素材需要联网；核对日期和未知字段见各卡。
+:::
+
+::: {.sources}
+- C. M. Rader, B. Gold, "Digital filter design techniques in the frequency domain," *Proc. IEEE* 55(2) (1967) 149–171. [doi:10.1109/PROC.1967.5434](https://doi.org/10.1109/PROC.1967.5434)
+- L. R. Rabiner, B. Gold, C. A. McGonegal, "An approach to the approximation problem for nonrecursive digital filters," *IEEE Trans. Audio Electroacoust.* 18(2) (1970) 83–106. [doi:10.1109/TAU.1970.1162092](https://doi.org/10.1109/TAU.1970.1162092)
+:::
+
+## [②]{.col-badge} 理论与推导 {#sec-2}
+
+### 从内插公式到结构 {#sec-2-1}
+
+N 点 FIR 的 h(n) 与其 N 点 DFT H(k) 一一对应，[3.5](../ch3/3.5-frequency-sampling.qmd) 的内插公式给出
+
+$$
+H(z)=\big(1-z^{-N}\big)\frac1N\sum_{k=0}^{N-1}\frac{H(k)}{1-W_N^{-k}z^{-1}},\qquad W_N^{-k}=e^{j2\pi k/N}.
+$$
+
+**梳状滤波器** H_c(z)=1−z⁻ᴺ：零点 z_k=e^{j2πk/N}，|H_c(e^{jω})|=2|sin(Nω/2)|（教材图 5.3.8）。**谐振器** H_k(z)=H(k)/(1−W_N^{−k}z⁻¹)：一个极点，恰在 z_k 上，频率响应在 ω=2πk/N 处无穷大。两者相乘，每个谐振器的极点被对应的梳状零点抵消，整体是 N−1 阶多项式，即 FIR。结构见教材图 5.3.7：先梳状，再 N 路并联谐振器，再除以 N。H(k)=0 的路不必实现，演示用习题 8 的 N=16、只有 5 个非零 H(k) 的例子。
+
+### r 略小于 1 的修正 {#sec-2-2}
+
+极点在单位圆上，系数稍有舍入，极点和零点就对不上：留下一个不衰减的响应，甚至不稳定。修正：把零点和极点一起放到半径 r 的圆上，
+
+$$
+H(z)=\big(1-r^Nz^{-N}\big)\frac1N\sum_{k=0}^{N-1}\frac{H_r(k)}{1-rW_N^{-k}z^{-1}},\qquad H_r(k)=H(rW_N^{-k})\approx H(k)\ (r\approx1).
+$$
+
+用 H(k) 代替 H_r(k) 后，这个结构精确给出 h(n)·rⁿ（演示③：r=0.99 时与 h(n)·0.99ⁿ 差 10⁻¹⁵），偏差可忽略；而舍入留下的残余现在按 rⁿ 衰减（演示④）。
+
+### 合并成实系数二阶节 {#sec-2-3}
+
+h(n) 实 ⇒ H(N−k)=H*(k)，W_N^{−(N−k)}=(W_N^{−k})*。把第 k、N−k 两个共轭谐振器相加：
+
+$$
+H_k(z)+H_{N-k}(z)=\frac{2|H(k)|\big[\cos\theta(k)-rz^{-1}\cos\!\big(\theta(k)-\tfrac{2\pi k}{N}\big)\big]}{1-2r\cos\!\big(\tfrac{2\pi k}{N}\big)z^{-1}+r^2z^{-2}},\qquad 0<k<\tfrac N2,
+$$
+
+θ(k) 是 H(k) 的相角。k=0 单独成一阶节 H(0)/(1−rz⁻¹)，N 偶时 k=N/2 为 H(N/2)/(1+rz⁻¹)（教材图 5.3.10—5.3.12）。演示④用这种实系数形式实现，与直接型差 4×10⁻¹⁶。
+
+::: {.callout-note .ask appearance="simple"}
+**教师提问：** 习题 8 的 N=16、非零的 H(k) 有 5 个。频率采样型要几个二阶节、几个一阶节？横截型要几个乘法器？（二阶节 2 个（k=1,2），一阶节 1 个（k=0）；横截型 16 个乘法器。）
+:::
+
+## [③]{.col-badge} 仿真演示 {#sec-3}
+
+::: {.ide-links data-matlab="demo_frequency_sampling.m" data-python="python/5.5-frequency-sampling.py"}
+:::
+
+脚本 [demo_frequency_sampling.m](code/demo_frequency_sampling.m) [已运行]{.status .ok}。核验记录 [verification-frequency-sampling.json](code/results/verification-frequency-sampling.json)。
+
+:::: {.example}
+::: {.example-title}
+习题 8 的 H(k)（N=16）：梳状、零极点对消、r=1 与 r=0.99、实系数二阶节与系数舍入的残余
+:::
+::: {.example-body}
+**运行前问学生：** H(0)=12、H(1)=−3−j3、H(2)=1+j、H(14)=1−j、H(15)=−3+j3，h(n) 是实的吗？（H(N−k)=H*(k)，是。）r=1 时系数舍入后 n≥N 的输出会怎样？
+
+![① 梳状滤波器 1−z⁻¹⁶ 的幅频响应，零点在 2πk/N；② 16 个梳状零点与 5 个谐振器极点重合；③ 频率采样型（r=1、r=0.99）与直接型 h(n)=IDFT[H(k)]；④ 二阶节系数舍入到 2⁻¹⁰ 后 n≥N 的残余：r=1 不衰减，r=0.99 按 rⁿ 消失](img/05-frequency-sampling.png){width=100%}
+
+| 能数出来的数 | 值 |
+|---|---|
+| 用到的谐振器 k | 0, 1, 2, 14, 15 |
+| h(0)…h(3) | 0.5, 0.5471, 0.625, 0.7762 |
+| 频率采样型 r=1：与直接型差 / n≥N 尾巴 | 1.9×10⁻¹⁵ / 3×10⁻¹⁵ |
+| r=0.99：与 h(n)·0.99ⁿ 的差 | 1.7×10⁻¹⁵ |
+| 实系数二阶节（r=1）与直接型差 | 4.4×10⁻¹⁶ |
+| 系数舍入到 2⁻¹⁰，n≈1000 处残余：r=1 / r=0.99 | 1.4×10⁻³ / 6.9×10⁻⁷ |
+
+::: {.panel-tabset}
+#### MATLAB [已运行]{.status .ok}
+
+```matlab
+N = 16; Hk = zeros(1, N); Hk([1 2 3 15 16]) = [12, -3-3i, 1+1i, 1-1i, -3+3i];   % 习题 8
+h = real(ifft(Hk));                                       % 直接型的 h(n)
+x = [1 zeros(1, 199)]; r = 1;
+v = filter([1 zeros(1, N-1) -r^N], 1, x);                 % 梳状滤波器 1 − r^N z^-N
+y = zeros(size(x));
+for k = find(Hk ~= 0) - 1
+    y = y + filter(Hk(k+1), [1 -r*exp(2i*pi*k/N)], v);    % 谐振器：极点 r·W_N^{-k}
+end
+y = real(y)/N; max(abs(y(1:N) - h)), max(abs(y(N+1:end)))   % ~1e-15，尾巴 ~1e-15
+```
+
+#### Python [对照]{.status .ref}
+
+```python
+import numpy as np
+from scipy import signal
+N = 16; Hk = np.zeros(N, complex); Hk[[0, 1, 2, 14, 15]] = [12, -3-3j, 1+1j, 1-1j, -3+3j]
+h = np.fft.ifft(Hk).real; x = signal.unit_impulse(200); r = 1
+v = signal.lfilter(np.r_[1, np.zeros(N-1), -r**N], [1], x); y = np.zeros(200, complex)
+for k in np.flatnonzero(Hk): y += signal.lfilter([Hk[k]], [1, -r*np.exp(2j*np.pi*k/N)], v)
+y = y.real/N; print(np.max(np.abs(y[:N] - h)), np.max(np.abs(y[N:])))   # ~1e-15
+```
+:::
+:::
+::::
+
+## [④]{.col-badge} 检查与思考 {#sec-4}
+
+::: {.quiz data-type="number" data-answer="2" data-tol="0"}
+::: {.q-text}
+1. 梳状滤波器 1−z⁻ᴺ 的幅频响应最大值是多少？
+:::
+::: {.q-explain}
+|1−e^{−jNω}|=2|sin(Nω/2)|，最大 2。
+:::
+:::
+
+::: {.quiz data-type="choice" data-answer="C"}
+::: {.q-text}
+2. 频率采样结构中把 r 取得略小于 1 的目的是
+:::
+::: {.q-opts}
+[减少乘法次数]{data-opt="A"}
+[使 h(n) 更短]{data-opt="B"}
+[把零点和极点一起移到单位圆内，系数舍入后残余能衰减、系统稳定]{data-opt="C"}
+[提高阻带衰减]{data-opt="D"}
+:::
+::: {.q-explain}
+极点在单位圆上时对消一旦不完全就不衰减；r<1 使残余按 rⁿ 消失。
+:::
+:::
+
+::: {.quiz data-type="number" data-answer="7" data-tol="0"}
+::: {.q-text}
+3. N=16 的实系数频率采样结构，全部 H(k) 非零时需要几个二阶节？
+:::
+::: {.q-explain}
+k=1…7 共 7 个二阶节，另加 k=0 与 k=8 两个一阶节。
+:::
+:::
+
+**短答题**
+
+4. 证明 H_k(z)+H_{N−k}(z) 的分母是 1−2r cos(2πk/N)z⁻¹+r²z⁻²。
+5. 为什么频率采样结构的整体是 FIR，而它的各个组成部分是 IIR？舍入后为什么会变成 IIR？
+
+::: {.callout-tip collapse="true" appearance="simple"}
+## 教师参考要点
+4. (1−rW^{−k}z⁻¹)(1−rW^{k}z⁻¹)=1−r(W^{−k}+W^{k})z⁻¹+r²z⁻²，W^{−k}+W^{k}=2cos(2πk/N)。
+5. 谐振器的极点被梳状零点精确抵消，剩下 N−1 阶多项式；舍入后极点、零点位置不再相同，极点“露出来”，响应无限长。
+:::
+
+{{< include _agent-box.qmd >}}
+
+::: {.see-also}
+[另请参阅]{.sa-title}
+
+::: {.sa-row}
+[先修]{.sa-label} [3.5 频域采样与内插公式](../ch3/3.5-frequency-sampling.qmd) · [5.4 FIR 结构](5.4-fir-structures.qmd)
+:::
+::: {.sa-row}
+[后继]{.sa-label} 第7章 FIR 设计（频率采样法）
+:::
+:::

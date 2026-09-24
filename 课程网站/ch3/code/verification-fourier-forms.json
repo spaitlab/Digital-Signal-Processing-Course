@@ -1,0 +1,33 @@
+{
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "run_at": "2026-09-18 07:32:03",
+  "pulse_width": 3,
+  "T": 8,
+  "N": 8,
+  "ctft_integral_error": 1.3682205165187873E-16,
+  "fs_integral_error": 3.5762240613454982E-17,
+  "dtft_sum_error": 2.2204460492503131E-16,
+  "dtft_periodicity_error": 4.2188474935755949E-15,
+  "dfs_fft_error": 4.39625888431457E-15,
+  "dfs_inverse_error": 7.6768128997813548E-16,
+  "dfs_dtft_grid_error": 4.39625888431457E-15,
+  "odd_harmonic_counts": [
+    1,
+    5,
+    25,
+    101
+  ],
+  "gibbs_overshoot_fraction_of_jump": [
+    0.13661977236758138,
+    0.091164104428802628,
+    0.089556550944146829,
+    0.089493956848148426
+  ],
+  "square_wave_grid_rmse": [
+    0.43511042062989491,
+    0.20073182409166271,
+    0.089468137585197824,
+    0.043676023165016481
+  ],
+  "all_checks_passed": true
+}

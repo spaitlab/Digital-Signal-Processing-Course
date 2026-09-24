@@ -1,0 +1,202 @@
+---
+title: "1.2 数字信号处理过程"
+subtitle: "预处理 → 采样与 A/D → 数字处理 → D/A → 平滑：每一格都对应一段历史"
+---
+
+::: {.page-meta}
+[教材书内 2 页，图 1.2.1 · PDF 10 页]{} [15 分钟]{} [核对 2026-09-18]{}
+:::
+
+::: {.keypoints}
+[本页要点]{.kp-title}
+
+- 信号处理本质上是一种变换：分离成分、增强特征、估计参数。数字信号处理就是用计算机算法做这件事。
+- 教材图 1.2.1 的链：模拟信号 x_a(t) → 预处理（滤除杂散）→ 采样与 A/D → 数字处理 → 数字输出，必要时 D/A → 平滑 → 模拟输出。
+- 本书只讨论一维信号；图像、视频是多维信号处理的内容。
+- 演示里不讲公式：看四格图，量化的台阶、平均后干扰剩多少，都是能数出来的数。
+:::
+
+## [①]{.col-badge} 问题从哪来：图 1.2.1 的每一格都有一年份 {#sec-1}
+
+::: {.callout-tip}
+[观看配套微课：一段信号进入计算机，要经过哪几步？](../microlectures/1.2-dsp-chain/index.html) · 约 5 分 42 秒，含五点平均计算过程、参数对比和D/A保持与平滑。微课采用与1.1一致的中升量化，电平约定与本页旧脚本不同，详见微课教师说明。
+:::
+
+| 框图里的一格 | 什么时候变成现实 |
+|---|---|
+| 采样与量化（A/D） | 1938—1942 年，Reeves 提出脉冲编码调制（PCM）：把波形的幅值范围分成有限个预定电平，按时间间隔采样后只传电平编号，以此摆脱传输噪声。美国专利 1939 年申请、1942 年授权 |
+| 数字传输与多路 | 1962 年，贝尔系统投入 T1 载波：24 路话音各按 8 kHz 采样、8 位量化，在一根线上以 1.544 Mb/s 传输。这是第一个大规模商用的“A/D → 数字 → D/A”系统 |
+| 数字处理算得动 | 1965 年，Cooley 与 Tukey 发表 FFT 算法，频域处理的计算量从 N² 降到 N log N |
+| 专用处理器 | 1983 年，德州仪器推出 TMS32010，当时市场上最快的数字信号处理器；从此“数字处理”一格可以是一块芯片 |
+
+::: {.classroom-media-grid}
+
+{{< include ../_cards/s4-1-fft-veritasium.qmd >}}
+
+{{< include ../_cards/s1-tms32010.qmd >}}
+
+:::
+
+::: {.media-note}
+外部素材需要联网，核对日期见各卡；未加载视频时可使用③栏静态图与实验代码。
+:::
+
+课堂落点：**这条链不是教科书的抽象，它是按顺序被造出来的。** 先有“把幅值变成编号”的想法，再有传得动的线路，再有算得动的算法，最后有塞得进设备的芯片。
+
+::: {.sources}
+- A. H. Reeves, "Electric signaling system," US Patent 2,272,070，1939 年 11 月 22 日申请，1942 年 2 月 3 日授权。[Google Patents](https://patents.google.com/patent/US2272070A/en)
+- T1 载波：[Wikipedia: T-carrier](https://en.wikipedia.org/wiki/T-carrier)（二手资料，1962 年、24 路、8 kHz×8 bit、1.544 Mb/s 与教材 1.3 的时分复用一致）
+- J. W. Cooley, J. W. Tukey, *Mathematics of Computation* 19 (1965) 297–301. [doi:10.1090/S0025-5718-1965-0178586-1](https://doi.org/10.1090/S0025-5718-1965-0178586-1)
+- TMS32010：[Wikipedia: TMS320](https://en.wikipedia.org/wiki/TMS320)（二手资料，1983 年 4 月 8 日发布）
+:::
+
+## [②]{.col-badge} 这条链上每一步在做什么 {#sec-2}
+
+### 数学准备：只需要三个概念 {#sec-2-1}
+
+| 概念 | 一句话 | 本页用途 |
+|---|---|---|
+| 采样 | x(n) = x_a(nT)，T 是采样间隔，f_s = 1/T 是采样率 | 把连续时间变成序号 n |
+| 量化台阶 | 范围 ±A、b 位，则台阶 Δ = 2A/2^b，误差不超过 Δ/2 | 把幅值变成有限个数码 |
+| 取平均 | 相邻 M 个数相加除以 M | 一个最简单的“数字处理” |
+
+### 五步 {#sec-2-2}
+
+1. **预处理。** 在采样前用模拟滤波器滤掉杂散分量。为什么必须在采样前做，是 2.1 采样定理的内容；这里只记住顺序不能换。
+2. **采样与 A/D。** 采样得到离散时间信号，量化得到数字信号。演示里 f_s = 100 Hz，量化分别用 3 位和 8 位。
+3. **数字处理。** 演示用“相邻 5 个数取平均”。它能把快变的 15 Hz 干扰压低，慢变的 2 Hz 基本保留。为什么，是第 2 章频率响应的内容。
+4. **D/A。** 每个样本保持一个采样周期，输出是阶梯。
+5. **平滑。** 把阶梯磨平，得到模拟输出。演示用一个 20 ms 的平均近似模拟平滑滤波器。
+
+::: {.callout-note .ask appearance="simple"}
+**教师提问：** 处理后的 2 Hz 成分比原来晚了一点（图③里蓝点整体右移），这是错误吗？（不是。取 5 个数的平均，输出对应这 5 个数的中间时刻，天然延迟 2 个样本，即 20 ms。第 7 章会把它叫作群延迟。）
+:::
+
+## [③]{.col-badge} 仿真演示：从模拟信号到模拟输出 {#sec-3}
+
+::: {.ide-links data-matlab="demo_dsp_chain.m" data-python="python/1.2-dsp-chain.py"}
+:::
+
+<div class="video-box">
+<p class="media-pending">课堂动画正在整理上线；请先查看下方静态图和实验代码。</p>
+</div>
+
+::: {.media-note}
+动画由 [make_dsp_chain_video.m](code/make_dsp_chain_video.m) 生成，数据与下方四格图相同；核验记录：[verification-video.json](code/results/verification-video.json)。先让学生预测 3 位台阶和 15 Hz 剩多少，再播放；播完再看静态四格图读数。点击按钮加载播放器后，按播放键开始。
+:::
+
+脚本 [demo_dsp_chain.m](code/demo_dsp_chain.m) [已运行]{.status .ok}，基础 MATLAB，点“运行”生成四格图。核验记录 [verification.json](code/results/verification.json)：量化误差不超过半个台阶；5 点平均对两个频率的增益与稳态拟合幅值一致。
+
+:::: {.example}
+::: {.example-title}
+2 Hz 想要的成分 + 0.5 倍幅度的 15 Hz 干扰，走完整条链
+:::
+::: {.example-body}
+**运行前问学生：** 量化范围 ±2，用 3 位有几个电平、台阶多大？相邻 5 个数取平均之后，15 Hz 干扰会剩下多少？
+
+![四格：① 模拟信号与采样点；② 8 位与 3 位量化；③ 5 点平均前后；④ 零阶保持与平滑后的模拟输出，黑色虚线是原来的 2 Hz 成分](img/01-dsp-chain.png){width=100%}
+
+**读图顺序：** 先看每格横轴还是 t，再看点是离散的还是线是连续的，最后看幅度。
+
+| 能数出来的数 | 值 |
+|---|---|
+| 3 位量化：电平数 / 台阶 / 实测最大误差 | 8 / 0.5 / 0.246 |
+| 8 位量化：电平数 / 台阶 / 实测最大误差 | 256 / 0.0156 / 0.0075 |
+| 5 点平均后 2 Hz 幅度（输入 1） | 0.985 |
+| 5 点平均后 15 Hz 幅度（输入 0.5） | 0.156，压到不到三分之一 |
+
+::: {.panel-tabset}
+#### MATLAB [已运行]{.status .ok}
+
+```matlab
+fs = 100; T = 1/fs; dur = 2;
+xa = @(t) sin(2*pi*2*t) + 0.5*sin(2*pi*15*t);   % 模拟信号：2 Hz + 15 Hz 干扰
+n = 0:dur*fs; t = n*T; x = xa(t);               % 采样
+full = 2; quantize = @(v, bits) max(-full, min(full - 2*full/2^bits, round(v/(2*full)*2^bits)/2^bits*2*full));
+x3 = quantize(x, 3); x8 = quantize(x, 8);       % 量化：3 位、8 位
+y = filter(ones(1,5)/5, 1, x8);                 % 数字处理：相邻 5 个数取平均
+tc = 0:1e-4:dur; yzoh = interp1(t, y, tc, 'previous', 'extrap');   % D/A：零阶保持
+ysmooth = filter(ones(1,200)/200, 1, yzoh);     % 平滑：20 ms 平均
+```
+
+#### Python [对照]{.status .ref}
+
+```python
+import numpy as np
+from scipy.signal import lfilter
+fs, dur = 100, 2.0
+xa = lambda t: np.sin(2*np.pi*2*t) + 0.5*np.sin(2*np.pi*15*t)
+n = np.arange(int(dur*fs) + 1); t = n/fs; x = xa(t)                 # 采样
+full = 2.0
+def quantize(v, bits):
+    step = 2*full/2**bits
+    return np.clip(np.round(v/step)*step, -full, full - step)
+x3, x8 = quantize(x, 3), quantize(x, 8)                             # 量化
+y = lfilter(np.ones(5)/5, [1.0], x8)                                # 5 点平均
+tc = np.arange(0, dur + 1e-9, 1e-4)
+yzoh = y[np.minimum(np.searchsorted(t, tc, side="right") - 1, len(t) - 1)]   # 零阶保持
+ysmooth = lfilter(np.ones(200)/200, [1.0], yzoh)                    # 平滑
+print(np.max(abs(x - x3)), np.max(abs(x - x8)))                     # 0.246, 0.0075
+```
+:::
+:::
+::::
+
+## [④]{.col-badge} 检查与思考 {#sec-4}
+
+::: {.quiz data-type="number" data-answer="0.5" data-tol="0.001"}
+::: {.q-text}
+1. 量化范围 ±2，用 3 位表示，量化台阶是多少？
+:::
+::: {.q-explain}
+2×2/2³ = 0.5；8 个电平。误差最大半个台阶 0.25，演示实测 0.246。
+:::
+:::
+
+::: {.quiz data-type="choice" data-answer="C"}
+::: {.q-text}
+2. D/A 之后为什么还要“平滑”？
+:::
+::: {.q-opts}
+[为了补偿量化误差]{data-opt="A"}
+[为了把信号放大]{data-opt="B"}
+[零阶保持的输出是阶梯，平滑滤波去掉阶梯上的快变成分]{data-opt="C"}
+[为了把采样率提高]{data-opt="D"}
+:::
+::: {.q-explain}
+阶梯的跳变是高频成分，模拟平滑滤波器把它们滤掉，输出才接近原来的连续波形。
+:::
+:::
+
+::: {.quiz data-type="number" data-answer="0.156" data-tol="0.02"}
+::: {.q-text}
+3. 0.5 倍幅度的 15 Hz 干扰经过 5 点平均（f_s=100 Hz）后，幅度约为多少？
+:::
+::: {.q-explain}
+演示实测 0.156。为什么恰好是这个数，第 2 章讲频率响应时回答。
+:::
+:::
+
+**短答题**
+
+4. 图 1.2.1 里“预处理”为什么放在采样之前而不是之后？
+5. 一维信号处理和多维信号处理的区别是什么？各举一例。
+
+::: {.callout-tip collapse="true" appearance="simple"}
+## 教师参考要点
+4. 采样会把高于 f_s/2 的分量折到低频（混叠），采样之后再滤已经分不开；所以要在采样前限制带宽。详见 2.1。
+5. 按自变量维数分：时间序列、语音是一维；图像二维，视频三维。本书只讲一维。
+:::
+
+{{< include _agent-box.qmd >}}
+
+::: {.see-also}
+[另请参阅]{.sa-title}
+
+::: {.sa-row}
+[先修]{.sa-label} [1.1 信号和系统](1.1-signals-systems.qmd)
+:::
+::: {.sa-row}
+[后继]{.sa-label} [1.3 数字系统的优点](1.3-advantages.qmd) · 2.1 采样定理 · 2.3.1 系统的频率响应 · [3.6 用 DFT 逼近连续信号](../ch3/3.6-approximation.qmd)
+:::
+:::

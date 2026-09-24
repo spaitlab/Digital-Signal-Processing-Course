@@ -1,0 +1,84 @@
+{
+  "err_cascade": 2.6645352591003757E-15,
+  "err_parallel": 1.7763568394002505E-15,
+  "parallel_G0": -6.9444444444444411,
+  "parallel_A1": -2.7946666666666697,
+  "parallel_r0": 12.739111111111111,
+  "parallel_r1": 3.8741777777777782,
+  "sixth_order_Ad": [
+    1,
+    -5.4598937071128724,
+    12.815956255557506,
+    -16.511831457993743,
+    12.308444387837426,
+    -5.0360321124252785,
+    0.8858423808639998
+  ],
+  "quant_bits": 8,
+  "pole_shift_direct": 0.16263110848722445,
+  "pole_shift_cascade": 0.0021317583448562526,
+  "max_pole_radius_directQ": 1.1217561143989485,
+  "max_pole_radius_cascadeQ": 0.98027419633488266,
+  "bits_sweep": [
+    {
+      "Bits": 16,
+      "pole_shift_direct": 0.011805001614463052,
+      "pole_shift_cascade": 1.1007519411073122E-5,
+      "max_pole_radius_directQ": 0.98549459980500542,
+      "max_pole_radius_cascadeQ": 0.9800017563161878
+    },
+    {
+      "Bits": 15,
+      "pole_shift_direct": 0.023910798610671007,
+      "pole_shift_cascade": 2.5641707630666331E-5,
+      "max_pole_radius_directQ": 0.98796587497341992,
+      "max_pole_radius_cascadeQ": 0.97999397120275711
+    },
+    {
+      "Bits": 14,
+      "pole_shift_direct": 0.041871700712661476,
+      "pole_shift_cascade": 5.0610134532523459E-5,
+      "max_pole_radius_directQ": 1.010685521575468,
+      "max_pole_radius_cascadeQ": 0.97999397120275689
+    },
+    {
+      "Bits": 12,
+      "pole_shift_direct": 0.065415354345011376,
+      "pole_shift_cascade": 0.00019577090966235429,
+      "max_pole_radius_directQ": 1.0361914583688789,
+      "max_pole_radius_cascadeQ": 0.98002511128542014
+    },
+    {
+      "Bits": 10,
+      "pole_shift_direct": 0.10649815641274066,
+      "pole_shift_cascade": 0.0010187573665934402,
+      "max_pole_radius_directQ": 1.0873961321250929,
+      "max_pole_radius_cascadeQ": 0.97977596291193025
+    },
+    {
+      "Bits": 8,
+      "pole_shift_direct": 0.16263110848722445,
+      "pole_shift_cascade": 0.0021317583448562526,
+      "max_pole_radius_directQ": 1.1217561143989485,
+      "max_pole_radius_cascadeQ": 0.98027419633488266
+    },
+    {
+      "Bits": 6,
+      "pole_shift_direct": 0.263618431647607,
+      "pole_shift_cascade": 0.018043574207546341,
+      "max_pole_radius_directQ": 1.2688534743762125,
+      "max_pole_radius_cascadeQ": 0.97628120948833186
+    }
+  ],
+  "duration_s": 40,
+  "frames": 1200,
+  "fps": 30,
+  "width": 1280,
+  "height": 720,
+  "quality": 90,
+  "file_size_bytes": 2.402795E+6,
+  "all_checks_passed": true,
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "generated_at": "2026-09-19 17:53:41",
+  "first_unstable_in_sweep_bits": 14
+}

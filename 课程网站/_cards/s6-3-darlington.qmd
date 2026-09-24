@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">人物传记 · 首次发布未核对；最后编辑 2017-08-14 · 时长未核对</span>
+<h3>Sidney Darlington</h3>
+<p>发布：Engineering and Technology History Wiki（ETHW）。课堂看点：同一个人既推动网络综合，也提出达林顿晶体管连接。从“按数学指标设计电路”过渡到本页切比雪夫逼近与插入损耗设计；1939 年论文的技术结论见本页原文献。</p>
+<p>图文片段起止不适用。核对日期：2026-09-19。未核对字段：首次发布日期、阅读时长。</p>
+<div class="actions"><a class="action primary" href="https://ethw.org/Sidney_Darlington" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

@@ -1,0 +1,22 @@
+{
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "run_at": "2026-09-18 19:17:13",
+  "tone_hz": 5,
+  "fs_high": 50,
+  "fs_low": 6,
+  "alias_hz": 1,
+  "alias_fitted_amplitude": 1.0002508656843592,
+  "tones_hz": [
+    2,
+    5,
+    8
+  ],
+  "fs_no_overlap": 20,
+  "fs_overlap": 12,
+  "folded_8hz_to": 4,
+  "fs_recover": 12,
+  "sinc_max_error": 0.00078677490690809426,
+  "zoh_max_error": 1.8655319641501711,
+  "linear_max_error": 0.718287250728689,
+  "all_checks_passed": true
+}

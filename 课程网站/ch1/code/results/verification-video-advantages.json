@@ -1,0 +1,41 @@
+{
+  "coef_err_max_4bit": 0.057728014223006781,
+  "stopband_worst_db_ideal": -25.139079711499541,
+  "stopband_worst_db_16bit": -25.15195870373099,
+  "stopband_worst_db_4bit": -13.81212766594304,
+  "lowpass_gain_2Hz": 0.93975647936710172,
+  "lowpass_gain_15Hz": 0.0040208361746302563,
+  "highpass_gain_2Hz": 0.060243520632898354,
+  "highpass_gain_15Hz": 1.0040208361746301,
+  "repeat_run_max_diff": 0,
+  "analog_output_spread_max": 0.045760124378037448,
+  "tdm_vs_separate_max_diff": 1.1102230246251565E-16,
+  "matlab_version": "25.2.0.3360999 (R2025b) Update 7",
+  "generated_at": "2026-09-19 11:25:49",
+  "frames": 1200,
+  "frame_rate": 30,
+  "duration_s": 40,
+  "width": 1280,
+  "height": 720,
+  "quality": 90,
+  "file_size_bytes": 2.571401E+6,
+  "bits": [
+    16,
+    12,
+    10,
+    8,
+    6,
+    5,
+    4
+  ],
+  "stopband_by_bits_db": [
+    -25.15195870373099,
+    -25.048743062201339,
+    -25.19169863576435,
+    -24.058341159269911,
+    -24.082399653118497,
+    -16.627044494017138,
+    -13.81212766594304
+  ],
+  "all_checks_passed": true
+}

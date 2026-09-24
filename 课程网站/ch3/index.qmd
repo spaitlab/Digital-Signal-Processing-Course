@@ -1,0 +1,66 @@
+---
+title: "第3章 离散傅里叶变换"
+subtitle: "从四种傅里叶表示到可以用计算机算的那一种"
+---
+
+::: {.page-meta}
+[教材书内 54—123 页 · PDF 62—131 页]{} [样板章]{} [核对 2026-09-18]{}
+:::
+
+::: {.keypoints}
+[本章主线]{.kp-title}
+
+- 时域离散 ⇔ 频域周期；时域周期 ⇔ 频域离散。两条同时成立，就得到时域、频域都离散且周期的第四种表示（3.1—3.2）。
+- 取一个周期，就是 DFT：N 个独立复值，隐含周期性（3.3）。
+- DFT 的性质里最要紧的是圆周移位和圆周卷积，因为它们决定了“用 FFT 算卷积要补多少零”（3.4）。
+- 频域采样过密没有代价，过疏会让时域折叠（3.5）。
+- 用 DFT 逼近连续信号必然有三种误差：混叠、栅栏、泄漏；窗函数是对付泄漏的工具，代价是主瓣变宽（3.6—3.7）。
+:::
+
+## 知识点 {#sec-1}
+
+| 页 | 教材位置 | 问题从哪来 | 本页的图 | 状态 |
+|---|---|---|---|---|
+| [3.1 四种傅里叶变换](3.1-fourier-forms.qmd) | 54—57 页 | 傅里叶的热传导；Gibbs 与 Michelson 的来信；Cooley–Tukey | 四种表示对照、周期与谱线间隔、方波合成 | 完整，已核对原页 |
+| [3.2 离散傅里叶级数](3.2-dfs.qmd) | 57—61 页 | 从 DTFT 采样到 DFS：为什么计算机只能算第四种 | 沿用 3.1 图 1 第四行 | 推导页 |
+| [3.3 离散傅里叶变换](3.3-dft.qmd) | 62—64 页 | 高斯 1805 年的轨道插值；Danielson–Lanczos；1965 | 例 3.2 六点 DFT | 推导页 + 例题 |
+| [3.4 DFT 的性质](3.4-properties.qmd) | 64—92 页 | Stockham 1966：用 FFT 做快速卷积 | 圆周卷积与线性卷积（折叠） | 完整 |
+| [3.5 频域采样](3.5-frequency-sampling.qmd) | 93—95 页 | 采样定理的对偶：时限信号可以在频域采样 | 4 点频域采样的时域折叠；补零网格 | 完整 |
+| [3.6 用 DFT 逼近连续信号](3.6-approximation.qmd) | 96—99 页 | Blackman–Tukey 1958：混叠、泄漏这些词从哪来 | 7 与 7.3 周期的泄漏；两个相近频率 | 完整 |
+| [3.7 窗函数和加权](3.7-windows.qmd) | 99—119 页 | Hann、Hamming 的命名；Harris 1978 的窗函数综述 | 四种窗的形状与频谱；弱音显现 | 完整 |
+
+## 本章的图与脚本 {#sec-2}
+
+| 脚本 | 生成的图 | 核验 |
+|---|---|---|
+| [demo_fourier_forms.m](code/demo_fourier_forms.m) | 四种表示、周期与谱线间隔、方波合成（3 张） | [verification-fourier-forms.json](code/verification-fourier-forms.json)，7 项通过，最大误差 4.4×10⁻¹⁵ |
+| [demo_dft.m](code/demo_dft.m) | 圆周卷积、补零与频域采样、泄漏、窗函数（4 张） | [verification-dft.json](code/verification-dft.json)，9 项通过，最大误差 3.5×10⁻¹³ |
+| [dft_lab.py](code/dft_lab.py) | 不出图；46 项数值检查，与 demo_dft.m 的例子一致 | reports/dft-chapter-lab.json |
+
+两个 MATLAB 脚本只用基础 MATLAB，不需要 Signal Processing Toolbox。2026-09-18 在 R2025b Update 7 上运行通过。
+
+## 本章媒体一览 {#sec-media}
+
+| 页 | 类型 | 标题 | 时长 | 课堂或课后 | 网络 | 核对日期 |
+|---|---|---|---|---|---|---|
+| [3.4](3.4-properties.qmd#sec-3) | 本地动画 | 圆周卷积与补零（视频整理中） | 40 秒 | 课堂先预测、后播放 | 不需要 | 2026-09-19 |
+| [3.7](3.7-windows.qmd#sec-3) | 本地动画 | 窗形、频谱与弱音显现（视频整理中） | 36 秒 | 课堂先预测、后播放 | 不需要 | 2026-09-19 |
+| [3.1](3.1-fourier-forms.qmd#sec-3) | 本地动画 | 方波合成与 Gibbs 过冲（视频整理中） | 34 秒 | 课堂先预测、后播放 | 不需要 | 2026-09-19 |
+| [3.1](3.1-fourier-forms.qmd#sec-1) | 视频 | [But what is a Fourier series? From heat flow to circle drawings](https://www.3blue1brown.com/lessons/fourier-series/) | 时长未核对 | 课前浏览；视频片段待教师试看 | 需要 | 2026-09-19 |
+| [3.1](3.1-fourier-forms.qmd#sec-1) | 视频系列 | [Albert Michelson’s Harmonic Analyzer — Companion Video Series](https://engineerguy.com/fourier/) | 时长未核对 | 课前浏览；视频片段待教师试看 | 需要 | 2026-09-19 |
+| [3.3](3.3-dft.qmd#sec-1) | 历史图文 | [History of DSP at Rice](https://www.ece.rice.edu/dsp/overview/history.shtml) | 阅读时长未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [3.4](3.4-properties.qmd#sec-1) | 历史图文（附档案视频说明） | [One More: Pioneer in Sound](https://continuum.utah.edu/departments/pioneer-in-sound/) | 时长未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [3.6](3.6-approximation.qmd#sec-1) | 人物报道 | [Statistician John W. Tukey dies](https://www.princeton.edu/news/2000/07/28/statistician-john-w-tukey-dies) | 阅读时长未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+| [3.7](3.7-windows.qmd#sec-1) | 人物报道 | [Statistician John W. Tukey dies](https://www.princeton.edu/news/2000/07/28/statistician-john-w-tukey-dies) | 阅读时长未核对 | 课堂展示一张截图，课后阅读 | 需要 | 2026-09-19 |
+
+## 课时安排（建议 8 课时） {#sec-3}
+
+| 课时 | 内容 |
+|---|---|
+| 1—2 | 3.1 四种傅里叶变换（历史、正交投影推 FS、图 1—2；第二课时 Gibbs 与图 3） |
+| 3 | 3.2 DFS + 3.3 DFT 定义（一条推导贯通；例 3.2 手算） |
+| 4 | 3.4 圆周移位与圆周卷积（图：折叠） |
+| 5 | 3.4 帕塞瓦尔、对称性；3.5 频域采样 |
+| 6 | 3.6 三种误差：混叠、栅栏、泄漏 |
+| 7 | 3.7 窗函数 |
+| 8 | 复习与自测（20 题挑 8 题） |

@@ -1,0 +1,12 @@
+let currentConfig;
+function drawLab(){const ratio=+document.querySelector('#frequency').value,startup=document.querySelector('#view').value==='startup';currentConfig=DATA.configs.find(c=>Math.abs(c.ratio-ratio)<1e-9);const c=currentConfig,ctx=document.querySelector('#lab').getContext('2d'),light=document.documentElement.dataset.theme==='light',mut=light?'#637083':'#a1b4c7',gold=light?'#985000':'#ffc66f',green=light?'#007b6c':'#4dd7c2';ctx.fillStyle=light?'#eef3f7':'#142c3b';ctx.fillRect(0,0,1100,350);ctx.font='18px sans-serif';ctx.lineWidth=2;
+function line(points,col){ctx.strokeStyle=col;ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));ctx.stroke();}
+line([[45,50],[45,275],[445,275]],mut);line(DATA.ratios.map((r,i)=>[45+400*r,275-220*DATA.response_amp[i]]).filter((p,i)=>DATA.ratios[i]>=0&&DATA.ratios[i]<=1),green);ctx.fillStyle=gold;ctx.beginPath();ctx.arc(45+400*ratio,275-220*c.fit_amp,6,0,Math.PI*2);ctx.fill();ctx.fillStyle=mut;ctx.fillText('|H|：曲线为定义，点为输出拟合',45,30);ctx.fillText('0',40,300);ctx.fillText('1  ω/π',397,300);ctx.fillText('1',22,60);
+const lo=startup?0:4,hi=startup?20:40,px=n=>520+(n-lo)*540/(hi-lo),py=y=>170-105*y;
+if(startup){ctx.fillStyle=light?'#d8e4e9':'#233f50';ctx.fillRect(px(0),40,px(3.5)-px(0),260);}line([[520,170],[1060,170]],mut);
+for(const [values,col] of [[startup?c.steady:c.x,startup?green:mut],[c.y,gold]]){line(Array.from({length:hi-lo+1},(_,i)=>[px(i+lo),py(values[i+lo])]),col);ctx.fillStyle=col;for(let n=lo;n<=hi;n++){ctx.beginPath();ctx.arc(px(n),py(values[n]),3,0,Math.PI*2);ctx.fill();}}
+ctx.fillStyle=mut;ctx.fillText(startup?'启动：直接输出与稳态预测':'稳态：输入与直接输出',520,30);ctx.fillText(String(lo),520,315);ctx.fillText(hi+' n',1020,315);
+document.querySelector('#metrics').textContent=`理论增益 ${c.amp.toFixed(6)}；拟合增益 ${c.fit_amp.toFixed(6)}；相位：${c.phase_valid?(c.phase/Math.PI).toFixed(4)+'π rad':'不定义（零响应）'}；稳态最大误差 ${c.steady_error.toExponential(2)}`;
+document.querySelector('#legend').textContent=startup?'启动比较：金色为实际平均输出，绿色为稳态预测。标记n=0…3尚未填满输入历史；本例从n=4起吻合。':'稳态比较：灰色为输入，金色为实际平均输出；图示n=4…40，拟合使用n=4…79。';}
+for(const id of ['frequency','view'])document.getElementById(id).addEventListener('change',drawLab);
+document.querySelector('#quiz').addEventListener('submit',e=>{e.preventDefault();const f=new FormData(e.target),keys=['q1','q2','q3'],answers=['b','a','b'];document.querySelector('#feedback').textContent=keys.some(k=>!f.get(k))?'请先完成三道题。':keys.map((k,i)=>`${i+1}. ${f.get(k)===answers[i]?'正确':'请再想一想'}`).join('；');});

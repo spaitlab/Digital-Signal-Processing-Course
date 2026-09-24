@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">历史图文 · 未核对 · 阅读时长未核对</span>
+<h3>History of DSP at Rice</h3>
+<p>发布：Rice University / DSP group。课堂看点：学校研究史的 1984 年条目明确记录：发现 Gauss 在 1805 年已描述 FFT。用这条时间线区分 DFT 的定义、快速算法与成果传播；研究论文的作者及考证见本页 sources。</p>
+<p>图文起止时间不适用。核对日期：2026-09-19。未核对字段：发布日期；阅读时长未核对。</p>
+<div class="actions"><a class="action primary" href="https://www.ece.rice.edu/dsp/overview/history.shtml" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>

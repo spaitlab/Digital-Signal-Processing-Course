@@ -1,0 +1,7 @@
+<section class="classroom-media-card">
+<span class="media-type">视频 · 2022-11-03 · 时长未核对</span>
+<h3>How An Algorithm Could Have Stopped The Nuclear Arms Race</h3>
+<p>发布：Veritasium 官方网站。FFT 历史视频（检索题名含 “The Most Important Algorithm Of All Time”，官网当前题名如上）。课堂看点：算法效率为什么能让数字处理算得动。本页只作历史引子，FFT 推导留到第 4 章。未逐段试看，Cooley–Tukey 与 1965 年论文的两分钟片段待核验；目前供课前浏览。</p>
+<p>核对日期：2026-09-19。</p>
+<div class="actions"><a class="action primary" href="https://www.veritasium.com/videos/2022/11/3/how-an-algorithm-could-have-stopped-the-nuclear-arms-race" target="_blank" rel="noopener noreferrer">▶ 在原站打开</a></div>
+</section>
