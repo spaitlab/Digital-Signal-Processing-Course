@@ -1,0 +1,439 @@
+{
+  "schema_version": 1,
+  "inventory_date": "2026-09-24",
+  "course": "数字信号处理",
+  "provider": "google_drive",
+  "root_folder_id": "1gHXmujkXIk45643K1fm7i8QP-Eqhe5_5",
+  "root_folder_url": "https://drive.google.com/drive/folders/1gHXmujkXIk45643K1fm7i8QP-Eqhe5_5",
+  "items": [
+    {
+      "id": "1.1-signals-systems",
+      "title": "采样之后，为什么还要量化？ · 1.1微课",
+      "chapter": 1,
+      "status": "pending_upload",
+      "planned_page_path": "microlectures/1.1-signals-systems/index.html",
+      "page_url": null,
+      "version": null,
+      "variants": [
+        {
+          "theme": "light",
+          "source_relative_path": "microlectures/1.1-signals-systems/film-light.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        },
+        {
+          "theme": "dark",
+          "source_relative_path": "microlectures/1.1-signals-systems/film.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        }
+      ],
+      "subtitles": [
+        "subtitles.srt",
+        "subtitles.vtt"
+      ],
+      "mirror_url": null,
+      "verified_at": null
+    },
+    {
+      "id": "1.2-dsp-chain",
+      "title": "数字信号处理过程 · 1.2微课",
+      "chapter": 1,
+      "status": "pending_upload",
+      "planned_page_path": "microlectures/1.2-dsp-chain/index.html",
+      "page_url": null,
+      "version": null,
+      "variants": [
+        {
+          "theme": "light",
+          "source_relative_path": "microlectures/1.2-dsp-chain/film-light.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        },
+        {
+          "theme": "dark",
+          "source_relative_path": "microlectures/1.2-dsp-chain/film.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        }
+      ],
+      "subtitles": [
+        "subtitles.srt",
+        "subtitles.vtt"
+      ],
+      "mirror_url": null,
+      "verified_at": null
+    },
+    {
+      "id": "1.3-digital-advantages",
+      "title": "数字系统的优点 · 1.3微课",
+      "chapter": 1,
+      "status": "pending_upload",
+      "planned_page_path": "microlectures/1.3-digital-advantages/index.html",
+      "page_url": null,
+      "version": null,
+      "variants": [
+        {
+          "theme": "light",
+          "source_relative_path": "microlectures/1.3-digital-advantages/film-light.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        },
+        {
+          "theme": "dark",
+          "source_relative_path": "microlectures/1.3-digital-advantages/film.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        }
+      ],
+      "subtitles": [
+        "subtitles.srt",
+        "subtitles.vtt"
+      ],
+      "mirror_url": null,
+      "verified_at": null
+    },
+    {
+      "id": "1.4-tools",
+      "title": "数字信号处理软件工具 · 1.4微课",
+      "chapter": 1,
+      "status": "pending_upload",
+      "planned_page_path": "microlectures/1.4-tools/index.html",
+      "page_url": null,
+      "version": null,
+      "variants": [
+        {
+          "theme": "light",
+          "source_relative_path": "microlectures/1.4-tools/film-light.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        },
+        {
+          "theme": "dark",
+          "source_relative_path": "microlectures/1.4-tools/film.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        }
+      ],
+      "subtitles": [
+        "subtitles.srt",
+        "subtitles.vtt"
+      ],
+      "mirror_url": null,
+      "verified_at": null
+    },
+    {
+      "id": "2.1-reconstruction",
+      "title": "采样信号的恢复 · 2.1-B微课",
+      "chapter": 2,
+      "status": "pending_upload",
+      "planned_page_path": "microlectures/2.1-reconstruction/index.html",
+      "page_url": null,
+      "version": null,
+      "variants": [
+        {
+          "theme": "light",
+          "source_relative_path": "microlectures/2.1-reconstruction/film-light.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        },
+        {
+          "theme": "dark",
+          "source_relative_path": "microlectures/2.1-reconstruction/film.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        }
+      ],
+      "subtitles": [
+        "subtitles.srt",
+        "subtitles.vtt"
+      ],
+      "mirror_url": null,
+      "verified_at": null
+    },
+    {
+      "id": "2.1-sampling",
+      "title": "采样与混叠 · 2.1微课",
+      "chapter": 2,
+      "status": "pending_upload",
+      "planned_page_path": "microlectures/2.1-sampling/index.html",
+      "page_url": null,
+      "version": null,
+      "variants": [
+        {
+          "theme": "light",
+          "source_relative_path": "microlectures/2.1-sampling/film-light.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        },
+        {
+          "theme": "dark",
+          "source_relative_path": "microlectures/2.1-sampling/film.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        }
+      ],
+      "subtitles": [
+        "subtitles.srt",
+        "subtitles.vtt"
+      ],
+      "mirror_url": null,
+      "verified_at": null
+    },
+    {
+      "id": "2.2-convolution",
+      "title": "卷积 · 2.2-B微课",
+      "chapter": 2,
+      "status": "pending_upload",
+      "planned_page_path": "microlectures/2.2-convolution/index.html",
+      "page_url": null,
+      "version": null,
+      "variants": [
+        {
+          "theme": "light",
+          "source_relative_path": "microlectures/2.2-convolution/film-light.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        },
+        {
+          "theme": "dark",
+          "source_relative_path": "microlectures/2.2-convolution/film.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        }
+      ],
+      "subtitles": [
+        "subtitles.srt",
+        "subtitles.vtt"
+      ],
+      "mirror_url": null,
+      "verified_at": null
+    },
+    {
+      "id": "2.2-sequences",
+      "title": "序列与周期性 · 2.2微课",
+      "chapter": 2,
+      "status": "pending_upload",
+      "planned_page_path": "microlectures/2.2-sequences/index.html",
+      "page_url": null,
+      "version": null,
+      "variants": [
+        {
+          "theme": "light",
+          "source_relative_path": "microlectures/2.2-sequences/film-light.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        },
+        {
+          "theme": "dark",
+          "source_relative_path": "microlectures/2.2-sequences/film.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        }
+      ],
+      "subtitles": [
+        "subtitles.srt",
+        "subtitles.vtt"
+      ],
+      "mirror_url": null,
+      "verified_at": null
+    },
+    {
+      "id": "2.3-frequency-response",
+      "title": "五点平均与频率响应 · 2.3微课",
+      "chapter": 2,
+      "status": "pending_upload",
+      "planned_page_path": "microlectures/2.3-frequency-response/index.html",
+      "page_url": null,
+      "version": null,
+      "variants": [
+        {
+          "theme": "light",
+          "source_relative_path": "microlectures/2.3-frequency-response/film-light.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        },
+        {
+          "theme": "dark",
+          "source_relative_path": "microlectures/2.3-frequency-response/film.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        }
+      ],
+      "subtitles": [
+        "subtitles.srt",
+        "subtitles.vtt"
+      ],
+      "mirror_url": null,
+      "verified_at": null
+    },
+    {
+      "id": "2.3-z-transform",
+      "title": "z变换与收敛域 · 2.3-B微课",
+      "chapter": 2,
+      "status": "pending_upload",
+      "planned_page_path": "microlectures/2.3-z-transform/index.html",
+      "page_url": null,
+      "version": null,
+      "variants": [
+        {
+          "theme": "light",
+          "source_relative_path": "microlectures/2.3-z-transform/film-light.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        },
+        {
+          "theme": "dark",
+          "source_relative_path": "microlectures/2.3-z-transform/film.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        }
+      ],
+      "subtitles": [
+        "subtitles.srt",
+        "subtitles.vtt"
+      ],
+      "mirror_url": null,
+      "verified_at": null
+    },
+    {
+      "id": "2.4-poles-zeros",
+      "title": "零极点与频率响应 · 2.4-B微课",
+      "chapter": 2,
+      "status": "pending_upload",
+      "planned_page_path": "microlectures/2.4-poles-zeros/index.html",
+      "page_url": null,
+      "version": null,
+      "variants": [
+        {
+          "theme": "light",
+          "source_relative_path": "microlectures/2.4-poles-zeros/film-light.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        },
+        {
+          "theme": "dark",
+          "source_relative_path": "microlectures/2.4-poles-zeros/film.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        }
+      ],
+      "subtitles": [
+        "subtitles.srt",
+        "subtitles.vtt"
+      ],
+      "mirror_url": null,
+      "verified_at": null
+    },
+    {
+      "id": "2.4-stability",
+      "title": "BIBO稳定性 · 2.4-A微课",
+      "chapter": 2,
+      "status": "pending_upload",
+      "planned_page_path": "microlectures/2.4-stability/index.html",
+      "page_url": null,
+      "version": null,
+      "variants": [
+        {
+          "theme": "light",
+          "source_relative_path": "microlectures/2.4-stability/film-light.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        },
+        {
+          "theme": "dark",
+          "source_relative_path": "microlectures/2.4-stability/film.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        }
+      ],
+      "subtitles": [
+        "subtitles.srt",
+        "subtitles.vtt"
+      ],
+      "mirror_url": null,
+      "verified_at": null
+    },
+    {
+      "id": "3.1-fourier-forms",
+      "title": "四种傅里叶表示 · 微课 01",
+      "chapter": 3,
+      "status": "pending_upload",
+      "planned_page_path": "microlectures/3.1-fourier-forms/index.html",
+      "page_url": null,
+      "version": null,
+      "variants": [
+        {
+          "theme": "light",
+          "source_relative_path": "microlectures/3.1-fourier-forms/film-light.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        },
+        {
+          "theme": "dark",
+          "source_relative_path": "microlectures/3.1-fourier-forms/film.mp4",
+          "file_id": null,
+          "share_url": null,
+          "embed_url": null,
+          "sha256": null
+        }
+      ],
+      "subtitles": [
+        "subtitles.srt",
+        "subtitles.vtt"
+      ],
+      "mirror_url": null,
+      "verified_at": null
+    }
+  ]
+}

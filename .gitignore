@@ -1,0 +1,46 @@
+# Website build output and caches
+_site/
+.quarto/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+node_modules/
+.venv/
+venv/
+browser-profile/
+.runtime/
+
+# Media binaries and production intermediates are stored outside Git
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.webm
+*.wav
+*.mp3
+*.m4a
+*.zip
+*.7z
+neural/
+
+# Local configuration and temporary files
+.env
+.env.*
+!.env.example
+*.log
+*.tmp
+~$*
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.claude/
+.codex/
+tmp/
+
+# Private teaching and student materials
+学习空间/
+往年课程资料/
+花名册/
+成绩/
+教师专用/
